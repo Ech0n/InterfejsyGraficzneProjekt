@@ -13,13 +13,17 @@
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto ">
           <li class="nav-item">
-            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-home"/></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Products</a>
+            <a class="nav-link mx-2" href="#"><!-- Add the style and icon you want using the String format -->
+              <font-awesome-icon icon="fa-solid fa-magnifying-glass" /></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Pricing</a>
+            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-message"/></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-user"/></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
