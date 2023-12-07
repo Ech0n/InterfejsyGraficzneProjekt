@@ -11,7 +11,7 @@
       </button>
 
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto ">
+        <ul class="navbar-nav ms-auto text-center">
           <li class="nav-item">
             <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-home"/></a>
           </li>
