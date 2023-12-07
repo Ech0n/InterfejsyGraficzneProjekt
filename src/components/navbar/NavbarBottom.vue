@@ -1,0 +1,17 @@
+<script setup>
+
+</script>
+
+<template>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="#" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+      </a>
+    </div>
+  </nav>
+</template>
+
+<style scoped>
+
+</style>

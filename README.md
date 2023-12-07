@@ -16,19 +16,25 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+## Install Bootstrap
+
+```sh
+npm install bootstrap
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compile and Minify for Production (Optional)
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint with [ESLint](https://eslint.org/) (Optional)
 
 ```sh
 npm run lint
