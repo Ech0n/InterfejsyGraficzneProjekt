@@ -22,6 +22,26 @@ npm install
 npm install bootstrap
 ```
 
+## Install FontAwesome part 1
+
+```sh
+npm i --save @fortawesome/fontawesome-svg-core
+```
+
+## Install FontAwesome part 2
+
+```sh
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+```
+
+## Install FontAwesome part 3
+
+```sh
+npm i --save @fortawesome/vue-fontawesome@latest-3
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
