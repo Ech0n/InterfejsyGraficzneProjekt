@@ -13,17 +13,17 @@
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto text-center">
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-home"/></a>
+            <RouterLink to="/" class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-home"/></RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#"><!-- Add the style and icon you want using the String format -->
-              <font-awesome-icon icon="fa-solid fa-magnifying-glass" /></a>
+            <RouterLink to="/search" class="nav-link mx-2">
+              <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> </RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-message"/></a>
+            <RouterLink to="/" class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-message"/></RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#"><font-awesome-icon icon="fa-solid fa-user"/></a>
+            <RouterLink to="/" class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

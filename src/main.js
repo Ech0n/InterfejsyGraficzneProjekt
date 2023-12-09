@@ -2,6 +2,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 
@@ -18,4 +19,4 @@ import { faMagnifyingGlass, faUser, faHome, faMessage } from '@fortawesome/free-
 /* add icons to the library */
 library.add(faMagnifyingGlass, faUser, faHome, faMessage)
 
-createApp(App).use(bootstrap).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
