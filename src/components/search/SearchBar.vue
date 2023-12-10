@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import SearchItem from "@/components/search/SearchItem.vue";
+import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
 let input = ref("");
 let selectedOption = ref("courses")
@@ -221,7 +221,7 @@ function filteredTutorsList() {
       <div class="d-flex flex-wrap align-items-center justify-content-center" v-if=" selectedOption === 'courses' ">
   <div  v-for="course in filteredCoursesList()" :key="course.id">
 <!--    <p>{{ course }}</p>-->
-    <SearchItem :courseItem="course" />
+    <CourseItem :courseItem="course" />
   </div>
         <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredCoursesList().length">
           Nie znaleziono żadnego kursu! Spróbój wpisać [random func here]
