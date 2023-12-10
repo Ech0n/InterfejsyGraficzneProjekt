@@ -19,11 +19,10 @@ npm run dev
 5. W przeglądarce odpalasz adres wyświetlany w konsoli po napisie "Local:"
 
 ## Struktura plików
-Wstępna struktura, w miare potrzeb ją pozmieniamy
-`src/components` - Komponenty
-`src/router/index.js` - Przy dodawaniu nowej podstrony tutaj trzeba zmodyfikowac config
-`src/router/views` - Wszystkie podstrony
-`src/assets/` - Wszystkie elementy graficzne (Jakieś pliki jpg,svg.) oraz jakieś defaultowe css'ki
+`src/components` - Komponenty \
+`src/router/index.js` - Przy dodawaniu nowej podstrony tutaj trzeba zmodyfikowac config \
+`src/router/views` - Wszystkie podstrony \
+`src/assets/` - Wszystkie elementy graficzne (Jakieś pliki jpg,svg.) oraz jakieś defaultowe css'ki \
 
 This template should help get you started developing with Vue 3 in Vite.
 
