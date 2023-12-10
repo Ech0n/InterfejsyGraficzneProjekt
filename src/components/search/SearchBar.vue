@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import SearchItem from "@/components/search/SearchItem.vue";
+import TutorItem from "@/components/search/TutorItem.vue";
 let input = ref("");
+let selectedOption = ref("courses")
 const courses = [
   {
     id: 1,
@@ -85,11 +87,120 @@ const courses = [
   }
 ];
 
-function filteredList() {
+function filteredCoursesList() {
   if (input.value && input.value.length > 1)
   return courses.filter((course) =>
       course.name.toLowerCase().includes(input.value.toLowerCase())
   );
+}
+const tutors = [
+  {
+    id: 1,
+    firstname: 'John',
+    lastname: 'Doe',
+    short_desc: 'Experienced Math tutor with a passion for teaching.',
+    image_url: 'https://example.com/john-doe.jpg',
+    subject: 'Math',
+    days: ['Monday', 'Wednesday', 'Friday'],
+    hours: '3:00 PM - 6:00 PM'
+  },
+  {
+    id: 2,
+    firstname: 'Alice',
+    lastname: 'Smith',
+    short_desc: 'Biology expert specializing in anatomy and genetics.',
+    image_url: 'https://example.com/alice-smith.jpg',
+    subject: 'Biology',
+    days: ['Tuesday', 'Thursday'],
+    hours: '2:00 PM - 5:00 PM'
+  },
+  {
+    id: 3,
+    firstname: 'Michael',
+    lastname: 'Johnson',
+    short_desc: 'Passionate about teaching English and Literature.',
+    image_url: 'https://example.com/michael-johnson.jpg',
+    subject: 'English',
+    days: ['Monday', 'Wednesday', 'Friday'],
+    hours: '5:00 PM - 8:00 PM'
+  },
+  {
+    id: 4,
+    firstname: 'Emily',
+    lastname: 'Brown',
+    short_desc: 'History tutor with expertise in world events.',
+    image_url: 'https://example.com/emily-brown.jpg',
+    subject: 'History',
+    days: ['Tuesday', 'Thursday'],
+    hours: '4:00 PM - 7:00 PM'
+  },
+  {
+    id: 5,
+    firstname: 'Daniel',
+    lastname: 'Miller',
+    short_desc: 'Experienced Physics instructor with a focus on mechanics.',
+    image_url: 'https://example.com/daniel-miller.jpg',
+    subject: 'Physics',
+    days: ['Monday', 'Wednesday'],
+    hours: '6:00 PM - 9:00 PM'
+  },
+  {
+    id: 6,
+    firstname: 'Sophia',
+    lastname: 'Garcia',
+    short_desc: 'Chemistry tutor specializing in organic and inorganic chemistry.',
+    image_url: 'https://example.com/sophia-garcia.jpg',
+    subject: 'Chemistry',
+    days: ['Tuesday', 'Thursday'],
+    hours: '3:00 PM - 6:00 PM'
+  },
+  {
+    id: 7,
+    firstname: 'Matthew',
+    lastname: 'Anderson',
+    short_desc: 'Computer Science mentor with expertise in programming.',
+    image_url: 'https://example.com/matthew-anderson.jpg',
+    subject: 'Computer Science',
+    days: ['Monday', 'Wednesday', 'Friday'],
+    hours: '2:00 PM - 5:00 PM'
+  },
+  {
+    id: 8,
+    firstname: 'Olivia',
+    lastname: 'Taylor',
+    short_desc: 'Spanish tutor specializing in language and culture.',
+    image_url: 'https://example.com/olivia-taylor.jpg',
+    subject: 'Spanish',
+    days: ['Tuesday', 'Thursday'],
+    hours: '5:00 PM - 8:00 PM'
+  },
+  {
+    id: 9,
+    firstname: 'William',
+    lastname: 'Clark',
+    short_desc: 'Art teacher with a focus on painting and sculpture.',
+    image_url: 'https://example.com/william-clark.jpg',
+    subject: 'Art',
+    days: ['Monday', 'Wednesday', 'Friday'],
+    hours: '4:00 PM - 7:00 PM'
+  },
+  {
+    id: 10,
+    firstname: 'Emma',
+    lastname: 'Hill',
+    short_desc: 'Music instructor with expertise in theory and instrumentals.',
+    image_url: 'https://example.com/emma-hill.jpg',
+    subject: 'Music',
+    days: ['Tuesday', 'Thursday'],
+    hours: '6:00 PM - 9:00 PM'
+  }
+];
+
+function filteredTutorsList() {
+  if (input.value && input.value.length > 1)
+    return tutors.filter((tutor) =>
+        tutor.subject.toLowerCase().includes(input.value.toLowerCase())
+    );
 }
 </script>
 
@@ -103,20 +214,28 @@ function filteredList() {
       </select>
       </div>
   <div class="col-sm align-self-center">
-  <input class="form-control form-control-lg" v-model="input" type="text" placeholder="Search courses..." aria-label=".form-control-lg example">
+  <input class="form-control form-control-lg" v-model="input" type="text" placeholder="Wyszukaj..." aria-label=".form-control-lg example">
   </div>
       <div class="row">
-    <div class="d-flex flex-wrap">
-      <div v-if="shouldRenderCourseBlock">
-  <div class="item fruit" v-for="course in filteredList()" :key="course.id">
+
+      <div class="d-flex flex-wrap align-items-center justify-content-center" v-if=" selectedOption === 'courses' ">
+  <div  v-for="course in filteredCoursesList()" :key="course.id">
 <!--    <p>{{ course }}</p>-->
     <SearchItem :courseItem="course" />
   </div>
+        <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredCoursesList().length">
+          Nie znaleziono żadnego kursu! Spróbój wpisać [random func here]
         </div>
-    </div>
-    <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredList().length">
-      No results found! <a href="#" class="alert-link">an example link</a>. Try entering random title here!
-    </div>
+        </div>
+      <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
+        <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
+          <!--    <p>{{ course }}</p>-->
+          <TutorItem :tutorItem="tutor" />
+        </div>
+        <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredTutorsList().length">
+          Nie znaleziono żadnego korepetytora! Sprobój wpisać [random func here]
+        </div>
+      </div>
       </div>
   </div>
   </div>
@@ -128,16 +247,4 @@ function filteredList() {
 </style>
 
 <script>
-export default {
-  data() {
-    return {
-      selectedOption: 'courses', // Set a default "Kursy"
-    };
-  },
-  computed: {
-    shouldRenderCourseBlock() {
-      return this.selectedOption === 'courses';
-    },
-  },
-};
 </script>
