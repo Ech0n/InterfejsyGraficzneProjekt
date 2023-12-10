@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <RouterLink :to="'/course/' + courseItem.id" class="text-decoration-none">
   <div class="card mx-3 my-3" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </div>
+  </RouterLink>
 </template>
 
 
