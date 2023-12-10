@@ -9,8 +9,8 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
   <div class = "d-flex flex-column align-items-center justify-content-start">
   <h1 class="text-center">Wyszukiwanie:</h1>
   <div class="d-flex p-2">
-    <a href="/search" type="button" class="btn btn-primary">Szukaj Kursu</a>
-    <a href="/search" type="button" class="btn btn-primary">Szukaj Korepetycji</a>
+    <a href="/search?type=courses" type="button" class="btn btn-primary">Szukaj Kursu</a>
+    <a href="/search?type=tutors" type="button" class="btn btn-primary">Szukaj Korepetycji</a>
   </div>
   <hr class="hr" />
   <a href="/login" class="btn btn-primary">Zaloguj się</a>

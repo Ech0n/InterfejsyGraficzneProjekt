@@ -1,9 +1,21 @@
 <script setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router"
 import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
+
 let input = ref("");
-let selectedOption = ref("courses")
+
+let selectedOption = function() {
+  const type = "type";
+  const route = useRoute()
+
+  const default_type = "courses";
+  if (type in route.query && route.query[type] === "tutors" )
+    return ref(route.query["type"])
+  return ref(default_type)
+}();
+
 const courses = [
   {
     id: 1,
