@@ -1,5 +1,29 @@
 # Korepetycje
 
+
+## Info ode mnie jak uruchomić
+
+1. Zainstalujcie node.js (razem z npm)
+2. Jak nie macie repo spkopiowanego to skopiujcie do siebie 
+```sh
+git clone git@github.com:Ech0n/InterfejsyGraficzneProjekt.git
+```
+3. W folderze projektu czyli "InterfejsyGraficzneProjekt" instalujecie potrzebne moduły:
+```sh
+npm install
+```
+4. Uruchamianie:
+```sh
+npm run dev
+```
+5. W przeglądarce odpalasz adres wyświetlany w konsoli po napisie "Local:"
+
+## Struktura plików
+`src/components` - Komponenty \
+`src/router/index.js` - Przy dodawaniu nowej podstrony tutaj trzeba zmodyfikowac config \
+`src/router/views` - Wszystkie podstrony \
+`src/assets/` - Wszystkie elementy graficzne (Jakieś pliki jpg,svg.) oraz jakieś defaultowe css'ki \
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
