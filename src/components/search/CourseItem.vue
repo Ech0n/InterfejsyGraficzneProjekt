@@ -1,5 +1,6 @@
 <script setup>
 
+import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
 </script>
 
 <template>
@@ -14,6 +15,7 @@
           <h5 class="card-title">{{ courseItem.name }}</h5>
           <p class="card-text">{{ courseItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">Last updated {{ courseItem.last_updated }}</small></p>
+          <p class="d-flex justify-content-end"><ShoppingCartBtn /></p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <script setup>
 
+import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
 </script>
 
 <template>
@@ -14,6 +15,7 @@
           <h5 class="card-title">{{ tutorItem.subject }}</h5>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
+          <p class="d-flex justify-content-end"><ShoppingCartBtn /></p>
         </div>
       </div>
     </div>
