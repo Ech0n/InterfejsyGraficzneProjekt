@@ -24,5 +24,7 @@ import mdiVue from 'mdi-vue/v3'
 import * as mdijs from '@mdi/js'
 
 import PrimeVue from 'primevue/config';
+// theme
+import 'primevue/resources/themes/lara-light-green/theme.css';
 
 createApp(App).use(router, bootstrap, PrimeVue).component('font-awesome-icon', FontAwesomeIcon).use(mdiVue, { icons: mdijs}).mount('#app')
