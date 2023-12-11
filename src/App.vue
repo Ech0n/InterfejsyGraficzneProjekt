@@ -1,5 +1,5 @@
 <script setup>
-
+localStorage.isLoggedIn = false
 </script>
 
 <template>

@@ -30,6 +30,7 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
       </div>
     </div>
   </div>
+
   </div>
 </template>
 
