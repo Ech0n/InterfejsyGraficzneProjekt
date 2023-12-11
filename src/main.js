@@ -23,4 +23,6 @@ library.add(faMagnifyingGlass, faUser, faHome, faMessage)
 import mdiVue from 'mdi-vue/v3'
 import * as mdijs from '@mdi/js'
 
-createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon).use(mdiVue, { icons: mdijs}).mount('#app')
+import PrimeVue from 'primevue/config';
+
+createApp(App).use(router, bootstrap, PrimeVue).component('font-awesome-icon', FontAwesomeIcon).use(mdiVue, { icons: mdijs}).mount('#app')
