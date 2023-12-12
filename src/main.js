@@ -26,5 +26,16 @@ import * as mdijs from '@mdi/js'
 import PrimeVue from 'primevue/config';
 // theme
 import 'primevue/resources/themes/lara-light-green/theme.css';
-
-createApp(App).use(router, bootstrap, PrimeVue).component('font-awesome-icon', FontAwesomeIcon).use(mdiVue, { icons: mdijs}).mount('#app')
+let prime_vue_locale = {
+    dayNames: ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"],
+    dayNamesShort: ["Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
+    dayNamesMin: ["Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "Sob"],
+    monthNames: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+    monthNamesShort: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"],
+    today: 'Dziś',
+    weekHeader: 'Tydz',
+    firstDayOfWeek: 1,
+    dateFormat: 'mm/dd/yy',
+}
+createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
+    .use(mdiVue, { icons: mdijs}).use(PrimeVue, {locale: prime_vue_locale}).mount('#app');
