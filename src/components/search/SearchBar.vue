@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute } from "vue-router"
+import Calendar from "primevue/calendar";
+import SelectButton from "primevue/selectbutton";
 import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
+
 
 let input = ref("");
 
@@ -19,86 +22,118 @@ let selectedOption = function() {
 const courses = [
   {
     id: 1,
-    name: 'JavaScript Fundamentals',
-    short_desc: 'Learn the basics of JavaScript programming.',
-    image_url: 'https://example.com/js-fundamentals.jpg',
+    name: 'Podstawy JavaScript',
+    short_desc: 'Naucz się podstaw programowania w JavaScript.',
+    image_url: 'https://example.com/js-podstawy.jpg',
     last_updated: '2022-01-01',
-    author_name: 'John Doe'
+    author_name: 'Jan Kowalski',
+    price: 120
   },
   {
     id: 2,
-    name: 'Advanced React Development',
-    short_desc: 'Master advanced concepts in React.js.',
-    image_url: 'https://example.com/advanced-react.jpg',
+    name: 'Zaawansowane rozwijanie w React',
+    short_desc: 'Opanuj zaawansowane koncepcje w React.js.',
+    image_url: 'https://example.com/zaawansowany-react.jpg',
     last_updated: '2022-02-15',
-    author_name: 'Jane Smith'
+    author_name: 'Anna Nowak',
+    price: 200
   },
   {
     id: 3,
-    name: 'Node.js for Beginners',
-    short_desc: 'Get started with server-side JavaScript using Node.js.',
-    image_url: 'https://example.com/nodejs-beginners.jpg',
+    name: 'Node.js dla początkujących',
+    short_desc: 'Rozpocznij pracę z JavaScript po stronie serwera za pomocą Node.js.',
+    image_url: 'https://example.com/nodejs-poczatkujacy.jpg',
     last_updated: '2022-03-10',
-    author_name: 'Sam Johnson'
+    author_name: 'Michał Jankowski',
+    price: 150
   },
   {
     id: 4,
-    name: 'Italian Cooking Essentials',
-    short_desc: 'Learn the basics of Italian cuisine and cooking techniques.',
-    image_url: 'https://example.com/italian-cooking.jpg',
+    name: 'Podstawy kuchni włoskiej',
+    short_desc: 'Naucz się podstaw kuchni włoskiej i technik gotowania.',
+    image_url: 'https://example.com/kuchnia-wloska.jpg',
     last_updated: '2022-04-20',
-    author_name: 'Maria Rossi'
+    author_name: 'Maria Rossi',
+    price: 250
   },
   {
     id: 5,
-    name: 'Spanish Language Crash Course',
-    short_desc: 'Quickly grasp the essentials of the Spanish language.',
-    image_url: 'https://example.com/spanish-crash-course.jpg',
+    name: 'Kurs intensywny języka hiszpańskiego',
+    short_desc: 'Szybkie opanowanie podstaw języka hiszpańskiego.',
+    image_url: 'https://example.com/hiszpanski-intensywny.jpg',
     last_updated: '2022-05-05',
-    author_name: 'Carlos Fernandez'
+    author_name: 'Karol Fernandez',
+    price: 180
   },
   {
     id: 6,
-    name: 'Data Science with Python',
-    short_desc: 'Explore data analysis and machine learning with Python.',
+    name: 'Data Science z użyciem Pythona',
+    short_desc: 'Zbadaj analizę danych i machine learning przy użyciu Pythona.',
     image_url: 'https://example.com/data-science-python.jpg',
     last_updated: '2022-06-15',
-    author_name: 'Anna Wang'
+    author_name: 'Anna Wang',
+    price: 300
   },
   {
     id: 7,
-    name: 'Photography Masterclass',
-    short_desc: 'Hone your photography skills with this comprehensive masterclass.',
-    image_url: 'https://example.com/photography-masterclass.jpg',
+    name: 'Masterclass w fotografii',
+    short_desc: 'Doskonal swoje umiejętności fotograficzne dzięki temu kompleksowemu kursowi.',
+    image_url: 'https://example.com/masterclass-fotografia.jpg',
     last_updated: '2022-07-01',
-    author_name: 'David Miller'
+    author_name: 'Dawid Miller',
+    price: 220
   },
   {
     id: 8,
-    name: 'French Cuisine: From Basics to Gourmet',
-    short_desc: 'Dive into the art of French cooking from beginner to gourmet.',
-    image_url: 'https://example.com/french-cuisine.jpg',
+    name: 'Francuska kuchnia: Od podstaw do gourmet',
+    short_desc: 'Zanurz się w sztuce gotowania francuskiego od początkującego do wykwintnego.',
+    image_url: 'https://example.com/francuska-kuchnia.jpg',
     last_updated: '2022-08-10',
-    author_name: 'Sophie Dubois'
+    author_name: 'Zofia Dubois',
+    price: 170
   },
   {
     id: 9,
-    name: 'Introduction to Machine Learning',
-    short_desc: 'Get started with the fundamentals of machine learning.',
-    image_url: 'https://example.com/intro-to-ml.jpg',
+    name: 'Wprowadzenie do Machine Learning',
+    short_desc: 'Zacznij od podstaw w dziedzinie machine learning.',
+    image_url: 'https://example.com/wprowadzenie-do-ml.jpg',
     last_updated: '2022-09-20',
-    author_name: 'Michael Chen'
+    author_name: 'Michał Chen',
+    price: 280
   },
   {
     id: 10,
-    name: 'Japanese Language and Culture',
-    short_desc: 'Immerse yourself in Japanese language and cultural traditions.',
-    image_url: 'https://example.com/japanese-language.jpg',
+    name: 'Język i kultura japońska',
+    short_desc: 'Zanurz się w języku japońskim i tradycjach kulturowych.',
+    image_url: 'https://example.com/japonski-jezyk.jpg',
     last_updated: '2022-10-05',
-    author_name: 'Yuki Tanaka'
+    author_name: 'Yuki Tanaka',
+    price: 160
   }
 ];
 
+
+const days = ref([]);
+const options = [
+  { weekDay: 'Poniedziałek', value: 0 },
+  { weekDay: 'Wtorek', value: 1 },
+  { weekDay: 'Środa', value: 2 },
+  { weekDay: 'Czwartek', value: 3 },
+  { weekDay: 'Piątek', value: 4 },
+  { weekDay: 'Sobota', value: 5 },
+  { weekDay: 'Niedziela', value: 6 }
+];
+
+const time = ref(null);
+const styles = {
+  color: "green",
+  textAlign: "left",
+  fontSize: "2rem",
+};
+
+function setToday() {
+  time.value = new Date();
+}
 function filteredCoursesList() {
   if (input.value && input.value.length > 1)
   return courses.filter((course) =>
@@ -108,112 +143,132 @@ function filteredCoursesList() {
 const tutors = [
   {
     id: 1,
-    firstname: 'John',
-    lastname: 'Doe',
-    short_desc: 'Experienced Math tutor with a passion for teaching.',
-    image_url: 'https://example.com/john-doe.jpg',
-    subject: 'Math',
-    days: ['Monday', 'Wednesday', 'Friday'],
-    hours: '3:00 PM - 6:00 PM'
+    firstname: 'Jan',
+    lastname: 'Kowalski',
+    short_desc: 'Doświadczony korepetytor z matematyki z pasją do nauczania.',
+    image_url: 'https://example.com/jan-kowalski.jpg',
+    subject: 'Matematyka',
+    days: [0, 1, 2, 4],
+    hours: '15:00 - 18:00',
+    price: 50
   },
   {
     id: 2,
-    firstname: 'Alice',
-    lastname: 'Smith',
-    short_desc: 'Biology expert specializing in anatomy and genetics.',
-    image_url: 'https://example.com/alice-smith.jpg',
-    subject: 'Biology',
-    days: ['Tuesday', 'Thursday'],
-    hours: '2:00 PM - 5:00 PM'
+    firstname: 'Alicja',
+    lastname: 'Nowak',
+    short_desc: 'Ekspert w biologii specjalizujący się w anatomii i genetyce.',
+    image_url: 'https://example.com/alicia-nowak.jpg',
+    subject: 'Biologia',
+    days: [1, 3],
+    hours: '14:00 - 17:00',
+    price: 60
   },
   {
     id: 3,
-    firstname: 'Michael',
-    lastname: 'Johnson',
-    short_desc: 'Passionate about teaching English and Literature.',
-    image_url: 'https://example.com/michael-johnson.jpg',
-    subject: 'English',
-    days: ['Monday', 'Wednesday', 'Friday'],
-    hours: '5:00 PM - 8:00 PM'
+    firstname: 'Michał',
+    lastname: 'Jankowski',
+    short_desc: 'Pasjonat nauczania języka angielskiego i literatury.',
+    image_url: 'https://example.com/michal-jankowski.jpg',
+    subject: 'Język angielski',
+    days: [0, 2, 4],
+    hours: '17:00 - 20:00',
+    price: 45
   },
   {
     id: 4,
-    firstname: 'Emily',
-    lastname: 'Brown',
-    short_desc: 'History tutor with expertise in world events.',
-    image_url: 'https://example.com/emily-brown.jpg',
-    subject: 'History',
-    days: ['Tuesday', 'Thursday'],
-    hours: '4:00 PM - 7:00 PM'
+    firstname: 'Emilia',
+    lastname: 'Brąz',
+    short_desc: 'Nauczyciel historii ze specjalizacją w wydarzeniach światowych.',
+    image_url: 'https://example.com/emilia-braz.jpg',
+    subject: 'Historia',
+    days: [1, 3],
+    hours: '16:00 - 19:00',
+    price: 55
   },
   {
     id: 5,
     firstname: 'Daniel',
     lastname: 'Miller',
-    short_desc: 'Experienced Physics instructor with a focus on mechanics.',
+    short_desc: 'Doświadczony instruktor fizyki z naciskiem na mechanikę.',
     image_url: 'https://example.com/daniel-miller.jpg',
-    subject: 'Physics',
-    days: ['Monday', 'Wednesday'],
-    hours: '6:00 PM - 9:00 PM'
+    subject: 'Fizyka',
+    days: [0, 2],
+    hours: '18:00 - 21:00',
+    price: 50
   },
   {
     id: 6,
-    firstname: 'Sophia',
+    firstname: 'Zofia',
     lastname: 'Garcia',
-    short_desc: 'Chemistry tutor specializing in organic and inorganic chemistry.',
-    image_url: 'https://example.com/sophia-garcia.jpg',
-    subject: 'Chemistry',
-    days: ['Tuesday', 'Thursday'],
-    hours: '3:00 PM - 6:00 PM'
+    short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
+    image_url: 'https://example.com/zofia-garcia.jpg',
+    subject: 'Chemia',
+    days: [1, 3],
+    hours: '15:00 - 18:00',
+    price: 60
   },
   {
     id: 7,
-    firstname: 'Matthew',
-    lastname: 'Anderson',
-    short_desc: 'Computer Science mentor with expertise in programming.',
-    image_url: 'https://example.com/matthew-anderson.jpg',
-    subject: 'Computer Science',
-    days: ['Monday', 'Wednesday', 'Friday'],
-    hours: '2:00 PM - 5:00 PM'
+    firstname: 'Mateusz',
+    lastname: 'Anders',
+    short_desc: 'Mentor informatyki z doświadczeniem w programowaniu.',
+    image_url: 'https://example.com/mateusz-anders.jpg',
+    subject: 'Informatyka',
+    days: [0, 2, 4],
+    hours: '14:00 - 17:00',
+    price: 55
   },
   {
     id: 8,
-    firstname: 'Olivia',
-    lastname: 'Taylor',
-    short_desc: 'Spanish tutor specializing in language and culture.',
-    image_url: 'https://example.com/olivia-taylor.jpg',
-    subject: 'Spanish',
-    days: ['Tuesday', 'Thursday'],
-    hours: '5:00 PM - 8:00 PM'
+    firstname: 'Olga',
+    lastname: 'Talar',
+    short_desc: 'Nauczycielka języka hiszpańskiego specjalizująca się w języku i kulturze.',
+    image_url: 'https://example.com/olga-talar.jpg',
+    subject: 'Język hiszpański',
+    days: [1, 3],
+    hours: '17:00 - 20:00',
+    price: 45
   },
   {
     id: 9,
-    firstname: 'William',
-    lastname: 'Clark',
-    short_desc: 'Art teacher with a focus on painting and sculpture.',
-    image_url: 'https://example.com/william-clark.jpg',
-    subject: 'Art',
-    days: ['Monday', 'Wednesday', 'Friday'],
-    hours: '4:00 PM - 7:00 PM'
+    firstname: 'Witold',
+    lastname: 'Czarnecki',
+    short_desc: 'Nauczyciel sztuki ze skupieniem na malarstwie i rzeźbie.',
+    image_url: 'https://example.com/witold-czarnecki.jpg',
+    subject: 'Sztuka',
+    days: [0, 2, 4],
+    hours: '16:00 - 19:00',
+    price: 50
   },
   {
     id: 10,
-    firstname: 'Emma',
+    firstname: 'Ema',
     lastname: 'Hill',
-    short_desc: 'Music instructor with expertise in theory and instrumentals.',
-    image_url: 'https://example.com/emma-hill.jpg',
-    subject: 'Music',
-    days: ['Tuesday', 'Thursday'],
-    hours: '6:00 PM - 9:00 PM'
+    short_desc: 'Instruktorka muzyki ze specjalizacją w teorii i grze na instrumentach.',
+    image_url: 'https://example.com/ema-hill.jpg',
+    subject: 'Muzyka',
+    days: [1, 3],
+    hours: '18:00 - 21:00',
+    price: 60
   }
 ];
 
+
 function filteredTutorsList() {
-  if (input.value && input.value.length > 1)
-    return tutors.filter((tutor) =>
+  if (input.value && input.value.length > 1) {
+    let filtered_tutors = tutors.filter((tutor) =>
         tutor.subject.toLowerCase().includes(input.value.toLowerCase())
     );
+    if (days.value.length !== 0) {
+      const valuesArray = days.value.map(day => day.value);
+            return filtered_tutors.filter((tutor) => tutor.days.some((day) => valuesArray.includes(day))
+      );
+    }
+    return filtered_tutors;
+  }
 }
+
+
 </script>
 
 <template>
@@ -222,16 +277,17 @@ function filteredTutorsList() {
       <div class="select-course-or-tutor col-sm-2 ml-2 col-4 align-self-center mb-4">
       <select v-model="selectedOption" class="form-select form-select-lg" aria-label="Large select example">
         <option value="courses" selected>Kursy</option>
-        <option value="tutors">Korepetytorzy</option>
+        <option value="tutors">Korepetycje</option>
       </select>
       </div>
   <div class="col-sm align-self-center">
   <input class="form-control form-control-lg" v-model="input" type="text" placeholder="Wyszukaj..." aria-label=".form-control-lg example">
+
   </div>
       <div class="row">
 
       <div class="d-flex flex-wrap align-items-center justify-content-center" v-if=" selectedOption === 'courses' ">
-  <div  v-for="course in filteredCoursesList()" :key="course.id">
+  <div  id=searchResultsId v-for="course in filteredCoursesList()" :key="course.id">
 <!--    <p>{{ course }}</p>-->
     <CourseItem :courseItem="course" />
   </div>
@@ -240,6 +296,9 @@ function filteredTutorsList() {
         </div>
         </div>
       <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
+        <div class="mt-3 w-100"><SelectButton v-model="days" :options="options" optionLabel="weekDay" multiple aria-labelledby="multiple" />
+          <Calendar id="calendar-timeonly" v-model="time"  class="mt-4 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId"/></div>
+        <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
         <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
           <!--    <p>{{ course }}</p>-->
           <TutorItem :tutorItem="tutor" />
@@ -255,8 +314,13 @@ function filteredTutorsList() {
 </template>
 
 <style scoped>
-
+@media (max-width: 1200px) {
+  #calendar-timeonly.w-25 {
+    width: 50% !important; /* Override the width for smaller screens */
+  }
+}
 </style>
 
 <script>
+
 </script>

@@ -8,14 +8,15 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
   <div class="card mx-3 my-3" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="https://placehold.co/600x400" class="img-fluid rounded-start" alt="...">
+        <img src="https://placehold.co/600x400" class="img-fluid img-thumbnail" alt="tutorPhoto">
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{ tutorItem.subject }}</h5>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
-          <p class="d-flex justify-content-end"><ShoppingCartBtn /></p>
+
+          <p class="d-flex justify-content-around"><button class="btn">Cena {{tutorItem.price }} zł</button> <ShoppingCartBtn /></p>
         </div>
       </div>
     </div>

@@ -14,8 +14,8 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
         <div class="card-body">
           <h5 class="card-title">{{ courseItem.name }}</h5>
           <p class="card-text">{{ courseItem.short_desc }}</p>
-          <p class="card-text"><small class="text-muted">Last updated {{ courseItem.last_updated }}</small></p>
-          <p class="d-flex justify-content-end"><ShoppingCartBtn /></p>
+          <p class="card-text"><small class="text-muted">Ostatnia aktualizacja {{ courseItem.last_updated }}</small></p>
+          <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button> <ShoppingCartBtn /></p>
         </div>
       </div>
     </div>
