@@ -1,7 +1,8 @@
 <script setup>
-
 import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
+
 </script>
+
 
 <template>
 
@@ -15,6 +16,11 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
           <h5 class="card-title">{{ tutorItem.subject }}</h5>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
+          <div class = "row">
+            <div class="col" v-for="day in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
+              {{ convertToPolishDayName(day) }}
+              </div>
+          </div>
 
           <p class="d-flex justify-content-around"><button class="btn">Cena {{tutorItem.price }} zł</button> <ShoppingCartBtn /></p>
         </div>
@@ -25,11 +31,37 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
 
 
 <style scoped>
+.highlighted-day {
+  color: red;
+}
 
 </style>
 
 <script>
 export default {
-  props: ["tutorItem"]
+  props: ["tutorItem", "chosenDays"],
+  methods: {
+    getChosenDays() {
+      if (this.chosenDays)
+        return this.chosenDays;
+      return [];
+    },
+    getAllDays() {
+      if (this.chosenDays && this.chosenDays.length !== 0)
+      return this.tutorItem.days;
+    },
+    isChosenDay(day) {
+      // Check if the current day is in the chosenDays array
+      return this.getChosenDays().includes(day);
+    },
+    convertToPolishDayName(day) {
+      const polishDays = ["Pon", "Wt", "Śro", "Czw", "Pt", "So", "Nie"];
+
+      if (day >= 0 && day < polishDays.length) {
+        return polishDays[day];
+      }
+
+    },
+  },
 };
 </script>

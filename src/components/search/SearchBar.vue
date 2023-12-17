@@ -253,14 +253,15 @@ const tutors = [
   }
 ];
 
-
+let valuesArray;
 function filteredTutorsList() {
   if (input.value && input.value.length > 1) {
+    valuesArray = [];
     let filtered_tutors = tutors.filter((tutor) =>
         tutor.subject.toLowerCase().includes(input.value.toLowerCase())
     );
     if (days.value.length !== 0) {
-      const valuesArray = days.value.map(day => day.value);
+      valuesArray = days.value.map(day => day.value);
             return filtered_tutors.filter((tutor) => tutor.days.some((day) => valuesArray.includes(day))
       );
     }
@@ -301,7 +302,7 @@ function filteredTutorsList() {
         <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
         <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
           <!--    <p>{{ course }}</p>-->
-          <TutorItem :tutorItem="tutor" />
+          <TutorItem :tutorItem="tutor" :chosenDays="valuesArray" />
         </div>
         <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredTutorsList().length">
           Nie znaleziono żadnego korepetytora! Sprobój wpisać [random func here]
