@@ -6,6 +6,7 @@ import SelectButton from "primevue/selectbutton";
 import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
 import Toast from "primevue/toast";
+import AutoComplete from "primevue/autocomplete";
 
 import { openDB } from 'idb';
 
@@ -353,6 +354,7 @@ const tutors = [
 ];
 
 let valuesArray;
+
 function filteredTutorsList() {
   if (input.value && input.value.length > 1) {
     valuesArray = [];
@@ -432,6 +434,42 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
   }
   return true;
 }
+
+const items = ref([]);
+
+const search = (event) => {
+
+  let uniqueElements = new Set();
+
+  if (selectedOption.value === 'tutors') {
+    let filtered_t = tutors.filter((tutor) =>
+        tutor.subject.toLowerCase().includes(event.query.toLowerCase()));
+
+    filtered_t.forEach(tutor => {
+      uniqueElements.add(tutor.subject);
+    });
+
+    items.value = Array.from(uniqueElements);
+
+    if (items.value.length === 0) {
+      items.value = ["Matematyka", "Informatyka", "Fizyka"];
+    }
+  }
+  else {
+    let filtered_c = courses.filter((course) =>
+        course.name.toLowerCase().includes(event.query.toLowerCase()));
+
+    filtered_c.forEach(course => {
+      uniqueElements.add(course.name);
+    });
+
+    items.value = Array.from(uniqueElements);
+
+    if (items.value.length === 0) {
+      items.value = ["Podstawy", "Data Science", "Język"];
+    }
+  }
+}
 </script>
 
 <template>
@@ -448,9 +486,10 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
       </select>
       </div>
   <div class="col-sm align-self-center">
-  <input class="form-control form-control-lg" v-model="input" type="text" placeholder="Wyszukaj..." aria-label=".form-control-lg example">
-
+<!--  <input class="form-control form-control-lg" v-model="input" type="text" placeholder="Wyszukaj..." aria-label=".form-control-lg example">-->
+    <AutoComplete v-model="input" :suggestions="items" @complete="search" input-class="form-control form-control-lg" class="form-control form-control-lg" placeholder="Wyszukaj..." aria-label=".form-control-lg example"/>
   </div>
+      <div class="row space_between_results_and_search_bar"></div>
       <div class="row">
 
       <div class="d-flex flex-wrap align-items-center justify-content-center" v-if=" selectedOption === 'courses' ">
@@ -459,7 +498,7 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
     <CourseItem :courseItem="course" />
   </div>
         <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredCoursesList().length">
-          Nie znaleziono żadnego kursu! Spróbój wpisać [random func here]
+          Nie znaleziono żadnego kursu! Spróbój wpisać coś innego lub skorzystaj z sugestii!
         </div>
         </div>
       <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
@@ -474,7 +513,7 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
           <TutorItem :tutorItem="tutor" :chosenDays="valuesArray" :timeStart="time" :timeEnd="time2" />
         </div>
         <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredTutorsList().length">
-          Nie znaleziono żadnego korepetytora! Sprobój wpisać [random func here]
+          Nie znaleziono żadnego korepetytora! Sprobój wpisać coś innego lub skorzystaj z sugestii!
         </div>
       </div>
       </div>
@@ -490,9 +529,10 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
   }
 }
 
-
+.space_between_results_and_search_bar {
+  min-height: 180px;
+}
 </style>
 
 <script>
-
 </script>
