@@ -456,7 +456,7 @@ const search = (event) => {
     }
   }
   else {
-    let filtered_c = courses.filter((course) =>
+    let filtered_c = courses.value.filter((course) =>
         course.name.toLowerCase().includes(event.query.toLowerCase()));
 
     filtered_c.forEach(course => {
