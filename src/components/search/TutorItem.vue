@@ -9,20 +9,46 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
   <div class="card mx-3 my-3" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
+        <div class="row">
         <img src="https://placehold.co/600x400" class="img-fluid img-thumbnail" alt="tutorPhoto">
+        </div>
+        <div class="row"></div>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{ tutorItem.subject }}</h5>
+          <h3 class="card-title">{{ tutorItem.subject }}</h3>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
-          <div class = "row">
-            <div class="col" v-for="day in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
-              {{ convertToPolishDayName(day) }}
+          <div class = "flex-wrap">
+            <div  v-for="(day, dayIndex) in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
+              <div class="mt-2">{{ convertToPolishDayName(day) }} </div>
+
+
+<!--                <div class="form-check d-inline-block justify-content-center" v-for="(timeSlot, slotIndex) in tutorItem.schedule[dayIndex]" :key="slotIndex" :id="'formDiv' + day + timeSlot[0] + '-' + timeSlot[1]">-->
+<!--                    <div v-if="isTimeStartBeforeOrEqual(timeStart, timeSlot[0])" class="border mx-2">-->
+<!--                    <input class="form-check-input" type="radio" name="flexRadioDefault" :id="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">-->
+<!--                    <label class="form-check-label" :for="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">-->
+<!--                      {{ timeSlot[0] }} - {{ timeSlot[1] }}-->
+<!--                    </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+              <div>
+                <div class="form-check d-inline-block justify-content-center" v-for="(timeSlot, slotIndex) in filteredTimeSlots(dayIndex)" :key="slotIndex" :id="'formDiv' + day + timeSlot[0] + '-' + timeSlot[1]">
+                  <div class="border mx-2">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" :id="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">
+                    <label class="form-check-label" :for="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">
+                      {{ timeSlot[0] }} - {{ timeSlot[1] }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
               </div>
           </div>
 
-          <p class="d-flex justify-content-around"><button class="btn">Cena {{tutorItem.price }} zł</button> <ShoppingCartBtn /></p>
+          <p class="d-flex justify-content-around mt-2"><button class="btn">Cena {{tutorItem.price }} zł</button> <ShoppingCartBtn /></p>
         </div>
       </div>
     </div>
@@ -35,11 +61,12 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
   color: red;
 }
 
+
 </style>
 
 <script>
 export default {
-  props: ["tutorItem", "chosenDays"],
+  props: ["tutorItem", "chosenDays", "timeStart", "timeEnd"],
   methods: {
     getChosenDays() {
       if (this.chosenDays)
@@ -62,6 +89,55 @@ export default {
       }
 
     },
+    isTimeStartBeforeOrEqual(timeStart, startCourseHour) {
+      if (timeStart) {
+        const [courseHour, courseMinute] = startCourseHour.split(':');
+
+        const timeStartToCompare = new Date(timeStart);
+        timeStartToCompare.setHours(courseHour, courseMinute, 0, 0);
+
+        // Compare the time parts
+        return timeStart <= timeStartToCompare;
+
+      }
+      return true;
+    },
+
+    isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
+      if (timeEnd) {
+        const [courseHour, courseMinute] = EndCourseHour.split(':');
+
+        const timeEndToCompare = new Date(timeEnd);
+        timeEndToCompare.setHours(courseHour, courseMinute, 0, 0);
+
+        // Compare the time parts
+        return timeEndToCompare <= timeEnd;
+
+      }
+      return true;
+    },
+
+    filteredTimeSlots(dayIndex) {
+      const schedule = this.tutorItem.schedule;
+      if (this.timeStart && this.timeEnd && schedule && schedule[dayIndex]) {
+          return schedule[dayIndex].filter(timeSlot =>
+              this.isTimeStartBeforeOrEqual(this.timeStart, timeSlot[0]) && this.isTimeEndBeforeOrEqual(this.timeEnd, timeSlot[1])
+          );
+      }
+      else if (this.timeStart && schedule && schedule[dayIndex])
+        return schedule[dayIndex].filter(timeSlot =>
+            this.isTimeStartBeforeOrEqual(this.timeStart, timeSlot[0])
+        );
+      else if (this.timeEnd && schedule && schedule[dayIndex])
+        return schedule[dayIndex].filter(timeSlot =>
+            this.isTimeEndBeforeOrEqual(this.timeEnd, timeSlot[1])
+        );
+      else if (schedule && schedule[dayIndex])
+        return this.tutorItem.schedule[dayIndex];
+      else
+        return [];
+    },
+
   },
 };
 </script>

@@ -125,6 +125,7 @@ const options = [
 ];
 
 const time = ref(null);
+const time2 = ref(null);
 const styles = {
   color: "green",
   textAlign: "left",
@@ -149,7 +150,12 @@ const tutors = [
     image_url: 'https://example.com/jan-kowalski.jpg',
     subject: 'Matematyka',
     days: [0, 1, 2, 4],
-    hours: '15:00 - 18:00',
+    schedule: [
+      [['16:00', '17:30']],
+      [['12:00', '14:30'], ['19:30', '21:00']],
+      [['12:00', '14:30'], ['19:30', '21:00']],
+      [['12:00', '14:30'], ['19:30', '21:00']],
+    ],
     price: 50
   },
   {
@@ -160,7 +166,10 @@ const tutors = [
     image_url: 'https://example.com/alicia-nowak.jpg',
     subject: 'Biologia',
     days: [1, 3],
-    hours: '14:00 - 17:00',
+    schedule: [
+      [['14:00', '17:00']],
+      [['12:30', '15:30']],
+    ],
     price: 60
   },
   {
@@ -171,7 +180,11 @@ const tutors = [
     image_url: 'https://example.com/michal-jankowski.jpg',
     subject: 'Język angielski',
     days: [0, 2, 4],
-    hours: '17:00 - 20:00',
+    schedule: [
+      [['17:00', '20:00']],
+      [['10:00', '13:00'], ['15:30', '18:30']],
+      [['12:00', '14:00'], ['17:30', '20:30']],
+    ],
     price: 45
   },
   {
@@ -182,7 +195,10 @@ const tutors = [
     image_url: 'https://example.com/emilia-braz.jpg',
     subject: 'Historia',
     days: [1, 3],
-    hours: '16:00 - 19:00',
+    schedule: [
+      [['13:00', '16:00']],
+      [['18:30', '20:30']],
+    ],
     price: 55
   },
   {
@@ -193,7 +209,10 @@ const tutors = [
     image_url: 'https://example.com/daniel-miller.jpg',
     subject: 'Fizyka',
     days: [0, 2],
-    hours: '18:00 - 21:00',
+    schedule: [
+      [['18:00', '21:00']],
+      [['14:30', '17:30']],
+    ],
     price: 50
   },
   {
@@ -204,7 +223,10 @@ const tutors = [
     image_url: 'https://example.com/zofia-garcia.jpg',
     subject: 'Chemia',
     days: [1, 3],
-    hours: '15:00 - 18:00',
+    schedule: [
+      [['15:00', '18:00']],
+      [['12:30', '15:30']],
+    ],
     price: 60
   },
   {
@@ -215,7 +237,10 @@ const tutors = [
     image_url: 'https://example.com/mateusz-anders.jpg',
     subject: 'Informatyka',
     days: [0, 2, 4],
-    hours: '14:00 - 17:00',
+    schedule: [
+      [['14:00', '17:00']],
+      [['13:30', '16:30'], ['18:00', '19:30']],
+    ],
     price: 55
   },
   {
@@ -226,7 +251,10 @@ const tutors = [
     image_url: 'https://example.com/olga-talar.jpg',
     subject: 'Język hiszpański',
     days: [1, 3],
-    hours: '17:00 - 20:00',
+    schedule: [
+      [['17:00', '20:00']],
+      [['13:30', '16:30']],
+    ],
     price: 45
   },
   {
@@ -237,7 +265,11 @@ const tutors = [
     image_url: 'https://example.com/witold-czarnecki.jpg',
     subject: 'Sztuka',
     days: [0, 2, 4],
-    hours: '16:00 - 19:00',
+    schedule: [
+      [['16:00', '19:00']],
+      [['11:30', '14:30'], ['17:00', '19:30']],
+      [['12:00', '14:00'], ['18:00', '20:00']],
+    ],
     price: 50
   },
   {
@@ -248,9 +280,153 @@ const tutors = [
     image_url: 'https://example.com/ema-hill.jpg',
     subject: 'Muzyka',
     days: [1, 3],
-    hours: '18:00 - 21:00',
+    schedule: [
+      [['18:00', '21:00']],
+      [['13:30', '16:30']],
+    ],
     price: 60
-  }
+  },
+  {
+  id: 11,
+    firstname: 'Jan',
+    lastname: 'Nowak',
+    short_desc: 'Doświadczony korepetytor z fizyki, specjalizujący się w teorii kwantowej.',
+    image_url: 'https://example.com/jan-nowak.jpg',
+    subject: 'Fizyka',
+    days: [0, 2],
+    schedule: [
+  [['15:00', '18:00']],
+  [['10:00', '12:30']],
+],
+    price: 55
+},
+{
+  id: 12,
+      firstname: 'Alicja',
+    lastname: 'Kowalska',
+    short_desc: 'Pasjonująca nauczycielka literatury angielskiej ze specjalizacją w dziełach Shakespeare\'a.',
+    image_url: 'https://example.com/alicia-kowalska.jpg',
+    subject: 'Literatura angielska',
+    days: [1, 4],
+    schedule: [
+  [['17:00', '20:00']],
+  [['14:00', '17:30']],
+],
+    price: 50
+},
+{
+  id: 13,
+      firstname: 'Robert',
+    lastname: 'Jankowski',
+    short_desc: 'Doświadczony korepetytor matematyki specjalizujący się w analizie matematycznej i algebrze.',
+    image_url: 'https://example.com/robert-jankowski.jpg',
+    subject: 'Matematyka',
+    days: [0, 3],
+    schedule: [
+  [['14:00', '17:00']],
+  [['18:30', '21:30']],
+],
+    price: 55
+},
+{
+  id: 14,
+      firstname: 'Zofia',
+    lastname: 'Clark',
+    short_desc: 'Nauczycielka historii ze skupieniem na starożytnych cywilizacjach i wydarzeniach światowych.',
+    image_url: 'https://example.com/zofia-clark.jpg',
+    subject: 'Historia',
+    days: [2, 4],
+    schedule: [
+  [['16:00', '19:00']],
+  [['11:00', '13:30']],
+],
+    price: 50
+},
+{
+  id: 15,
+      firstname: 'Michał',
+    lastname: 'Brąz',
+    short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
+    image_url: 'https://example.com/michal-braz.jpg',
+    subject: 'Chemia',
+    days: [1, 2],
+    schedule: [
+  [['15:30', '18:30']],
+  [['13:00', '15:30']],
+],
+    price: 60
+},
+{
+  id: 16,
+      firstname: 'Ema',
+    lastname: 'Taylor',
+    short_desc: 'Doświadczona nauczycielka hiszpańskiego z naciskiem na język i kulturę.',
+    image_url: 'https://example.com/ema-taylor.jpg',
+    subject: 'Język hiszpański',
+    days: [0, 3],
+    schedule: [
+  [['17:30', '20:30']],
+  [['14:30', '17:00']],
+],
+    price: 45
+},
+{
+  id: 17,
+      firstname: 'Ryan',
+    lastname: 'Williams',
+    short_desc: 'Mentor informatyki z doświadczeniem w programowaniu.',
+    image_url: 'https://example.com/ryan-williams.jpg',
+    subject: 'Informatyka',
+    days: [1, 4],
+    schedule: [
+  [['14:30', '17:30']],
+  [['19:00', '21:30']],
+],
+    price: 55
+},
+{
+  id: 18,
+      firstname: 'Izabela',
+    lastname: 'Martin',
+    short_desc: 'Nauczycielka sztuki ze skupieniem na malarstwie i rzeźbie.',
+    image_url: 'https://example.com/izabela-martin.jpg',
+    subject: 'Sztuka',
+    days: [0, 2],
+    schedule: [
+  [['16:30', '19:30']],
+  [['10:30', '13:00']],
+],
+    price: 50
+},
+{
+  id: 19,
+      firstname: 'Dawid',
+    lastname: 'Biały',
+    short_desc: 'Instruktor muzyki specjalizujący się w teorii muzycznej i grze na instrumentach.',
+    image_url: 'https://example.com/dawid-bialy.jpg',
+    subject: 'Muzyka',
+    days: [1, 3],
+    schedule: [
+  [['18:30', '21:30']],
+  [['13:30', '16:00']],
+],
+    price: 60
+},
+{
+  id: 20,
+      firstname: 'Olivia',
+    lastname: 'Anderson',
+    short_desc: 'Nauczycielka języka francuskiego ze specjalizacją w gramatyce i konwersacji.',
+    image_url: 'https://example.com/olivia-anderson.jpg',
+    subject: 'Język Francuski',
+    days: [2, 4],
+    schedule: [
+  [['15:00', '18:00']],
+  [['11:30', '14:00']],
+],
+    price: 45
+}
+
 ];
 
 let valuesArray;
@@ -262,14 +438,61 @@ function filteredTutorsList() {
     );
     if (days.value.length !== 0) {
       valuesArray = days.value.map(day => day.value);
-            return filtered_tutors.filter((tutor) => tutor.days.some((day) => valuesArray.includes(day))
+      filtered_tutors = filtered_tutors.filter((tutor) => tutor.days.some((day) => valuesArray.includes(day))
       );
+      if (time.value != null)
+        filtered_tutors = filtered_tutors.filter((tutor) => tutor.schedule.some((day) => {
+          const relevantStartTimes = day.flatMap((hours) =>
+              hours.filter((_, index) => index % 2 === 0)
+          );
+
+          return relevantStartTimes.some((startTime) =>
+              isTimeStartBeforeOrEqual(time.value, startTime)
+          );
+        }));
+
+      if (time2.value != null)
+        filtered_tutors = filtered_tutors.filter((tutor) => tutor.schedule.some((day) => {
+          const relevantStartTimes = day.flatMap((hours) =>
+              hours.filter((_, index) => index % 2 === 1)
+          );
+
+          return relevantStartTimes.some((endTime) =>
+              isTimeEndBeforeOrEqual(time2.value, endTime)
+          );
+        }));
+
     }
     return filtered_tutors;
   }
 }
 
+function isTimeStartBeforeOrEqual(timeStart, startCourseHour) {
+  if (timeStart) {
+    const [courseHour, courseMinute] = startCourseHour.split(':');
 
+    const timeStartToCompare = new Date(timeStart);
+    timeStartToCompare.setHours(courseHour, courseMinute, 0, 0);
+
+    // Compare the time parts
+    return timeStart <= timeStartToCompare;
+  }
+  return true;
+}
+
+function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
+  if (timeEnd) {
+    const [courseHour, courseMinute] = EndCourseHour.split(':');
+
+    const timeEndToCompare = new Date(timeEnd);
+    timeEndToCompare.setHours(courseHour, courseMinute, 0, 0);
+
+    // Compare the time parts
+    return timeEndToCompare <= timeEnd;
+
+  }
+  return true;
+}
 </script>
 
 <template>
@@ -298,11 +521,14 @@ function filteredTutorsList() {
         </div>
       <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
         <div class="mt-3 w-100"><SelectButton v-model="days" :options="options" optionLabel="weekDay" multiple aria-labelledby="multiple" />
-          <Calendar id="calendar-timeonly" v-model="time"  class="mt-4 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId"/></div>
-        <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
+          <h4 class="mx-2 my-2"> Od </h4>
+          <Calendar  v-model="time"  class="mt-4 mx-2 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId"/>
+          <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
+          <h4 class="mx-2 my-2"> Do </h4>
+        <Calendar  v-model="time2"  class="mt-4 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId2"/></div>
         <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
           <!--    <p>{{ course }}</p>-->
-          <TutorItem :tutorItem="tutor" :chosenDays="valuesArray" />
+          <TutorItem :tutorItem="tutor" :chosenDays="valuesArray" :timeStart="time" :timeEnd="time2" />
         </div>
         <div class="alert alert-primary item error mt-3" role="alert" v-if="input.length > 1 && !filteredTutorsList().length">
           Nie znaleziono żadnego korepetytora! Sprobój wpisać [random func here]
