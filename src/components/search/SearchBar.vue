@@ -19,7 +19,7 @@ async function loadData() {
     const db = await openDB("db_",1);
     let k =await db.getAll("courses")
     courses = k
-    k =await db.getAll("tutors")
+    k = await db.getAll("tutors")
     tutors = k
 }
 

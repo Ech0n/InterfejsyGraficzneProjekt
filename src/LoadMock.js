@@ -381,6 +381,11 @@ const courses = [
   
   ];
 
+  const users =[
+    {id:0, username:"myUsername"},
+    {id:1, username:"anotherUsername"}
+  ]
+
   import { openDB } from 'idb';
   export default async function initalizeDatabaseData() {
       const db = await openDB("db_",1,{  upgrade(db){
@@ -406,9 +411,9 @@ const courses = [
   
         const tx2 = db.transaction('tutors', 'readwrite')
       
-        await Promise.all(tutors.map((kurs) => 
+        await Promise.all(tutors.map((tutor) => 
         {
-          return tx2.store.add(kurs).then((result) => {
+          return tx2.store.add(tutor).then((result) => {
             console.log("Item added successfully:", result);
           }).catch((result) => {
             console.log("Item rejected:", result);
@@ -416,5 +421,20 @@ const courses = [
         }).join(tx2.done.catch((result) => {
             console.log("Item rejected:", result);
           })))
+
+          
+        const tx3 = db.transaction('users', 'readwrite')
+      
+        await Promise.all(users.map((user) => 
+          {
+            return tx3.store.add(user).then((result) => {
+              console.log("Item added successfully:", result);
+            }).catch((result) => {
+              console.log("Item rejected:", result);
+            })
+          }).join(tx3.done.catch((result) => {
+              console.log("Item rejected:", result);
+        })))
+    db.close()
   }
   
