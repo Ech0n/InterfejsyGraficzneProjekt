@@ -12,13 +12,17 @@ import { openDB } from 'idb';
 
 
 
-var courses = ref([]);
+var courses =[];
+var tutors =[];
 
 async function loadData() {
     const db = await openDB("db_",1);
     let k =await db.getAll("courses")
-    courses.value = k
+    courses = k
+    k =await db.getAll("tutors")
+    tutors = k
 }
+
 loadData()
 
 let input = ref("");
@@ -59,299 +63,12 @@ function setToday() {
 }
 function filteredCoursesList() {
   if (input.value && input.value.length > 1)
-  return courses.value.filter((course) =>
+  return courses.filter((course) =>
     course.name.toLowerCase().includes(input.value.toLowerCase())
     
   );
 }
-const tutors = [
-  {
-    id: 1,
-    firstname: 'Jan',
-    lastname: 'Kowalski',
-    short_desc: 'Doświadczony korepetytor z matematyki z pasją do nauczania.',
-    image_url: 'https://example.com/jan-kowalski.jpg',
-    subject: 'Matematyka',
-    days: [0, 1, 2, 4],
-    schedule: [
-      [['16:00', '17:30']],
-      [['12:00', '14:30'], ['19:30', '21:00']],
-      [['12:00', '14:30'], ['19:30', '21:00']],
-      [['12:00', '14:30'], ['19:30', '21:00']],
-    ],
-    price: 50
-  },
-  {
-    id: 2,
-    firstname: 'Alicja',
-    lastname: 'Nowak',
-    short_desc: 'Ekspert w biologii specjalizujący się w anatomii i genetyce.',
-    image_url: 'https://example.com/alicia-nowak.jpg',
-    subject: 'Biologia',
-    days: [1, 3],
-    schedule: [
-      [['14:00', '17:00']],
-      [['12:30', '15:30']],
-    ],
-    price: 60
-  },
-  {
-    id: 3,
-    firstname: 'Michał',
-    lastname: 'Jankowski',
-    short_desc: 'Pasjonat nauczania języka angielskiego i literatury.',
-    image_url: 'https://example.com/michal-jankowski.jpg',
-    subject: 'Język angielski',
-    days: [0, 2, 4],
-    schedule: [
-      [['17:00', '20:00']],
-      [['10:00', '13:00'], ['15:30', '18:30']],
-      [['12:00', '14:00'], ['17:30', '20:30']],
-    ],
-    price: 45
-  },
-  {
-    id: 4,
-    firstname: 'Emilia',
-    lastname: 'Brąz',
-    short_desc: 'Nauczyciel historii ze specjalizacją w wydarzeniach światowych.',
-    image_url: 'https://example.com/emilia-braz.jpg',
-    subject: 'Historia',
-    days: [1, 3],
-    schedule: [
-      [['13:00', '16:00']],
-      [['18:30', '20:30']],
-    ],
-    price: 55
-  },
-  {
-    id: 5,
-    firstname: 'Daniel',
-    lastname: 'Miller',
-    short_desc: 'Doświadczony instruktor fizyki z naciskiem na mechanikę.',
-    image_url: 'https://example.com/daniel-miller.jpg',
-    subject: 'Fizyka',
-    days: [0, 2],
-    schedule: [
-      [['18:00', '21:00']],
-      [['14:30', '17:30']],
-    ],
-    price: 50
-  },
-  {
-    id: 6,
-    firstname: 'Zofia',
-    lastname: 'Garcia',
-    short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
-    image_url: 'https://example.com/zofia-garcia.jpg',
-    subject: 'Chemia',
-    days: [1, 3],
-    schedule: [
-      [['15:00', '18:00']],
-      [['12:30', '15:30']],
-    ],
-    price: 60
-  },
-  {
-    id: 7,
-    firstname: 'Mateusz',
-    lastname: 'Anders',
-    short_desc: 'Mentor informatyki z doświadczeniem w programowaniu.',
-    image_url: 'https://example.com/mateusz-anders.jpg',
-    subject: 'Informatyka',
-    days: [0, 2, 4],
-    schedule: [
-      [['14:00', '17:00']],
-      [['13:30', '16:30'], ['18:00', '19:30']],
-      [['14:00', '17:00']],
-    ],
-    price: 55
-  },
-  {
-    id: 8,
-    firstname: 'Olga',
-    lastname: 'Talar',
-    short_desc: 'Nauczycielka języka hiszpańskiego specjalizująca się w języku i kulturze.',
-    image_url: 'https://example.com/olga-talar.jpg',
-    subject: 'Język hiszpański',
-    days: [1, 3],
-    schedule: [
-      [['17:00', '20:00']],
-      [['13:30', '16:30']],
-    ],
-    price: 45
-  },
-  {
-    id: 9,
-    firstname: 'Witold',
-    lastname: 'Czarnecki',
-    short_desc: 'Nauczyciel sztuki ze skupieniem na malarstwie i rzeźbie.',
-    image_url: 'https://example.com/witold-czarnecki.jpg',
-    subject: 'Sztuka',
-    days: [0, 2, 4],
-    schedule: [
-      [['16:00', '19:00']],
-      [['11:30', '14:30'], ['17:00', '19:30']],
-      [['12:00', '14:00'], ['18:00', '20:00']],
-    ],
-    price: 50
-  },
-  {
-    id: 10,
-    firstname: 'Ema',
-    lastname: 'Hill',
-    short_desc: 'Instruktorka muzyki ze specjalizacją w teorii i grze na instrumentach.',
-    image_url: 'https://example.com/ema-hill.jpg',
-    subject: 'Muzyka',
-    days: [1, 3],
-    schedule: [
-      [['18:00', '21:00']],
-      [['13:30', '16:30']],
-    ],
-    price: 60
-  },
-  {
-  id: 11,
-    firstname: 'Jan',
-    lastname: 'Nowak',
-    short_desc: 'Doświadczony korepetytor z fizyki, specjalizujący się w teorii kwantowej.',
-    image_url: 'https://example.com/jan-nowak.jpg',
-    subject: 'Fizyka',
-    days: [0, 2],
-    schedule: [
-  [['15:00', '18:00']],
-  [['10:00', '12:30']],
-],
-    price: 55
-},
-{
-  id: 12,
-      firstname: 'Alicja',
-    lastname: 'Kowalska',
-    short_desc: 'Pasjonująca nauczycielka literatury angielskiej ze specjalizacją w dziełach Shakespeare\'a.',
-    image_url: 'https://example.com/alicia-kowalska.jpg',
-    subject: 'Literatura angielska',
-    days: [1, 4],
-    schedule: [
-  [['17:00', '20:00']],
-  [['14:00', '17:30']],
-],
-    price: 50
-},
-{
-  id: 13,
-      firstname: 'Robert',
-    lastname: 'Jankowski',
-    short_desc: 'Doświadczony korepetytor matematyki specjalizujący się w analizie matematycznej i algebrze.',
-    image_url: 'https://example.com/robert-jankowski.jpg',
-    subject: 'Matematyka',
-    days: [0, 3],
-    schedule: [
-  [['14:00', '17:00']],
-  [['18:30', '21:30']],
-],
-    price: 55
-},
-{
-  id: 14,
-      firstname: 'Zofia',
-    lastname: 'Clark',
-    short_desc: 'Nauczycielka historii ze skupieniem na starożytnych cywilizacjach i wydarzeniach światowych.',
-    image_url: 'https://example.com/zofia-clark.jpg',
-    subject: 'Historia',
-    days: [2, 4],
-    schedule: [
-  [['16:00', '19:00']],
-  [['11:00', '13:30']],
-],
-    price: 50
-},
-{
-  id: 15,
-      firstname: 'Michał',
-    lastname: 'Brąz',
-    short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
-    image_url: 'https://example.com/michal-braz.jpg',
-    subject: 'Chemia',
-    days: [1, 2],
-    schedule: [
-  [['15:30', '18:30']],
-  [['13:00', '15:30']],
-],
-    price: 60
-},
-{
-  id: 16,
-      firstname: 'Ema',
-    lastname: 'Taylor',
-    short_desc: 'Doświadczona nauczycielka hiszpańskiego z naciskiem na język i kulturę.',
-    image_url: 'https://example.com/ema-taylor.jpg',
-    subject: 'Język hiszpański',
-    days: [0, 3],
-    schedule: [
-  [['17:30', '20:30']],
-  [['14:30', '17:00']],
-],
-    price: 45
-},
-{
-  id: 17,
-      firstname: 'Ryan',
-    lastname: 'Williams',
-    short_desc: 'Mentor informatyki z doświadczeniem w programowaniu.',
-    image_url: 'https://example.com/ryan-williams.jpg',
-    subject: 'Informatyka',
-    days: [1, 4],
-    schedule: [
-  [['14:30', '17:30']],
-  [['19:00', '21:30']],
-],
-    price: 55
-},
-{
-  id: 18,
-      firstname: 'Izabela',
-    lastname: 'Martin',
-    short_desc: 'Nauczycielka sztuki ze skupieniem na malarstwie i rzeźbie.',
-    image_url: 'https://example.com/izabela-martin.jpg',
-    subject: 'Sztuka',
-    days: [0, 2],
-    schedule: [
-  [['16:30', '19:30']],
-  [['10:30', '13:00']],
-],
-    price: 50
-},
-{
-  id: 19,
-      firstname: 'Dawid',
-    lastname: 'Biały',
-    short_desc: 'Instruktor muzyki specjalizujący się w teorii muzycznej i grze na instrumentach.',
-    image_url: 'https://example.com/dawid-bialy.jpg',
-    subject: 'Muzyka',
-    days: [1, 3],
-    schedule: [
-  [['18:30', '21:30']],
-  [['13:30', '16:00']],
-],
-    price: 60
-},
-{
-  id: 20,
-      firstname: 'Olivia',
-    lastname: 'Anderson',
-    short_desc: 'Nauczycielka języka francuskiego ze specjalizacją w gramatyce i konwersacji.',
-    image_url: 'https://example.com/olivia-anderson.jpg',
-    subject: 'Język Francuski',
-    days: [2, 4],
-    schedule: [
-  [['15:00', '18:00']],
-  [['11:30', '14:00']],
-],
-    price: 45
-}
 
-];
 
 let valuesArray;
 
@@ -456,7 +173,7 @@ const search = (event) => {
     }
   }
   else {
-    let filtered_c = courses.value.filter((course) =>
+    let filtered_c = courses.filter((course) =>
         course.name.toLowerCase().includes(event.query.toLowerCase()));
 
     filtered_c.forEach(course => {
