@@ -5,6 +5,7 @@ import Calendar from "primevue/calendar";
 import SelectButton from "primevue/selectbutton";
 import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
+import Toast from "primevue/toast";
 
 
 let input = ref("");
@@ -240,6 +241,7 @@ const tutors = [
     schedule: [
       [['14:00', '17:00']],
       [['13:30', '16:30'], ['18:00', '19:30']],
+      [['14:00', '17:00']],
     ],
     price: 55
   },
@@ -462,6 +464,22 @@ function filteredTutorsList() {
           );
         }));
 
+      if (time.value != null && time2.value != null)
+        filtered_tutors = filtered_tutors.filter((tutor) => tutor.schedule.some((day) => {
+          const relevantStartTimes = day.flatMap((hours) =>
+              hours.filter((_, index) => index % 2 === 0)
+          );
+          const relevantEndTimes = day.flatMap((hours) =>
+              hours.filter((_, index) => index % 2 === 1)
+          );
+
+
+          return relevantStartTimes.some((startTime, index) =>
+              index < relevantEndTimes.length &&
+              isTimeStartBeforeOrEqual(time.value, startTime) &&
+              isTimeEndBeforeOrEqual(time2.value, relevantEndTimes[index]))
+        }));
+
     }
     return filtered_tutors;
   }
@@ -496,6 +514,10 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
 </script>
 
 <template>
+  <Toast position="top-right" group="pt"
+  :pt="{
+         container: { class: 'alert alert-success' }
+  }"/> <!-- !important for showing messages-->
   <div class="container">
     <div class="row d-flex flex-wrap justify-content-center">
       <div class="select-course-or-tutor col-sm-2 ml-2 col-4 align-self-center mb-4">
@@ -546,6 +568,8 @@ function isTimeEndBeforeOrEqual(timeEnd, EndCourseHour) {
     width: 50% !important; /* Override the width for smaller screens */
   }
 }
+
+
 </style>
 
 <script>

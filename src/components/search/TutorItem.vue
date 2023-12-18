@@ -1,5 +1,10 @@
 <script setup>
 import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
+import {ref} from 'vue';
+
+let selectedTime = ref("");
+
+
 
 </script>
 
@@ -19,6 +24,7 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
           <h3 class="card-title">{{ tutorItem.subject }}</h3>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
           <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
+          <hr>
           <div class = "flex-wrap">
             <div  v-for="(day, dayIndex) in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
               <div class="mt-2">{{ convertToPolishDayName(day) }} </div>
@@ -36,7 +42,9 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
               <div>
                 <div class="form-check d-inline-block justify-content-center" v-for="(timeSlot, slotIndex) in filteredTimeSlots(dayIndex)" :key="slotIndex" :id="'formDiv' + day + timeSlot[0] + '-' + timeSlot[1]">
                   <div class="border mx-2">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" :id="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">
+                    <input class="form-check-input" type="radio" :name="'flexRadioDefault' + tutorItem.id"
+                           :id="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]"
+                           v-model="selectedTime" :value="timeSlot[0] + '-' + timeSlot[1] + ' ' + convertToPolishDayName(day)" :checked="dayIndex == 0">
                     <label class="form-check-label" :for="'flexRadioDefault' + day + timeSlot[0] + '-' + timeSlot[1]">
                       {{ timeSlot[0] }} - {{ timeSlot[1] }}
                     </label>
@@ -47,8 +55,12 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
 
               </div>
           </div>
+          <hr>
 
-          <p class="d-flex justify-content-around mt-2"><button class="btn">Cena {{tutorItem.price }} zł</button> <ShoppingCartBtn /></p>
+          <p class="d-flex justify-content-around mt-2"><button class="btn">Cena {{tutorItem.price }} zł</button>
+
+            <ShoppingCartBtn :id="tutorItem.id" :summary-message="'  Dodano do koszyka: '"
+                             :content-message="'  korepetycje  ' + tutorItem.subject + '\n  Czas: ' + selectedTime + '\n  za cenę ' + tutorItem.price + ' zł!' " /></p>
         </div>
       </div>
     </div>

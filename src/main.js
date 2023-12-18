@@ -37,5 +37,10 @@ let prime_vue_locale = {
     firstDayOfWeek: 1,
     dateFormat: 'mm/dd/yy',
 }
+
+import ToastService from 'primevue/toastservice';
+
+
 createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
-    .use(mdiVue, { icons: mdijs}).use(PrimeVue, {locale: prime_vue_locale}).mount('#app');
+    .use(mdiVue, { icons: mdijs}).use(PrimeVue, {locale: prime_vue_locale}).use(ToastService)
+    .mount('#app');
