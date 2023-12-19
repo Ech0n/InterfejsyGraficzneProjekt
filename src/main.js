@@ -39,8 +39,12 @@ let prime_vue_locale = {
 }
 
 import ToastService from 'primevue/toastservice';
+import StyleClass from 'primevue/styleclass';
+import Ripple from 'primevue/ripple';
 
 
 createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
-    .use(mdiVue, { icons: mdijs}).use(PrimeVue, {locale: prime_vue_locale}).use(ToastService)
+    .use(mdiVue, { icons: mdijs})
+    .use(PrimeVue, {locale: prime_vue_locale, ripple: true}).directive('styleclass', StyleClass).directive('ripple', Ripple)
+    .use(ToastService)
     .mount('#app');
