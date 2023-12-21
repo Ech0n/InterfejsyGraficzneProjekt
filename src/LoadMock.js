@@ -2,6 +2,7 @@
 const courses = [
     {
       id: 1,
+      authorId:0,
       name: 'Podstawy JavaScript',
       short_desc: 'Naucz się podstaw programowania w JavaScript.',
       image_url: 'https://example.com/js-podstawy.jpg',
@@ -11,6 +12,7 @@ const courses = [
     },
     {
       id: 2,
+      authorId:0,
       name: 'Zaawansowane rozwijanie w React',
       short_desc: 'Opanuj zaawansowane koncepcje w React.js.',
       image_url: 'https://example.com/zaawansowany-react.jpg',
@@ -20,6 +22,7 @@ const courses = [
     },
     {
       id: 3,
+      authorId:0,
       name: 'Node.js dla początkujących',
       short_desc: 'Rozpocznij pracę z JavaScript po stronie serwera za pomocą Node.js.',
       image_url: 'https://example.com/nodejs-poczatkujacy.jpg',
@@ -29,6 +32,7 @@ const courses = [
     },
     {
       id: 4,
+      authorId:0,
       name: 'Podstawy kuchni włoskiej',
       short_desc: 'Naucz się podstaw kuchni włoskiej i technik gotowania.',
       image_url: 'https://example.com/kuchnia-wloska.jpg',
@@ -38,6 +42,7 @@ const courses = [
     },
     {
       id: 5,
+      authorId:0,
       name: 'Kurs intensywny języka hiszpańskiego',
       short_desc: 'Szybkie opanowanie podstaw języka hiszpańskiego.',
       image_url: 'https://example.com/hiszpanski-intensywny.jpg',
@@ -47,6 +52,7 @@ const courses = [
     },
     {
       id: 6,
+      authorId:0,
       name: 'Data Science z użyciem Pythona',
       short_desc: 'Zbadaj analizę danych i machine learning przy użyciu Pythona.',
       image_url: 'https://example.com/data-science-python.jpg',
@@ -56,6 +62,7 @@ const courses = [
     },
     {
       id: 7,
+      authorId:0,
       name: 'Masterclass w fotografii',
       short_desc: 'Doskonal swoje umiejętności fotograficzne dzięki temu kompleksowemu kursowi.',
       image_url: 'https://example.com/masterclass-fotografia.jpg',
@@ -65,6 +72,7 @@ const courses = [
     },
     {
       id: 8,
+      authorId:0,
       name: 'Francuska kuchnia: Od podstaw do gourmet',
       short_desc: 'Zanurz się w sztuce gotowania francuskiego od początkującego do wykwintnego.',
       image_url: 'https://example.com/francuska-kuchnia.jpg',
@@ -74,6 +82,7 @@ const courses = [
     },
     {
       id: 9,
+      authorId:0,
       name: 'Wprowadzenie do Machine Learning',
       short_desc: 'Zacznij od podstaw w dziedzinie machine learning.',
       image_url: 'https://example.com/wprowadzenie-do-ml.jpg',
@@ -83,6 +92,7 @@ const courses = [
     },
     {
       id: 10,
+      authorId:0,
       name: 'Język i kultura japońska',
       short_desc: 'Zanurz się w języku japońskim i tradycjach kulturowych.',
       image_url: 'https://example.com/japonski-jezyk.jpg',
@@ -413,10 +423,11 @@ const courses = [
   export default async function initalizeDatabaseData() {
       const db = await openDB("db_",1,{  upgrade(db){
         db.createObjectStore('users', {keyPath: 'id',autoIncrement: true,});
-        db.createObjectStore('courses', {keyPath: 'id',autoIncrement: true,});
-        db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
+        let store = db.createObjectStore('courses', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex('author','authorId')
+        store = db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex('tutorId','tutorId')
       }});
-  
   
       const tx = db.transaction('courses', 'readwrite')
       

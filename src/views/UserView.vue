@@ -7,11 +7,18 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 var userData = ref();
 let userId = route.params.id
+var tutorings = ref([]);
+var courses = ref([]);
 console.log(userId)
 async function loadData() {
     const db = await openDB("db_",1);
     let k = await db.get('users',parseInt(userId));
     userData.value = k
+    k = await db.getAllFromIndex('tutors',"tutorId",parseInt(userId));
+    tutorings.value = k
+    k = await db.getAllFromIndex('courses',"author",parseInt(userId));
+    courses.value = k
+
     db.close()
 }
 
@@ -24,8 +31,15 @@ loadData()
   <div class = "d-flex flex-column align-items-center justify-content-start">
     <h1>
       {{userData}}
-
     </h1>
+    <h2>
+      Korepetycje: 
+    </h2>
+    {{tutorings}}
+    <h2>
+      Kursy: 
+    </h2>
+    {{ courses }}
   </div>
 </template>
 
