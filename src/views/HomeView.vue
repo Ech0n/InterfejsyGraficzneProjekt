@@ -1,6 +1,7 @@
 <script setup>
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
+import SignUpSelectorCard from "../components/card/SignUpSelectorCard.vue";
 </script>
 
 <template>
@@ -16,20 +17,7 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
   <a href="/login" class="btn btn-primary">Zaloguj się</a>
 
   <h2 class="text-center">Nie masz konta?</h2>
-  <div class="d-flex p-2 justify-content-around">
-    <div class="card d-flex align-items-center justify-content-start">
-      <mdicon name="account" :width="150" :height="200" />
-      <div class="card-body">
-        <a href="/login" class="btn btn-primary">Zarejestruj się jako uczeń</a>
-      </div>
-    </div>
-    <div class="card d-flex align-items-center justify-content-start">
-      <mdicon name="school" :width="150" :height="200" />
-      <div class="card-body">
-        <a href="/login" class="btn btn-primary">Zarejestruj się jako nauczyciel</a>
-      </div>
-    </div>
-  </div>
+  <SignUpSelectorCard/>
 
   </div>
 </template>

@@ -416,21 +416,31 @@ const courses = [
     {
       id:0, username:"myUsername",password:"haslo",
       firstname: 'Olivia',
-      lastname: 'Anderson'
+      lastname: 'Anderson',
+      class:"teacher"
     },
     {
       id:1, username:"anotherUsername",password:"haslo",
       firstname: 'Dawid',
-      lastname: 'Biały',},
+      lastname: 'Biały',
+      class:"teacher"},
     {
-      id:2, username:"admin",password:"admin",
+      id:2, username:"teacher",password:"teacher",
       firstname: 'Emilia',
-      lastname: 'Brąz'
+      lastname: 'Brąz',
+      class:"teacher"
     },
     {
       id:3, username:"test",password:"test",
       firstname: 'Ryan',
-      lastname: 'Williams'
+      lastname: 'Williams',
+      class:"teacher"
+    },
+    {
+      id:4, username:"user",password:"user",
+      firstname: 'Paweł',
+      lastname: 'Czarny',
+      class:"student"
     }
   ]
 

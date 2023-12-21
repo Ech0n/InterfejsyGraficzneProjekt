@@ -37,13 +37,12 @@ function tryLogin()
   <NavbarTop />
 
   <div class="text-md-left ml5">
-    <h1>Zaloguj się</h1>
+    <h1>Zarejestruj się (Nauczyciel)</h1>
     <div>
       <input type="email/username" v-model="username" placeholder="username"/>
       <input type="password" v-model="password" placeholder="password"/>
 
       <button @click="tryLogin">Zaloguj</button>
-      <RouterLink to="/signup" class="nav-link mx-2">Nie masz konta? Zarejestruj się!</RouterLink>
     </div>
   </div>
 </template>
