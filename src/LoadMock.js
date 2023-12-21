@@ -349,7 +349,7 @@ const courses = [
       price: 45
   },
   {
-    tutorId:0,
+    tutorId:3,
     id: 17,
         firstname: 'Ryan',
       lastname: 'Williams',
@@ -427,14 +427,19 @@ const courses = [
       firstname: 'Emilia',
       lastname: 'Brąz'
     },
-    {id:3, username:"test",password:"test"},
+    {
+      id:3, username:"test",password:"test",
+      firstname: 'Ryan',
+      lastname: 'Williams'
+    }
   ]
 
   import { openDB } from 'idb';
   export default async function initalizeDatabaseData() {
       const db = await openDB("db_",1,{  upgrade(db){
-        db.createObjectStore('users', {keyPath: 'id',autoIncrement: true,});
-        let store = db.createObjectStore('courses', {keyPath: 'id',autoIncrement: true,});
+        let store = db.createObjectStore('users', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex("auth",["username","password"])
+        store = db.createObjectStore('courses', {keyPath: 'id',autoIncrement: true,});
         store.createIndex('author','authorId')
         store = db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
         store.createIndex('tutorId','tutorId')
@@ -445,12 +450,12 @@ const courses = [
       await Promise.all(courses.map((kurs) => 
       {
         return tx.store.add(kurs).then((result) => {
-          console.log("Item added successfully:", result);
+          console.debug("Item added successfully:", result);
         }).catch((result) => {
-          console.log("Item rejected:", result);
+          console.debug("Item rejected:", result);
         })
       }).join(tx.done.catch((result) => {
-          console.log("Item rejected:", result);
+          console.debug("Item rejected:", result);
         })))
     
   
@@ -459,12 +464,12 @@ const courses = [
         await Promise.all(tutors.map((tutor) => 
         {
           return tx2.store.add(tutor).then((result) => {
-            console.log("Item added successfully:", result);
+            console.debug("Item added successfully:", result);
           }).catch((result) => {
-            console.log("Item rejected:", result);
+            console.debug("Item rejected:", result);
           })
         }).join(tx2.done.catch((result) => {
-            console.log("Item rejected:", result);
+            console.debug("Item rejected:", result);
           })))
 
           
@@ -473,12 +478,12 @@ const courses = [
         await Promise.all(users.map((user) => 
           {
             return tx3.store.add(user).then((result) => {
-              console.log("Item added successfully:", result);
+              console.debug("Item added successfully:", result);
             }).catch((result) => {
-              console.log("Item rejected:", result);
+              console.debug("Item rejected:", result);
             })
           }).join(tx3.done.catch((result) => {
-              console.log("Item rejected:", result);
+              console.debug("Item rejected:", result);
         })))
     db.close()
   }

@@ -1,5 +1,10 @@
 <script setup>
-
+let userId = sessionStorage.getItem("userId")
+let userRedirect = "/login"
+if(userId != null)
+{
+  userRedirect = "/u/"+userId
+}
 </script>
 
 <template>
@@ -23,7 +28,7 @@
             <RouterLink to="/" class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-message"/></RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink to="/" class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
+            <RouterLink :to=userRedirect class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
