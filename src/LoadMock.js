@@ -32,7 +32,7 @@ const courses = [
     },
     {
       id: 4,
-      authorId:0,
+      authorId:1,
       name: 'Podstawy kuchni włoskiej',
       short_desc: 'Naucz się podstaw kuchni włoskiej i technik gotowania.',
       image_url: 'https://example.com/kuchnia-wloska.jpg',
@@ -42,7 +42,7 @@ const courses = [
     },
     {
       id: 5,
-      authorId:0,
+      authorId:2,
       name: 'Kurs intensywny języka hiszpańskiego',
       short_desc: 'Szybkie opanowanie podstaw języka hiszpańskiego.',
       image_url: 'https://example.com/hiszpanski-intensywny.jpg',
@@ -62,7 +62,7 @@ const courses = [
     },
     {
       id: 7,
-      authorId:0,
+      authorId:2,
       name: 'Masterclass w fotografii',
       short_desc: 'Doskonal swoje umiejętności fotograficzne dzięki temu kompleksowemu kursowi.',
       image_url: 'https://example.com/masterclass-fotografia.jpg',
@@ -72,7 +72,7 @@ const courses = [
     },
     {
       id: 8,
-      authorId:0,
+      authorId:1,
       name: 'Francuska kuchnia: Od podstaw do gourmet',
       short_desc: 'Zanurz się w sztuce gotowania francuskiego od początkującego do wykwintnego.',
       image_url: 'https://example.com/francuska-kuchnia.jpg',
@@ -92,7 +92,7 @@ const courses = [
     },
     {
       id: 10,
-      authorId:0,
+      authorId:2,
       name: 'Język i kultura japońska',
       short_desc: 'Zanurz się w języku japońskim i tradycjach kulturowych.',
       image_url: 'https://example.com/japonski-jezyk.jpg',
@@ -153,7 +153,7 @@ const courses = [
     },
     {
       id: 4,
-    tutorId:0,
+    tutorId:2,
     firstname: 'Emilia',
       lastname: 'Brąz',
       short_desc: 'Nauczyciel historii ze specjalizacją w wydarzeniach światowych.',
@@ -381,7 +381,7 @@ const courses = [
   },
   {
     id: 19,
-    tutorId:0,
+    tutorId:1,
         firstname: 'Dawid',
       lastname: 'Biały',
       short_desc: 'Instruktor muzyki specjalizujący się w teorii muzycznej i grze na instrumentach.',
@@ -413,9 +413,20 @@ const courses = [
   ];
 
   const users =[
-    {id:0, username:"myUsername",password:"haslo"},
-    {id:1, username:"anotherUsername",password:"haslo"},
-    {id:2, username:"admin",password:"admin"},
+    {
+      id:0, username:"myUsername",password:"haslo",
+      firstname: 'Olivia',
+      lastname: 'Anderson'
+    },
+    {
+      id:1, username:"anotherUsername",password:"haslo",
+      firstname: 'Dawid',
+      lastname: 'Biały',},
+    {
+      id:2, username:"admin",password:"admin",
+      firstname: 'Emilia',
+      lastname: 'Brąz'
+    },
     {id:3, username:"test",password:"test"},
   ]
 
