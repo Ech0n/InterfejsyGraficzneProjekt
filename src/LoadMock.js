@@ -95,7 +95,8 @@ const courses = [
   const tutors = [
     {
       id: 1,
-      firstname: 'Jan',
+    tutorId:0,
+    firstname: 'Jan',
       lastname: 'Kowalski',
       short_desc: 'Doświadczony korepetytor z matematyki z pasją do nauczania.',
       image_url: 'https://example.com/jan-kowalski.jpg',
@@ -111,7 +112,8 @@ const courses = [
     },
     {
       id: 2,
-      firstname: 'Alicja',
+    tutorId:0,
+    firstname: 'Alicja',
       lastname: 'Nowak',
       short_desc: 'Ekspert w biologii specjalizujący się w anatomii i genetyce.',
       image_url: 'https://example.com/alicia-nowak.jpg',
@@ -125,7 +127,8 @@ const courses = [
     },
     {
       id: 3,
-      firstname: 'Michał',
+    tutorId:0,
+    firstname: 'Michał',
       lastname: 'Jankowski',
       short_desc: 'Pasjonat nauczania języka angielskiego i literatury.',
       image_url: 'https://example.com/michal-jankowski.jpg',
@@ -140,7 +143,8 @@ const courses = [
     },
     {
       id: 4,
-      firstname: 'Emilia',
+    tutorId:0,
+    firstname: 'Emilia',
       lastname: 'Brąz',
       short_desc: 'Nauczyciel historii ze specjalizacją w wydarzeniach światowych.',
       image_url: 'https://example.com/emilia-braz.jpg',
@@ -154,7 +158,8 @@ const courses = [
     },
     {
       id: 5,
-      firstname: 'Daniel',
+    tutorId:0,
+    firstname: 'Daniel',
       lastname: 'Miller',
       short_desc: 'Doświadczony instruktor fizyki z naciskiem na mechanikę.',
       image_url: 'https://example.com/daniel-miller.jpg',
@@ -168,7 +173,8 @@ const courses = [
     },
     {
       id: 6,
-      firstname: 'Zofia',
+    tutorId:0,
+    firstname: 'Zofia',
       lastname: 'Garcia',
       short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
       image_url: 'https://example.com/zofia-garcia.jpg',
@@ -182,7 +188,8 @@ const courses = [
     },
     {
       id: 7,
-      firstname: 'Mateusz',
+    tutorId:0,
+    firstname: 'Mateusz',
       lastname: 'Anders',
       short_desc: 'Mentor informatyki z doświadczeniem w programowaniu.',
       image_url: 'https://example.com/mateusz-anders.jpg',
@@ -197,7 +204,8 @@ const courses = [
     },
     {
       id: 8,
-      firstname: 'Olga',
+    tutorId:0,
+    firstname: 'Olga',
       lastname: 'Talar',
       short_desc: 'Nauczycielka języka hiszpańskiego specjalizująca się w języku i kulturze.',
       image_url: 'https://example.com/olga-talar.jpg',
@@ -211,7 +219,8 @@ const courses = [
     },
     {
       id: 9,
-      firstname: 'Witold',
+    tutorId:0,
+    firstname: 'Witold',
       lastname: 'Czarnecki',
       short_desc: 'Nauczyciel sztuki ze skupieniem na malarstwie i rzeźbie.',
       image_url: 'https://example.com/witold-czarnecki.jpg',
@@ -226,7 +235,8 @@ const courses = [
     },
     {
       id: 10,
-      firstname: 'Ema',
+    tutorId:0,
+    firstname: 'Ema',
       lastname: 'Hill',
       short_desc: 'Instruktorka muzyki ze specjalizacją w teorii i grze na instrumentach.',
       image_url: 'https://example.com/ema-hill.jpg',
@@ -240,7 +250,8 @@ const courses = [
     },
     {
     id: 11,
-      firstname: 'Jan',
+    tutorId:0,
+    firstname: 'Jan',
       lastname: 'Nowak',
       short_desc: 'Doświadczony korepetytor z fizyki, specjalizujący się w teorii kwantowej.',
       image_url: 'https://example.com/jan-nowak.jpg',
@@ -254,7 +265,8 @@ const courses = [
   },
   {
     id: 12,
-        firstname: 'Alicja',
+    tutorId:0,
+    firstname: 'Alicja',
       lastname: 'Kowalska',
       short_desc: 'Pasjonująca nauczycielka literatury angielskiej ze specjalizacją w dziełach Shakespeare\'a.',
       image_url: 'https://example.com/alicia-kowalska.jpg',
@@ -268,7 +280,8 @@ const courses = [
   },
   {
     id: 13,
-        firstname: 'Robert',
+    tutorId:0,
+    firstname: 'Robert',
       lastname: 'Jankowski',
       short_desc: 'Doświadczony korepetytor matematyki specjalizujący się w analizie matematycznej i algebrze.',
       image_url: 'https://example.com/robert-jankowski.jpg',
@@ -282,7 +295,8 @@ const courses = [
   },
   {
     id: 14,
-        firstname: 'Zofia',
+    tutorId:0,
+    firstname: 'Zofia',
       lastname: 'Clark',
       short_desc: 'Nauczycielka historii ze skupieniem na starożytnych cywilizacjach i wydarzeniach światowych.',
       image_url: 'https://example.com/zofia-clark.jpg',
@@ -296,7 +310,8 @@ const courses = [
   },
   {
     id: 15,
-        firstname: 'Michał',
+    tutorId:0,
+    firstname: 'Michał',
       lastname: 'Brąz',
       short_desc: 'Korepetytor chemii specjalizujący się w chemii organicznej i nieorganicznej.',
       image_url: 'https://example.com/michal-braz.jpg',
@@ -310,7 +325,8 @@ const courses = [
   },
   {
     id: 16,
-        firstname: 'Ema',
+    tutorId:0,
+    firstname: 'Ema',
       lastname: 'Taylor',
       short_desc: 'Doświadczona nauczycielka hiszpańskiego z naciskiem na język i kulturę.',
       image_url: 'https://example.com/ema-taylor.jpg',
@@ -323,6 +339,7 @@ const courses = [
       price: 45
   },
   {
+    tutorId:0,
     id: 17,
         firstname: 'Ryan',
       lastname: 'Williams',
@@ -338,6 +355,8 @@ const courses = [
   },
   {
     id: 18,
+    tutorId:0,
+
         firstname: 'Izabela',
       lastname: 'Martin',
       short_desc: 'Nauczycielka sztuki ze skupieniem na malarstwie i rzeźbie.',
@@ -352,6 +371,7 @@ const courses = [
   },
   {
     id: 19,
+    tutorId:0,
         firstname: 'Dawid',
       lastname: 'Biały',
       short_desc: 'Instruktor muzyki specjalizujący się w teorii muzycznej i grze na instrumentach.',
@@ -366,6 +386,7 @@ const courses = [
   },
   {
     id: 20,
+    tutorId:0,
         firstname: 'Olivia',
       lastname: 'Anderson',
       short_desc: 'Nauczycielka języka francuskiego ze specjalizacją w gramatyce i konwersacji.',
@@ -382,8 +403,10 @@ const courses = [
   ];
 
   const users =[
-    {id:0, username:"myUsername"},
-    {id:1, username:"anotherUsername"}
+    {id:0, username:"myUsername",password:"haslo"},
+    {id:1, username:"anotherUsername",password:"haslo"},
+    {id:2, username:"admin",password:"admin"},
+    {id:3, username:"test",password:"test"},
   ]
 
   import { openDB } from 'idb';
