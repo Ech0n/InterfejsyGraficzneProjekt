@@ -2,6 +2,7 @@
 import {ref} from 'vue';
 import CourseSideBar from "@/components/sidebar/CourseSideBar.vue";
 
+
 let currentChapter = ref({title: "Strona główna"});
 
 const updateChapter = ((updatedChapter) => {
@@ -12,9 +13,10 @@ const updateChapter = ((updatedChapter) => {
 </script>
 
 <template>
-<h1 v-text="courseItem.name" class="text-center my-3"></h1>
+
   <CourseSideBar :courseItem="courseItem" :courseChapters="courseChapters" @complete-chapter="updateChapter"/>
-  <h2 class="text-center my-3">{{ currentChapter.title }}</h2>
+  <h1 class="display-1 text-center my-3">{{ currentChapter.title }}</h1>
+  <h5 v-text="courseItem.name" class="text-center my-2 text-muted"></h5>
 </template>
 
 <style scoped>
