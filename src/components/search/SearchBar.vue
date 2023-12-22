@@ -7,7 +7,7 @@ import CourseItem from "@/components/search/CourseItem.vue";
 import TutorItem from "@/components/search/TutorItem.vue";
 import Toast from "primevue/toast";
 import AutoComplete from "primevue/autocomplete";
-
+import ToggleButton from 'primevue/togglebutton';
 import { openDB } from 'idb';
 
 
@@ -187,6 +187,8 @@ const search = (event) => {
     }
   }
 }
+
+let showTimeOptions = ref(false); // default not show
 </script>
 
 <template>
@@ -219,12 +221,16 @@ const search = (event) => {
         </div>
         </div>
       <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
+        <div class="w-100"><ToggleButton v-model="showTimeOptions" onLabel="Ukryj" offLabel="Pokaż"
+                           onIcon="pi pi-clock" offIcon="pi pi-clock" icon-pos="right" class="toggleButtonOptions"/></div>
+        <div v-if="showTimeOptions" class="my-2">
         <div class="mt-3 w-100"><SelectButton v-model="days" :options="options" optionLabel="weekDay" multiple aria-labelledby="multiple" />
           <h4 class="mx-2 my-2"> Od </h4>
           <Calendar  v-model="time"  class="mt-4 mx-2 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId"/>
           <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
           <h4 class="mx-2 my-2"> Do </h4>
         <Calendar  v-model="time2"  class="mt-4 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId2"/></div>
+        </div>
         <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
           <!--    <p>{{ course }}</p>-->
           <TutorItem :tutorItem="tutor" :chosenDays="valuesArray" :timeStart="time" :timeEnd="time2" />
@@ -248,6 +254,9 @@ const search = (event) => {
 
 .space_between_results_and_search_bar {
   min-height: 180px;
+}
+.toggleButtonOptions {
+  min-width: 120px;
 }
 </style>
 
