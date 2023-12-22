@@ -225,11 +225,15 @@ let showTimeOptions = ref(false); // default not show
                            onIcon="pi pi-clock" offIcon="pi pi-clock" icon-pos="right" class="toggleButtonOptions"/></div>
         <div v-if="showTimeOptions" class="my-2">
         <div class="mt-3 w-100"><SelectButton v-model="days" :options="options" optionLabel="weekDay" multiple aria-labelledby="multiple" />
-          <h4 class="mx-2 my-2"> Od </h4>
-          <Calendar  v-model="time"  class="mt-4 mx-2 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId"/>
-          <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2" @click="setToday">Dzisiejsza godzina</button></div>
-          <h4 class="mx-2 my-2"> Do </h4>
-        <Calendar  v-model="time2"  class="mt-4 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon time-only input-id="calendar-inputId2"/></div>
+          <h4 class="mx-2 mt-2"> Od </h4>
+          <Calendar  v-model="time"  class="mt-1 mx-2 w-25" date-format=" " :manual-input="false" :input-style="styles" show-icon icon="pi pi-clock"  time-only input-id="calendar-inputId"/>
+          <div class="w-100"><button class="btn btn-lg btn-outline-success mt-2 mx-2" @click="setToday">Dzisiejsza godzina</button>
+            <button class="btn btn-lg btn-outline-danger mt-2" @click="time = ''">Wyczyść</button></div>
+          <h4 class="mx-2 mt-2"> Do </h4>
+        <Calendar  v-model="time2"  class="mt-1 w-25 mx-2" date-format=" " :manual-input="false" :input-style="styles" show-icon icon="pi pi-clock" time-only input-id="calendar-inputId2" />
+
+          </div>
+          <button class="btn btn-lg btn-outline-danger mt-2" @click="time2 = ''">Wyczyść</button>
         </div>
         <div  v-for="tutor in filteredTutorsList()" :key="tutor.id">
           <!--    <p>{{ course }}</p>-->
