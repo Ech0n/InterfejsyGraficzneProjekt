@@ -53,7 +53,17 @@ const router = createRouter({
             path: '/signup/teacher',
             name: 'signupTeacher',
             component: () => import('../views/SignUpTeacherView.vue')
-        },       
+        }, 
+        {            
+            path: '/chat',
+            name: 'chat',
+            component: () => import('../views/ChatView.vue')
+        },
+        {            
+            path: '/cart',
+            name: 'cart',
+            component: () => import('../views/ShoppingCartView.vue')
+        },              
         {
             path: '/u/:id',
             name: 'user',
