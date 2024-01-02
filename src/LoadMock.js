@@ -444,6 +444,174 @@ const courses = [
     }
   ]
 
+const courseContents = [
+    {
+      courseId: 1,
+      title: "Podstawy JavaScript",
+      chapters: [
+        {
+          title: "Wstęp",
+          type: "video",
+          content: "Witaj w kursie 'Podstawy JavaScript'! W tym wprowadzeniu omówimy, dlaczego JavaScript jest tak istotny w dzisiejszym świecie programowania. Dowiesz się, jakie są podstawowe koncepcje języka i jak można go używać do tworzenia dynamicznych stron internetowych."
+        },
+        {
+          title: "Zmienne",
+          type: "text",
+          content: "W tym rozdziale zajmiemy się koncepcją zmiennych w JavaScript. Zmienne są fundamentem programowania, pozwalają przechowywać i manipulować danymi. Przejdziemy przez różne typy zmiennych, deklarację i przypisanie wartości, a także dowiemy się, jak używać zmiennych w praktyce."
+        },
+      ],
+    },
+    {
+      courseId: 2,
+      title: "Zaawansowane rozwijanie w React",
+      chapters: [
+        {
+          title: "Rozpoczęcie",
+          type: "video",
+          content: "Witaj w kursie 'Zaawansowane rozwijanie w React'! W tym module omówimy, dlaczego React stał się jednym z najpopularniejszych frameworków do budowania interfejsów użytkownika. Przyjrzymy się, jak zacząć pracę z React, instalować go i tworzyć pierwsze komponenty."
+        },
+        {
+          title: "Komponenty",
+          type: "text",
+          content: "Rozdział ten poświęcony jest głębszemu zrozumieniu roli komponentów w React. Dowiesz się, jak projektować modularne interfejsy, korzystając z komponentów, oraz jak przekazywać dane między nimi. Sprawdzimy także, jak używać stanu i efektów dla bardziej zaawansowanych funkcji."
+        },
+        {
+          title: "Stan i efekty",
+          type: "video",
+          content: "W tym ostatnim module przejdziemy przez zaawansowane koncepcje, takie jak zarządzanie stanem i efektami w React. Będziesz gotów do tworzenia bardziej skomplikowanych i interaktywnych aplikacji przy użyciu tych zaawansowanych funkcji React."
+        },
+      ],
+    },
+    {
+      courseId: 3,
+      title: "Node.js dla początkujących",
+      chapters: [
+        {
+          title: "Instalacja Node.js",
+          type: "text",
+          content: "W tym rozdziale przewodnika dowiesz się, jak zainstalować Node.js na swoim systemie. Node.js to środowisko uruchomieniowe JavaScript po stronie serwera, które umożliwia tworzenie skalowalnych i wydajnych aplikacji. Postępuj zgodnie z krokami, aby mieć gotowe środowisko do pracy z Node.js."
+        },
+        {
+          title: "Tworzenie prostego serwera",
+          type: "video",
+          content: "Po zakończeniu instalacji Node.js przejdziemy do tworzenia prostego serwera. Będziesz krok po kroku tworzyć serwer, obsługiwać zapytania i odpowiadać na nie. To świetne wprowadzenie do programowania po stronie serwera przy użyciu JavaScript z pomocą Node.js."
+        },
+      ],
+    },
+    {
+      courseId: 4,
+      title: "Podstawy kuchni włoskiej",
+      chapters: [
+        {
+          title: "Historia kuchni włoskiej",
+          type: "text",
+          content: "Rozpocznijmy naszą podróż od historii kuchni włoskiej. Poznasz fascynującą historię potraw, tradycji kulinarnej i wpływów, które kształtują charakterystyczny smak włoskiej kuchni."
+        },
+        {
+          title: "Techniki gotowania",
+          type: "video",
+          content: "W tym module nauczymy się podstawowych technik gotowania używanych we włoskiej kuchni. Od przygotowania makaronu po sosy i pieczenie, odkryj tajniki, które uczynią Twoje dania niezapomnianymi."
+        },
+      ],
+    },
+    {
+      courseId: 5,
+      title: "Kurs intensywny języka hiszpańskiego",
+      chapters: [
+        {
+          title: "Podstawy hiszpańskiego",
+          type: "video",
+          content: "Witaj w kursie intensywnego hiszpańskiego! Rozpoczniemy od podstaw, ucząc się podstawowych zwrotów, gramatyki i wymowy. To idealny punkt startowy dla tych, którzy chcą szybko opanować hiszpański."
+        },
+        {
+          title: "Rozmowy i dialogi",
+          type: "text",
+          content: "Kolejny etap to praktyka rozmów i dialogów. Ćwiczenia, scenariusze i realistyczne sytuacje pomogą Ci zastosować swoją wiedzę w praktyce, rozwijając biegłość w mówieniu i słuchaniu."
+        },
+      ],
+    },
+    {
+      courseId: 6,
+      title: "Data Science z użyciem Pythona",
+      chapters: [
+        {
+          title: "Wprowadzenie do Data Science",
+          type: "video",
+          content: "Rozpocznijmy naszą podróż po świecie analizy danych i machine learning. W tym module omówimy podstawowe pojęcia, narzędzia i zastosowania Data Science. Przygotuj się na fascynującą podróż w świat danych!"
+        },
+        {
+          title: "Analiza danych w Pythonie",
+          type: "text",
+          content: "Poznamy podstawy analizy danych przy użyciu języka Python. Dowiesz się, jak korzystać z bibliotek takich jak Pandas i NumPy, aby manipulować danymi i wyciągać cenne informacje z zestawów danych."
+        },
+      ],
+    },
+    {
+      courseId: 7,
+      title: "Masterclass w fotografii",
+      chapters: [
+        {
+          title: "Podstawy fotografii",
+          type: "video",
+          content: "Witaj w Masterclassie w fotografii! Zaczniemy od podstaw, omawiając kluczowe elementy kompozycji, światła i perspektywy. Ta sekcja przygotuje Cię do tworzenia pięknych i znaczących fotografii."
+        },
+        {
+          title: "Edycja i retusz",
+          type: "text",
+          content: "Kiedy już opanujesz sztukę robienia zdjęć, przejdziemy do edycji i retuszu. Poznasz narzędzia i techniki, które pozwolą Ci poprawić jakość swoich fotografii, dodając im profesjonalny wygląd."
+        },
+      ],
+    },
+    {
+      courseId: 8,
+      title: "Francuska kuchnia: Od podstaw do gourmet",
+      chapters: [
+        {
+          title: "Podstawy francuskiego gotowania",
+          type: "text",
+          content: "Rozpocznijmy naszą kulinarną podróż od podstaw francuskiego gotowania. Poznasz kluczowe składniki, techniki i narzędzia, które są niezbędne do przygotowania autentycznych dań francuskich."
+        },
+        {
+          title: "Wykwintne potrawy",
+          type: "video",
+          content: "W kolejnym module skupimy się na przygotowywaniu wykwintnych potraw. Odkryj tajniki haute cuisine i naucz się, jak tworzyć eleganckie dania, które zachwycą nawet najbardziej wyrafinowane podniebienia."
+        },
+      ],
+    },
+    {
+      courseId: 9,
+      title: "Wprowadzenie do Machine Learning",
+      chapters: [
+        {
+          title: "Początki w Machine Learning",
+          type: "video",
+          content: "Rozpocznijmy naszą podróż w świecie Machine Learning! W tym module omówimy podstawowe pojęcia, algorytmy i zastosowania Machine Learning. To idealne wprowadzenie dla tych, którzy chcą zanurzyć się w fascynujący świat sztucznej inteligencji."
+        },
+        {
+          title: "Praktyczne zastosowania",
+          type: "text",
+          content: "Przejdziemy do praktycznych zastosowań Machine Learning. Zastosujemy algorytmy do analizy danych, prognozowania trendów i rozwiązania realnych problemów. Będziesz gotów na samodzielną eksplorację świata Machine Learning po zakończeniu tego kursu."
+        },
+      ],
+    },
+    {
+      courseId: 10,
+      title: "Język i kultura japońska",
+      chapters: [
+        {
+          title: "Podstawy języka japońskiego",
+          type: "text",
+          content: "Rozpocznijmy od nauki podstaw języka japońskiego. Poznasz alfabet, podstawowe zwroty i zasady gramatyki, które pozwolą Ci porozumiewać się w japońskim środowisku."
+        },
+        {
+          title: "Tradycje i zwyczaje",
+          type: "video",
+          content: "Odkryj bogatą kulturę Japonii, ucząc się o tradycjach, zwyczajach i ceremoniach. Ten moduł pomoże Ci zrozumieć głębsze konteksty kulturowe, które wpływają na japoński język i styl życia."
+        },
+      ],
+    },
+]
+
   import { openDB } from 'idb';
   export default async function initalizeDatabaseData() {
       const db = await openDB("db_",1,{  upgrade(db){
@@ -453,6 +621,8 @@ const courses = [
         store.createIndex('author','authorId')
         store = db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
         store.createIndex('tutorId','tutorId')
+        store = db.createObjectStore('courseContents', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex('courseId','courseId')
       }});
   
       const tx = db.transaction('courses', 'readwrite')
@@ -495,6 +665,20 @@ const courses = [
           }).join(tx3.done.catch((result) => {
               console.debug("Item rejected:", result);
         })))
+
+        const tx4 = db.transaction('courseContents', 'readwrite')
+      
+        await Promise.all(courseContents.map((kurs) => 
+        {
+          return tx4.store.add(kurs).then((result) => {
+            console.debug("Item added successfully:", result);
+          }).catch((result) => {
+            console.debug("Item rejected:", result);
+          })
+        }).join(tx4.done.catch((result) => {
+            console.debug("Item rejected:", result);
+          })))
+      
     db.close()
   }
   
