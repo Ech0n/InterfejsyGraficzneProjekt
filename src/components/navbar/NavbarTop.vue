@@ -1,10 +1,20 @@
 <script setup>
+import {ref} from 'vue'
+import Badge from 'primevue/badge';
+
 let userId = sessionStorage.getItem("userId")
 let userRedirect = "/login"
 if(userId != null)
 {
   userRedirect = "/u/"+userId
 }
+import { useCartStore } from '@/store.js'
+
+const store = useCartStore()
+console.log(!store.isEmpty)
+// let showCart = ref(false)
+// showCart = !store.isEmpty()
+
 </script>
 
 <template>
@@ -30,6 +40,9 @@ if(userId != null)
           <li class="nav-item">
             <RouterLink :to=userRedirect class="nav-link mx-2"><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
           </li>
+          <li class="nav-item" v-if=!store.isEmpty>
+            <RouterLink to="/cart" v-badge=store.size  class="nav-link mx-2 p-overlay-badge"><font-awesome-icon icon="fa-solid fa-shopping-cart"  style="font-size: 1rem" /></RouterLink>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Company
@@ -47,5 +60,9 @@ if(userId != null)
 </template>
 
 <style scoped>
-
+#pv_id_2_badge{
+  min-width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+}
 </style>

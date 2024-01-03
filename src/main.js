@@ -5,6 +5,8 @@ import App from './App.vue'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
+import { createPinia } from 'pinia'
+import BadgeDirective from 'primevue/badgedirective';
 
 /* FONT AWESOME ICONS */
 /* import the fontawesome core */
@@ -14,10 +16,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faMagnifyingGlass, faUser, faHome, faMessage } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faUser, faHome, faMessage,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faMagnifyingGlass, faUser, faHome, faMessage)
+library.add(faMagnifyingGlass, faUser, faHome, faMessage,faShoppingCart)
 
 // Import mdi for more icons
 import mdiVue from 'mdi-vue/v3'
@@ -44,7 +46,9 @@ import Ripple from 'primevue/ripple';
 
 
 createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
+    .use(createPinia())
     .use(mdiVue, { icons: mdijs})
     .use(PrimeVue, {locale: prime_vue_locale, ripple: true}).directive('styleclass', StyleClass).directive('ripple', Ripple)
     .use(ToastService)
+    .directive('badge', BadgeDirective)
     .mount('#app');
