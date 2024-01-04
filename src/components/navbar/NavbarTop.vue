@@ -18,6 +18,7 @@ console.log(!store.isEmpty)
 </script>
 
 <template>
+
   <nav class="navbar navbar-expand-sm navbar-light bg-white p-3  fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">KOREPETYCJE</a>
@@ -56,6 +57,8 @@ console.log(!store.isEmpty)
         </ul>
       </div>
     </div>
+  </nav>
+  <nav class="navbar navbar-expand-sm navbar-light bg-white p-3" style="margin-top: 2.5rem;">
   </nav>
 </template>
 
