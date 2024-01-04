@@ -4,9 +4,11 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
 import cartItem from "@/components/cart/cartItem.vue"
 import {ref} from 'vue';
 import { useCartStore } from '@/store.js'
+import { storeToRefs } from 'pinia'
 
 let courseList = ref([])
 const store = useCartStore()
+let {totalPrice} = storeToRefs(store)
 // let showCart = ref(false)
 </script>
 
@@ -16,6 +18,8 @@ const store = useCartStore()
   <div  id=cartList v-for="course in store.courses" :key="course.id" class="d-flex flex-column align-items-center flex-nowrap" >
     <cartItem :cartItem="course" />
   </div>
+  Cena łączna: {{ totalPrice }} zł
+  <RouterLink to="/payment" class="nav-link mx-2"> <button class="btn btn-primary w-75"> Przejdź do płatności! </button></RouterLink>
 </template>
 
 <style scoped>
