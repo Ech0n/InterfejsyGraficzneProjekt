@@ -1,12 +1,21 @@
 <script setup>
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
+import cartItem from "@/components/cart/cartItem.vue"
+import {ref} from 'vue';
+import { useCartStore } from '@/store.js'
+
+let courseList = ref([])
+const store = useCartStore()
+// let showCart = ref(false)
 </script>
 
 <template>
   <NavbarTop />
   <NavbarBottom />
-  KOSZYK
+  <div  id=cartList v-for="course in store.courses" :key="course.id" class="d-flex flex-column align-items-center flex-nowrap" >
+    <cartItem :cartItem="course" />
+  </div>
 </template>
 
 <style scoped>

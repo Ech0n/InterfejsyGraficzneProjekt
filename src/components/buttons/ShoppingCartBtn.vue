@@ -17,7 +17,7 @@ export default {
   computed:{
     ...mapWritableState(useCartStore, ['courses'])
   },
-  props: ["id", "summaryMessage", "contentMessage"],
+  props: ["id", "summaryMessage", "contentMessage","price","name"],
   methods: {
     showSuccess() {
       // Get the currently focused element
@@ -28,7 +28,7 @@ export default {
         focusedElement.blur();
       }
       const cartStore = useCartStore()
-      cartStore.addCourse(this.id)
+      cartStore.addCourse({id:this.id,name:this.name,price:this.price})
       this.$toast.add({severity: 'success', summary: this.summaryMessage, detail: this.contentMessage, group: 'pt', life: 10000});
     }
   },

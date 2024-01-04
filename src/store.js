@@ -11,8 +11,14 @@ export const useCartStore = defineStore('cart', {
     },
   actions: {
     addCourse(id) {
-        console.log("Trying to add course ",id)
+        console.debug("Trying to add course ",id)
       this.courses.push(id)
     },
+    removeCourse(id){
+      console.log(id)
+      this.courses = this.courses.filter((el)=>{
+        return el.id != id
+      })
+    }
   },
 })
