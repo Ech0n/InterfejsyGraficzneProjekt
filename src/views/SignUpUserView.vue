@@ -38,12 +38,51 @@ function tryLogin()
 
   <div class="text-md-left ml5">
     <h1>Zarejestruj się (Uczeń)</h1>
-    <div>
-      <input type="email/username" v-model="username" placeholder="username"/>
-      <input type="password" v-model="password" placeholder="password"/>
+    <div class="row">
+      <div class="col">
+        <h6>Dane osobowe:</h6>
+        <input type="name" v-model="text" placeholder="Imię"/>
+        <br>
+        <input type="surname" v-model="text" placeholder="Nazwisko"/>
 
-      <button @click="tryLogin">Zaloguj</button>
+        <h6>Data urodzenia:</h6>
+        <input type="date" v-model="Date" placeholder="DD/MM/YYYY">
+
+        <h6>Poziom nauczania:</h6>
+        <select v-model="selected">
+          <option disabled value="">Wybierz poziom nauczania</option>
+          <option>Przedszkole</option>
+          <option>Szkoła Podstawowa</option>
+          <option>Szkoła Średnia</option>
+          <option>Studia</option>
+          <option>(nie dotyczy)</option>
+        </select>
+        <br>
+        <input type="checkbox" id="checkbox" v-model="checked" />
+        <label for="checkbox">Profil z kontolą rodzicielską</label>
+      </div>
+
+      <div class="col">
+        <h6>Dane kontaktowe:</h6>
+        <input type="telephone" v-model="text" placeholder="Nr telefonu"/>
+        <br>
+        <input type="e-mail" v-model="email" placeholder="E-mail"/>
+        <br>
+        <input type="address" v-model="text" placeholder="Adres zamieszkania"/>
+      </div>
+
+      <div class="col">
+        <h6>Dane do logowania:</h6>
+        <input type="username" v-model="username" placeholder="Login"/>
+        <br>
+        <input type="password" v-model="password" placeholder="Hasło"/>
+        <br>
+        <input type="password" v-model="password" placeholder="Powtórz hasło"/>
+      </div>
+
     </div>
+
+    <button @click="tryLogin">Zarejestruj</button>
   </div>
 </template>
 
