@@ -35,7 +35,7 @@ function tryLogin()
 
 <template>
   <NavbarTop />
-  <NavbarBottom/>
+  <!-- <NavbarBottom/> -->
 
   <div class="text-md-left ml5">
     <h1>Zaloguj się</h1>
