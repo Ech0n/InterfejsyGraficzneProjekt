@@ -43,7 +43,7 @@ let prime_vue_locale = {
 import ToastService from 'primevue/toastservice';
 import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
-
+import VTooltip from 'v-tooltip';
 
 createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
     .use(createPinia())
@@ -51,4 +51,5 @@ createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesome
     .use(PrimeVue, {locale: prime_vue_locale, ripple: true}).directive('styleclass', StyleClass).directive('ripple', Ripple)
     .use(ToastService)
     .directive('badge', BadgeDirective)
+    .use(VTooltip)
     .mount('#app');
