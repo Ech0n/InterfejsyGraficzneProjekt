@@ -6,6 +6,7 @@ export const useCartStore = defineStore('cart', {
     if(!sessionCart)
     {
       sessionStorage.setItem("cart",JSON.stringify({courses:[],totalPrice:0}))
+      sessionCart = {courses:[],totalPrice:0}
     }
 
     return { courses: sessionCart.courses ,totalPrice:sessionCart.totalPrice}
