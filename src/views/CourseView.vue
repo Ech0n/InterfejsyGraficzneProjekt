@@ -26,7 +26,12 @@ async function getChaptersInfo() {
       const db = await openDB("db_",1);
       let k =await db.get("courseContents",parseInt(courseId()))
       courseChapters.value  = k
-    }
+      if (typeof k.chapters === 'string' || k.chapters instanceof String)
+      {
+        console.log("chapters", k)
+        courseChapters.value.chapters = JSON.parse(k.chapters)
+      }
+      }
 function updateParent(chapter) {
       this.currentChapter = chapter
 }
@@ -40,8 +45,9 @@ getChaptersInfo()
 
   <CourseSideBar :courseItem="courseItem" :courseChapters=courseChapters @complete-chapter="updateChapter"/>
   <h1 class="display-1 text-center my-3">{{ currentChapter.title }}</h1>
-  <h5 v-text="courseItem.name" class="text-center my-2 text-muted"></h5>
-  <p v-text="currentChapter.content"></p>
+  <h5 v-text="courseItem.label" class="text-center my-2 text-muted"></h5>
+  <!-- <p v-text="currentChapter.content"></p> -->
+  <p>{{ currentChapter.children[0].data }}</p>
 </template>
 
 <style scoped>

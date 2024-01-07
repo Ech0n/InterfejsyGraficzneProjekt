@@ -65,6 +65,7 @@ const expandNode = (node) => {
 };
 
 const addChapter = () => {
+  treeShown.value = true
   let length = nodes.value.length;
   let chapterName = chapterTitle.value;
   nodes.value.push({key: length.toString(),
@@ -157,6 +158,7 @@ let desc = ref(course.short_desc);
 let base64textString = ref('');
 let imageName = ref('');
 let showImage = ref(false);
+let treeShown = ref(false)
 
 function getCurrentDate() {
   const today = new Date();
@@ -173,12 +175,15 @@ const save = async () => {
   course.last_updated = getCurrentDate();
   course.image_url = base64textString.value;
 
-  courseContent.title = name;
-  courseContent.chapters = name;
+  courseContent.title = name.value;
+  courseContent.chapters = JSON.stringify( nodes.value);
   // save logic
   let db = await openDB("db_",1);
   db.put("courses",course).then((res)=>
   {
+    courseContent.id = res
+    console.log(courseContent)
+    db.put("courseContents",courseContent)
     console.log(res)
     toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
     db.close()
@@ -212,14 +217,20 @@ async function loadCourseData(){
   let db = await openDB("db_",1);
   let k = await db.get("courses",parseInt(courseId()))
   course = k
-  console.log(k)
   price.value = parseInt(k.price)
   name.value = k.name
   desc.value = k.short_desc
-
   k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
-  console.log(k)
   courseContent = k
+  if (typeof courseContent.chapters === 'string' || courseContent.chapters instanceof String)
+  {
+    courseContent.chapters = JSON.parse(courseContent.chapters)
+  }
+  nodes.value = courseContent.chapters
+  if (courseContent.chapters.length>0)
+  {
+    treeShown.value = true
+  }
   db.close()
 }
 
@@ -273,7 +284,7 @@ if(courseId()){
       </div>
       <div>
         <h3 class="mx-4">Rozdziały</h3>
-      <Tree v-if="courseContent.chapters.length > 0" v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
+      <Tree v-if="treeShown" v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
       <InputText type="text" v-model="chapterTitle" class="my-3 mx-2" placeholder="Wpisz nazwe rozdziału"/>
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
         </div>
