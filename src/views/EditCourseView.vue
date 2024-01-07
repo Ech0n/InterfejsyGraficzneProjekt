@@ -68,6 +68,10 @@ const addChapter = () => {
   treeShown.value = true
   let length = nodes.value.length;
   let chapterName = chapterTitle.value;
+  if(chapterName ==="")
+  {
+    chapterName = "Nowy rozdział"
+  }
   nodes.value.push({key: length.toString(),
       label: chapterName,
       data: 'Documents Folder',
@@ -89,19 +93,43 @@ function getKeyValue() {
 const addText = () => {
 
   let selected_key = getKeyValue();
-
+  let title = component_title.value
+  if( title ==="")
+  {
+    title = "Bez tytułu"
+  }
   for (let node of nodes.value) {
     if (node.key === selected_key) {
       let length = node.children.length;
       node.children.push( {
         key: selected_key + '-' + length.toString(),
-        label: component_title.value,
+        label: title,
         data: value.value,
+        type:"text",
         icon: 'pi pi-fw pi-file-o',
       })
       expandedKeys.value[selected_key] = true;
   }}
   clear();
+};
+
+const addVideo = () => {
+
+let selected_key = getKeyValue();
+
+for (let node of nodes.value) {
+  if (node.key === selected_key) {
+    let length = node.children.length;
+    node.children.push( {
+      key: selected_key + '-' + length.toString(),
+      label: component_title.value,
+      data: value.value,
+      type:"video",
+      icon: 'pi pi-fw pi-file-o',
+    })
+    expandedKeys.value[selected_key] = true;
+}}
+clear();
 };
 
 const getData = () => {
@@ -198,7 +226,7 @@ function  convertToBase64(event) {
     const file = event.target.files[0];
     imageName.value = file.name;
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.regadAsDataURL(file);
     reader.onload = () => {
       base64textString.value = reader.result;
       showImage.value = true;
@@ -287,6 +315,11 @@ if(courseId()){
       <Tree v-if="treeShown" v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
       <InputText type="text" v-model="chapterTitle" class="my-3 mx-2" placeholder="Wpisz nazwe rozdziału"/>
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
+      <div>
+        <Button type="button" @click="addText" class="w-25 mx-2 my-2">Dodaj tekst</Button>
+        <Button type="button" @click="addVideo" class="w-25 mx-2 my-2">Dodaj video</Button>
+      </div>
+
         </div>
       <Button type="button" icon="pi pi-save" label="Zapisz" @click="save" class="w-25 mx-2 my-3"></Button>
     </div>
