@@ -13,13 +13,20 @@ import FileUpload from 'primevue/fileupload';
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import { ref, watch  } from 'vue';
 import { useToast } from "primevue/usetoast";
-import {useRoute} from "vue-router";
+
+import { useRoute } from 'vue-router';
+
+import { openDB } from 'idb';
+
 
 const route = useRoute();
 
+
+
 function courseId() {
-  return route.params.id;
+  return parseInt(route.params.id);
 }
+
 
 const nodes = ref(null);
 const selectedKey = ref(null);
@@ -138,7 +145,7 @@ let course = {
   price: null
 };
 
-let courseContent = {
+let courseContent ={
   id: courseId(),
   title: '',
   chapters: nodes.value
@@ -159,17 +166,19 @@ function getCurrentDate() {
 
   return `${year}-${month}-${day}`;
 }
-const save = () => {
-  course.price = price;
-  course.name = name;
-  course.short_desc = desc;
+const save = async () => {
+  course.price = price.value;
+  course.name = name.value;
+  course.short_desc = desc.value;
   course.last_updated = getCurrentDate();
   course.image_url = base64textString.value;
 
   courseContent.title = name;
   // save logic
-
-
+  console.log(course)
+  let db = await openDB("db_",1);
+  db.put("courses",course)
+  db.close()
 
   toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
 }
@@ -190,6 +199,22 @@ function  convertToBase64(event) {
 const offFocus = () => {
   document.activeElement.blur();
 }
+
+async function loadCourseData(){
+  let db = await openDB("db_",1);
+  let k = await db.get("courses",parseInt(courseId()))
+  course = k
+  console.log(k)
+  price.value = parseInt(k.price)
+  name.value = k.name
+  desc.value = k.short_desc
+  k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
+  console.log(k)
+  courseContent = k
+  db.close()
+}
+
+loadCourseData()
 </script>
 
 

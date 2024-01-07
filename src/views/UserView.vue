@@ -120,8 +120,8 @@ loadData()
                                 <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
                                     <span class="text-2xl font-semibold">{{ item.price }} zł</span>
                                     <span id="ButtonContainer">
-                                      <RouterLink v-if="ownerAndTeacher" :to="'/course/'+item.id+'/edit'" class="text-decoration-none"><button class="btn btn-primary w-75">Edytuj</button></RouterLink>
-                                      <RouterLink v-if="!ownerAndTeacher" :to="'/course/'+item.id" class="text-decoration-none"><button class="btn btn-primary w-75">Zobacz kurs</button></RouterLink>
+                                      <RouterLink v-if="ownerAndTeacher" :to="'/course/'+item.id+'/edit'" class="text-decoration-none"><button class="btn btn-primary w-100">Edytuj</button></RouterLink>
+                                      <RouterLink v-if="!ownerAndTeacher" :to="'/course/'+item.id" class="text-decoration-none"><button class="btn btn-primary w-100">Zobacz kurs</button></RouterLink>
                                     </span>
 
                                     <!-- <Button icon="pi pi-shopping-cart" rounded :disabled="item.inventoryStatus === 'OUTOFSTOCK'"></Button> -->
