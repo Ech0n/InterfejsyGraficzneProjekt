@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 import { createPinia } from 'pinia'
 import BadgeDirective from 'primevue/badgedirective';
+import "primeflex/primeflex.css";
 
 /* FONT AWESOME ICONS */
 /* import the fontawesome core */
@@ -45,7 +46,9 @@ import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
 import VTooltip from 'v-tooltip';
 
-createApp(App).use(router, bootstrap).component('font-awesome-icon', FontAwesomeIcon)
+createApp(App).component('font-awesome-icon', FontAwesomeIcon)
+    // .use(bootstrap)
+    .use(router)
     .use(createPinia())
     .use(mdiVue, { icons: mdijs})
     .use(PrimeVue, {locale: prime_vue_locale, ripple: true}).directive('styleclass', StyleClass).directive('ripple', Ripple)

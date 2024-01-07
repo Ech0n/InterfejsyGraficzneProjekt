@@ -11,7 +11,7 @@ if(userId != null)
 import { useCartStore } from '@/store.js'
 
 const store = useCartStore()
-console.log(!store.isEmpty)
+// console.log(!store.isEmpty)
 // let showCart = ref(false)
 // showCart = !store.isEmpty()
 
