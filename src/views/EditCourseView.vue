@@ -210,7 +210,7 @@ function  convertToBase64(event) {
     const file = event.target.files[0];
     imageName.value = file.name;
     const reader = new FileReader();
-    reader.regadAsDataURL(file);
+    reader.readAsDataURL(file);
     reader.onload = () => {
       base64textString.value = reader.result;
       showImage.value = true;
@@ -232,6 +232,13 @@ async function loadCourseData(){
   price.value = parseInt(k.price)
   name.value = k.name
   desc.value = k.short_desc
+
+  if (k.image_url.length !==0 ) {
+    base64textString.value = k.image_url
+    showImage.value = true
+    imageName.value = "Załadowano logo"
+  }
+
   k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
   console.log("debuig: ",parseInt(courseId()))
   courseContent = k
@@ -284,7 +291,7 @@ if(courseId()){
           <input type="file" @change="convertToBase64" accept="image/*" />
           <br />
           <div v-if="showImage">
-            <img :src="base64textString" :alt="imageName" />
+            <img :src="base64textString" :alt="imageName.value"/>
           </div>
           <br />
 <!--          <textarea v-model="base64textString" rows="5"></textarea>-->
