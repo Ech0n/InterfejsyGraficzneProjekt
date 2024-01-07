@@ -166,6 +166,7 @@ const save = () => {
   course.last_updated = getCurrentDate();
   course.image_url = base64textString.value;
 
+  courseContent.title = name;
   // save logic
 
 
