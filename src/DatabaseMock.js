@@ -617,6 +617,7 @@ const courseContents = [
       const db = await openDB("db_",1,{  upgrade(db){
         let store = db.createObjectStore('users', {keyPath: 'id',autoIncrement: true,});
         store.createIndex("auth",["username","password"])
+        store.createIndex("findUsername","username")
         store = db.createObjectStore('courses', {keyPath: 'id',autoIncrement: true,});
         store.createIndex('author','authorId')
         store = db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
