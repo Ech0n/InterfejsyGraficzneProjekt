@@ -14,17 +14,18 @@ import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import { ref, watch  } from 'vue';
 import { useToast } from "primevue/usetoast";
 
-import { useRoute } from 'vue-router';
+import { useRoute,useRouter } from 'vue-router';
 
 import { openDB } from 'idb';
 
 
 const route = useRoute();
+const router = useRouter();
 
 
 
 function courseId() {
-  return parseInt(route.params.id);
+  return route.params.id;
 }
 
 
@@ -135,13 +136,12 @@ let editValue = '';
 let chapterTitle = ref('');
 
 let course = {
-  id: courseId(),
-  authorId:0,
+  authorId:undefined,
   name: '',
   short_desc: '',
   image_url: 'https://example.com/zaawansowany-react.jpg',
   last_updated: '',
-  author_name: 'Anna Nowak',
+  author_name: undefined,
   price: null
 };
 
@@ -174,13 +174,19 @@ const save = async () => {
   course.image_url = base64textString.value;
 
   courseContent.title = name;
+  courseContent.chapters = name;
   // save logic
-  console.log(course)
   let db = await openDB("db_",1);
-  db.put("courses",course)
-  db.close()
+  db.put("courses",course).then((res)=>
+  {
+    console.log(res)
+    toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
+    db.close()
+    if(!courseId()){
+      router.push("/course/"+res+"/edit")
+    }
+  })
 
-  toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
 }
 
 function  convertToBase64(event) {
@@ -201,6 +207,8 @@ const offFocus = () => {
 }
 
 async function loadCourseData(){
+
+  console.log(courseId())
   let db = await openDB("db_",1);
   let k = await db.get("courses",parseInt(courseId()))
   course = k
@@ -208,13 +216,31 @@ async function loadCourseData(){
   price.value = parseInt(k.price)
   name.value = k.name
   desc.value = k.short_desc
+
   k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
   console.log(k)
   courseContent = k
   db.close()
 }
 
-loadCourseData()
+async function setupNewCourse(){
+
+let db = await openDB("db_",1);
+let uid = parseInt(sessionStorage.getItem("userId"))
+let k = await db.get("users",uid)
+
+course.authorId = k["id"]
+course.author_name = k.firstname + " " + k.lastname
+console.log("new course data", course)
+courseContent.authorId = k.id
+db.close()
+}
+
+if(courseId()){
+  loadCourseData()
+}else{
+  setupNewCourse()
+}
 </script>
 
 
@@ -247,7 +273,7 @@ loadCourseData()
       </div>
       <div>
         <h3 class="mx-4">Rozdziały</h3>
-      <Tree v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
+      <Tree v-if="courseContent.chapters.length > 0" v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
       <InputText type="text" v-model="chapterTitle" class="my-3 mx-2" placeholder="Wpisz nazwe rozdziału"/>
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
         </div>

@@ -112,6 +112,7 @@ loadData()
                                     <div class="flex align-items-center gap-3">
                                         <span class="flex align-items-center gap-2">
                                             <!-- <i class="pi pi-tag"></i> -->
+                                            {{ item.short_desc }}
                                             <!-- <span class="font-semibold">{{ item.category }}</span> -->
                                         </span>
                                         <!-- <Tag :value="item.inventoryStatus" :severity="getSeverity(item)"></Tag> -->
