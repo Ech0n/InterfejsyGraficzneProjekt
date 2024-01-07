@@ -84,9 +84,9 @@ function tryRegister()
         <h6>Dane do logowania:</h6>
         <input type="username" v-model="username" placeholder="Login"/>
         <br>
-        <input type="password" v-model="password" placeholder="Hasło"/>
+        <Password type="password" v-model="password" placeholder="Hasło" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
         <br>
-        <input type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło"/>
+        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło" class="mt-3" :feedback="false"/>
       </div>
 
     </div>

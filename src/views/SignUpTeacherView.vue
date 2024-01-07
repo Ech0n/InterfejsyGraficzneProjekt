@@ -5,6 +5,7 @@ import { openDB } from 'idb';
 import { useRouter } from 'vue-router';
 import { useToast } from "primevue/usetoast";
 import Toast from 'primevue/toast';
+import Password from 'primevue/password'
 const toast = useToast();
 import  {makeUser,checkUsernameAvailbility} from '@/signup.js'
 
@@ -45,7 +46,7 @@ function tryRegister()
 <template>
   <NavbarTop />
   <Toast />
-  <div class="text-md-left ml5">
+  <div class="text-md-left ml5" id="form_">
     <h1>Zarejestruj się (Nauczyciel)</h1>
     <div class="row">
       <div class="col">
@@ -89,11 +90,11 @@ function tryRegister()
 
       <div class="col">
         <h6>Dane do logowania:</h6>
-        <input type="username" v-model="username" placeholder="Login"/>
+        <input type="username" v-model="username" placeholder="Login" />
         <br>
-        <input type="password" v-model="password" placeholder="Hasło"/>
+        <Password type="password" v-model="password" placeholder="Hasło" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
         <br>
-        <input type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło"/>
+        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło" class="mt-3" :feedback="false"/>
       </div>
 
     </div>
@@ -103,5 +104,9 @@ function tryRegister()
 </template>
 
 <style scoped>
+#form_
+{ 
+  font-size:15px;
+}
 
 </style>
