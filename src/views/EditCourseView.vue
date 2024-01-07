@@ -113,25 +113,6 @@ const addText = () => {
   clear();
 };
 
-const addVideo = () => {
-
-let selected_key = getKeyValue();
-
-for (let node of nodes.value) {
-  if (node.key === selected_key) {
-    let length = node.children.length;
-    node.children.push( {
-      key: selected_key + '-' + length.toString(),
-      label: component_title.value,
-      data: value.value,
-      type:"video",
-      icon: 'pi pi-fw pi-file-o',
-    })
-    expandedKeys.value[selected_key] = true;
-}}
-clear();
-};
-
 const getData = () => {
   let k = getKeyValue();
   for (let node of nodes.value) {
@@ -175,7 +156,7 @@ let course = {
 };
 
 let courseContent ={
-  id: courseId(),
+  id: parseInt(courseId()),
   title: '',
   chapters: nodes.value
 }
@@ -209,7 +190,10 @@ const save = async () => {
   let db = await openDB("db_",1);
   db.put("courses",course).then((res)=>
   {
-    courseContent.id = res
+    if(!courseId())
+    {
+      courseContent.courseId = res
+    }
     console.log(courseContent)
     db.put("courseContents",courseContent)
     console.log(res)
@@ -249,6 +233,7 @@ async function loadCourseData(){
   name.value = k.name
   desc.value = k.short_desc
   k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
+  console.log("debuig: ",parseInt(courseId()))
   courseContent = k
   if (typeof courseContent.chapters === 'string' || courseContent.chapters instanceof String)
   {
@@ -317,7 +302,6 @@ if(courseId()){
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
       <div>
         <Button type="button" @click="addText" class="w-25 mx-2 my-2">Dodaj tekst</Button>
-        <Button type="button" @click="addVideo" class="w-25 mx-2 my-2">Dodaj video</Button>
       </div>
 
         </div>

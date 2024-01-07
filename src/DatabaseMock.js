@@ -642,7 +642,7 @@ const courseContents = [
         store.createIndex('author','authorId')
         store = db.createObjectStore('tutors', {keyPath: 'id',autoIncrement: true,});
         store.createIndex('tutorId','tutorId')
-        store = db.createObjectStore('courseContents', {keyPath: 'id',autoIncrement: true,});
+        store = db.createObjectStore('courseContents', {keyPath: 'courseId'});
         store.createIndex('courseId','courseId')
       }});
   
