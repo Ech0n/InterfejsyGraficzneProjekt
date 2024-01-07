@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router';
 import { useToast } from "primevue/usetoast";
 import Toast from 'primevue/toast';
 const toast = useToast();
+import  {makeUser,checkUsernameAvailbility} from '@/signup.js'
 
 const username = ref("")
 const password = ref("")
@@ -21,53 +22,12 @@ const address = ref("")
 
 const router = useRouter();
 
-// async function authUser(username,password) {
-//     const db = await openDB("db_",1);
-//     let k = await db.getFromIndex('users',"auth",[username,password]);
-//     db.close()
-//     if(k==undefined)
-//     {
-//       throw "Username or password incorrect!"
-//     }
-//     return k
-// }
-
-async function checkUsernameAvailbility(username,db){
-  let res = await db.getFromIndex('users','findUsername',username)
-  if(res)
-  {
-    console.log("There is an userwith that name",res)
-    return false
-  }
-  else{
-    console.log("There is no user with that name")
-    return true
-  }
-}
-
-async function makeUser(user) {
-  
-  let msg = "success"
-    const db = await openDB("db_",1);
-    let canMakeAnAccount = await checkUsernameAvailbility(user.username,db)
-    if(canMakeAnAccount)
-    {
-      let k = await db.put("users",user)
-      console.log(k)
-      
-    }else{
-      msg = " Username taken!"
-    }
-    db.close()
-
-    return msg
-}
 
 
 
 function tryRegister()
 {
-  makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"teacher"}).then((msg)=>{
+  makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"teacher"},passwordConfirmation.value).then((msg)=>{
     if(msg ==="success")
     {
 
@@ -78,13 +38,7 @@ function tryRegister()
       toast.add({  severity: 'error', summary:msg, life: 3000 });
     }
   })
-  // authUser(username.value,password.value).then((user) =>
-  // {
-  //   sessionStorage.setItem("username",username.value)
-  //   sessionStorage.setItem("userId",user["id"])
-  //   router.push({ name: 'home' });
-  // }).catch((arg)=>{alert(arg)})
-  
+
 }
 </script>
 

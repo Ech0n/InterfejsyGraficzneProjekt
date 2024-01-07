@@ -3,34 +3,43 @@ import { ref } from 'vue'
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import { openDB } from 'idb';
 import { useRouter } from 'vue-router';
-
-const username = ref("")
-const password = ref("")
+import  {makeUser,checkUsernameAvailbility} from '@/signup.js'
+import { useToast } from "primevue/usetoast";
+import Toast from 'primevue/toast';
+const toast = useToast();
 
 const router = useRouter();
 
-async function authUser(username,password) {
-    const db = await openDB("db_",1);
-    let k = await db.getFromIndex('users',"auth",[username,password]);
-    db.close()
-    if(k==undefined)
-    {
-      throw "Username or password incorrect!"
-    }
-    return k
-}
+const username = ref("")
+const password = ref("")
+const passwordConfirmation = ref("")
+
+const firstname = ref("")
+const lastname = ref("")
+const selectedEducationLevel = ref([])
+const isParentalControlOn = ref(false)
+const birthDate = ref("")
+const tel = ref("")
+const mail = ref("")
+const address = ref("")
 
 
-function tryLogin()
+function tryRegister()
 {
-  authUser(username.value,password.value).then((user) =>
-  {
-    sessionStorage.setItem("username",username.value)
-    sessionStorage.setItem("userId",user["id"])
-    router.push({ name: 'home' });
-  }).catch((arg)=>{alert(arg)})
-  
+  makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"student"},passwordConfirmation.value).then((msg)=>{
+    if(msg ==="success")
+    {
+
+      window.location.href = '/login'
+    }
+    else
+    {
+      toast.add({  severity: 'error', summary:msg, life: 3000 });
+    }
+  })
+
 }
+
 </script>
 
 <template>
@@ -41,15 +50,15 @@ function tryLogin()
     <div class="row">
       <div class="col">
         <h6>Dane osobowe:</h6>
-        <input type="name" v-model="text" placeholder="Imię"/>
+        <input type="name" v-model="firstname" placeholder="Imię"/>
         <br>
-        <input type="surname" v-model="text" placeholder="Nazwisko"/>
+        <input type="surname" v-model="lastname" placeholder="Nazwisko"/>
 
         <h6>Data urodzenia:</h6>
-        <input type="date" v-model="Date" placeholder="DD/MM/YYYY">
+        <input type="date" v-model="birthDate" placeholder="DD/MM/YYYY">
 
         <h6>Poziom nauczania:</h6>
-        <select v-model="selected">
+        <select v-model="selectedEducationLevel">
           <option disabled value="">Wybierz poziom nauczania</option>
           <option>Przedszkole</option>
           <option>Szkoła Podstawowa</option>
@@ -58,17 +67,17 @@ function tryLogin()
           <option>(nie dotyczy)</option>
         </select>
         <br>
-        <input type="checkbox" id="checkbox" v-model="checked" />
+        <input type="checkbox" id="checkbox" v-model="isParentalControlOn" />
         <label for="checkbox">Profil z kontolą rodzicielską</label>
       </div>
 
       <div class="col">
         <h6>Dane kontaktowe:</h6>
-        <input type="telephone" v-model="text" placeholder="Nr telefonu"/>
+        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
         <br>
-        <input type="e-mail" v-model="email" placeholder="E-mail"/>
+        <input type="e-mail" v-model="mail" placeholder="E-mail"/>
         <br>
-        <input type="address" v-model="text" placeholder="Adres zamieszkania"/>
+        <input type="address" v-model="address" placeholder="Adres zamieszkania"/>
       </div>
 
       <div class="col">
@@ -77,12 +86,12 @@ function tryLogin()
         <br>
         <input type="password" v-model="password" placeholder="Hasło"/>
         <br>
-        <input type="password" v-model="password" placeholder="Powtórz hasło"/>
+        <input type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło"/>
       </div>
 
     </div>
 
-    <button @click="tryLogin">Zarejestruj</button>
+    <button @click="tryRegister">Zarejestruj się!</button>
   </div>
 </template>
 
