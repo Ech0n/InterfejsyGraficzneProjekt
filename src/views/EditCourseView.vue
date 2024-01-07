@@ -336,6 +336,7 @@ if(courseId()){
             <button v-tooltip.bottom="'Italic'" class="ql-italic"></button>
             <button v-tooltip.bottom="'Underline'" class="ql-underline"></button>
             <button v-tooltip.bottom="'Image'" class="ql-image"></button>
+            <button v-tooltip.bottom="'Image'" class="ql-video"></button>
         </span>
             <span class="ql-formats">
           <select class="ql-color"></select>
@@ -364,6 +365,7 @@ if(courseId()){
             <button v-tooltip.bottom="'Italic'" class="ql-italic"></button>
             <button v-tooltip.bottom="'Underline'" class="ql-underline"></button>
             <button v-tooltip.bottom="'Image'" class="ql-image"></button>
+            <button v-tooltip.bottom="'Image'" class="ql-video"></button>
         </span>
             <span class="ql-formats">
           <select class="ql-color"></select>
