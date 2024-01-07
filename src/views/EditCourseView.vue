@@ -8,9 +8,18 @@ import InputText from 'primevue/inputtext';
 import Editor from 'primevue/editor';
 import InlineMessage from 'primevue/inlinemessage';
 
+import FileUpload from 'primevue/fileupload';
+
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
-import { ref } from 'vue';
+import { ref, watch  } from 'vue';
 import { useToast } from "primevue/usetoast";
+import {useRoute} from "vue-router";
+
+const route = useRoute();
+
+function courseId() {
+  return route.params.id;
+}
 
 const nodes = ref(null);
 const selectedKey = ref(null);
@@ -117,6 +126,69 @@ const updateText = () => {
 let editComponent_title = '';
 let editValue = '';
 let chapterTitle = ref('');
+
+let course = {
+  id: courseId(),
+  authorId:0,
+  name: '',
+  short_desc: '',
+  image_url: 'https://example.com/zaawansowany-react.jpg',
+  last_updated: '',
+  author_name: 'Anna Nowak',
+  price: null
+};
+
+let courseContent = {
+  id: courseId(),
+  title: '',
+  chapters: nodes.value
+}
+
+let price = ref(course.price);
+let name = ref(course.name);
+let desc = ref(course.short_desc);
+let base64textString = ref('');
+let imageName = ref('');
+let showImage = ref(false);
+
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(today.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+const save = () => {
+  course.price = price;
+  course.name = name;
+  course.short_desc = desc;
+  course.last_updated = getCurrentDate();
+  course.image_url = base64textString.value;
+
+  // save logic
+
+
+
+  toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
+}
+
+function  convertToBase64(event) {
+    const file = event.target.files[0];
+    imageName.value = file.name;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      base64textString.value = reader.result;
+      showImage.value = true;
+    };
+    reader.onerror = (error) => {
+      console.log('Error: ', error);
+    };
+}
+const offFocus = () => {
+  document.activeElement.blur();
+}
 </script>
 
 
@@ -128,6 +200,21 @@ let chapterTitle = ref('');
   <div class="card flex justify-content-center">
     <Toast />
     <div class="card flex flex-column align-items-cente">
+      <div class="row mx-2">
+        <InputText type="text" v-model="name" placeholder="Nazwa kursu" class="my-3 w-75"/>
+        <InputText type="text" v-model="desc" placeholder="Krótki opis kursu" class="my-3 w-75"/>
+        <InputText type="text" v-model="price" placeholder="Cena" class="my-3 w-75"/>
+        <div>
+          <input type="file" @change="convertToBase64" accept="image/*" />
+          <br />
+          <div v-if="showImage">
+            <img :src="base64textString" :alt="imageName" />
+          </div>
+          <br />
+<!--          <textarea v-model="base64textString" rows="5"></textarea>-->
+        </div>
+
+      </div>
       <div class="flex flex-wrap  mb-4">
         <Button type="button" icon="pi pi-plus" label="Rozwiń wszystko" @click="expandAll" class="mx-2"/>
         <Button type="button" icon="pi pi-minus" label="Zwiń wszystko" @click="collapseAll" class="mx-2" />
@@ -138,6 +225,7 @@ let chapterTitle = ref('');
       <InputText type="text" v-model="chapterTitle" class="my-3 mx-2" placeholder="Wpisz nazwe rozdziału"/>
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
         </div>
+      <Button type="button" icon="pi pi-save" label="Zapisz" @click="save" class="w-25 mx-2 my-3"></Button>
     </div>
   </div>
     </div>
