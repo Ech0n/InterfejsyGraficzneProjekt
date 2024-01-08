@@ -87,26 +87,26 @@
                                     }"
                     class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
                 >
-                  <span class="font-medium">APPLICATION</span>
+                  <span class="font-medium">APLIKACJA</span>
                   <i class="pi pi-chevron-down"></i>
                 </div>
                 <ul class="list-none p-0 m-0 overflow-hidden">
                   <li>
-                    <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-folder mr-2"></i>
-                      <span class="font-medium">Projects</span>
+                    <a v-ripple href="/" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                      <i class="pi pi-home mr-2"></i>
+                      <span class="font-medium">Strona główna</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a v-ripple href="/search/" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                      <i class="pi pi-search mr-2"></i>
+                      <span class="font-medium">Wyszukiwarka</span>
                     </a>
                   </li>
                   <li>
                     <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-chart-bar mr-2"></i>
-                      <span class="font-medium">Performance</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-cog mr-2"></i>
-                      <span class="font-medium">Settings</span>
+                      <i class="pi pi-user mr-2"></i>
+                      <span class="font-medium">Profil użytkownika</span>
                     </a>
                   </li>
                 </ul>
@@ -142,7 +142,7 @@ import ScrollPanel from 'primevue/scrollpanel';
 //
 // PrimeVue.config.ripple = true;
 
-const visible = ref(false);
+const visible = ref(true);
 
 const props = defineProps(["chapter", "courseItem", "courseChapters", "mainPage"]);
 
