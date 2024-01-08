@@ -1,7 +1,12 @@
 <script setup>
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
-import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
 import SignUpSelectorCard from "../components/card/SignUpSelectorCard.vue";
+
+let isLoggedIn = false
+if(sessionStorage.getItem("userId"))
+{
+  isLoggedIn = true
+}
 </script>
 
 <template>
@@ -14,11 +19,12 @@ import SignUpSelectorCard from "../components/card/SignUpSelectorCard.vue";
     <a href="/search?type=tutors" type="button" class="btn btn-primary">Szukaj Korepetycji</a>
   </div>
   <hr class="hr" />
-  <a href="/login" class="btn btn-primary">Zaloguj się</a>
+  <span v-if="!isLoggedIn" class="d-flex flex-column align-items-center justify-content-center">
+    <a href="/login" class="btn btn-primary">Zaloguj się</a>
 
-  <h2 class="text-center">Nie masz konta?</h2>
-  <SignUpSelectorCard/>
-
+    <h2 class="text-center">Nie masz konta?</h2>
+    <SignUpSelectorCard/>
+  </span>
   </div>
 </template>
 

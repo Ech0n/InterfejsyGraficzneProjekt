@@ -119,7 +119,7 @@ function logout(){
                           <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" :src="`https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg`" :alt="item.name" />
                             <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                                 <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-                                    <div class="text-2xl font-bold text-900">{{ item.name }}</div>
+                                    <a :href="'/course/'+item.id"><div class="text-2xl font-bold text-900">{{ item.name }}</div></a>
                                     <!-- <Rating :modelValue="item.rating" readonly :cancel="false"></Rating> -->
                                     <div class="flex align-items-center gap-3">
                                         <span class="flex align-items-center gap-2">
