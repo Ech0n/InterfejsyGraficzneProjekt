@@ -273,6 +273,27 @@ if(courseId()){
 }else{
   setupNewCourse()
 }
+
+function deleteNode() {
+  let k = getKeyValue();
+  let node;
+  let child;
+  for (let i = 0; i < nodes.value.length; i++) {
+    node = nodes.value[i];
+    if (node.key === k) {
+      nodes.value.splice(i, 1);
+      return;
+    }
+    for (let j = 0; j < node.children.length; j++) {
+      child = node.children[j];
+      if (child.key === k) {
+        node.children.splice(j, 1);
+        return;
+      }
+    }
+  }
+  console.log("removed");
+}
 </script>
 
 
@@ -289,7 +310,8 @@ if(courseId()){
         <InputText type="text" v-model="desc" placeholder="Krótki opis kursu" class="my-3 w-75"/>
         <InputText type="text" v-model="price" placeholder="Cena" class="my-3 w-75"/>
         <div>
-          <input type="file" @change="convertToBase64" accept="image/*" />
+          <label for="fileId" class="mx-2 font-medium">Logo kursu</label>
+          <input type="file" @change="convertToBase64" accept="image/*" id="fileId" />
           <br />
           <div v-if="showImage">
             <img :src="base64textString" :alt="imageName.value"/>
@@ -325,7 +347,7 @@ if(courseId()){
 <!--        <InputText type="text" v-model="chapter_title" placeholder="Tytuł:"/>-->
 <!--        <Textarea v-model="value" rows="5" cols="30" placeholder="Wpisz treść:" />-->
         <InputText type="text" v-model="component_title" placeholder="Tytuł:" class="my-3"/>
-        <Editor v-model="value" editorStyle="height: 320px">
+        <Editor v-model="value" editorStyle="height: 520px">
 
           <template v-slot:toolbar>
              <span class="ql-formats">
@@ -351,11 +373,12 @@ if(courseId()){
         </Editor>
         <Button type="button" @click="addText" class="w-25 mx-2 my-2">Dodaj tekst</Button>
         <Button type="button" @click="clear" class="w-25 mx-2 my-2 btn btn-lg btn-danger">Wyczyść</Button>
+        <Button type="button" @click="deleteNode" class="w-25 mx-5 my-2 btn btn-lg btn-outline-danger">Usuń wybrany rozdział</Button>
       </div>
       <div v-else-if="selectedKey && getKeyValue().includes('-') && getData()" class="row">
 
         <InputText type="text" v-model="editComponent_title" class="my-3"/>
-        <Editor v-model="editValue" editorStyle="height: 320px">
+        <Editor v-model="editValue" editorStyle="height: 520px">
           <template v-slot:toolbar>
             <span class="ql-formats">
           <select class="ql-font"></select>
@@ -379,6 +402,7 @@ if(courseId()){
           </template>
         </Editor>
     <Button type="button" @click="updateText" class="w-25 mx-2 my-2">Zaktualizuj</Button>
+        <Button type="button" @click="deleteNode" class="w-25 mx-5 my-2 btn btn-lg btn-outline-danger">Usuń wybrany element</Button>
 <!--        <div v-html="value" class="d-flex flex-wrap"></div>-->
       </div>
       <div v-else>
