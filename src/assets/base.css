@@ -85,3 +85,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.p-toast-message:first-of-type{
+  margin-top: 5rem;
+}

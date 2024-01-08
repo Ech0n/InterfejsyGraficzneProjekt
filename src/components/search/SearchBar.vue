@@ -250,6 +250,7 @@ let showTimeOptions = ref(false); // default not show
 </template>
 
 <style scoped>
+
 @media (max-width: 1200px) {
   #calendar-timeonly.w-25 {
     width: 50% !important; /* Override the width for smaller screens */
@@ -262,7 +263,5 @@ let showTimeOptions = ref(false); // default not show
 .toggleButtonOptions {
   min-width: 120px;
 }
-</style>
 
-<script>
-</script>
+</style>
