@@ -60,50 +60,32 @@ function tryRegister()
     <div class="row">
       <div class="col">
         <h6>Dane osobowe:</h6>
-        <input type="name" v-model="firstname" placeholder="Imię"/>
+        <input type="name" v-model="firstname" placeholder="Imię*"/>
         <br>
-        <input type="surname" v-model="lastname" placeholder="Nazwisko"/>
+        <input type="surname" v-model="lastname" placeholder="Nazwisko*"/>
 
         <h6>Data urodzenia:</h6>
         <input type="date" v-model="Date" placeholder="DD/MM/YYYY">
 
-        <h6>Oferowane korepetycje:</h6>
-        <select v-model="selectedTutorings" multiple>
-          <option disabled value="">Wybierz przedmioty</option>
-          <option>Matematyka</option>
-          <option>J. Polski</option>
-          <option>J. Angielski</option>
-          <option>Fizyka</option>
-          <option>Chemia</option>
-        </select>
-        <br>
-        <h6>Oferowane kursy:</h6>
-        <select v-model="selectedCourses" multiple>
-          <option disabled value="">Wybierz kursy</option>
-          <option>Python</option>
-          <option>E-commerce</option>
-          <option>Kurs języka hiszpańskiego</option>
-          <option>JavaScript</option>
-          <option>Algorytmy</option>
-        </select>
+
       </div>
 
       <div class="col">
         <h6>Dane kontaktowe:</h6>
-        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
+        <input type="e-mail" v-model="mail" placeholder="E-mail*"/>
         <br>
-        <input type="e-mail" v-model="mail" placeholder="E-mail"/>
+        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
         <br>
         <input type="address" v-model="address" placeholder="Adres zamieszkania"/>
       </div>
 
       <div class="col">
         <h6>Dane do logowania:</h6>
-        <input type="username" v-model="username" placeholder="Login" />
+        <input type="username" v-model="username" placeholder="Login*" />
         <br>
-        <Password type="password" v-model="password" placeholder="Hasło" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
+        <Password type="password" v-model="password" placeholder="Hasło*" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
         <br>
-        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło" class="mt-3" :feedback="false"/>
+        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło*" class="mt-3" :feedback="false"/>
       </div>
 
     </div>

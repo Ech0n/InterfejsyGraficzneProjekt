@@ -61,9 +61,9 @@ function tryRegister()
     <div class="row">
       <div class="col">
         <h6>Dane osobowe:</h6>
-        <input type="name" v-model="firstname" placeholder="Imię"/>
+        <input type="name" v-model="firstname" placeholder="Imię*"/>
         <br>
-        <input type="surname" v-model="lastname" placeholder="Nazwisko"/>
+        <input type="surname" v-model="lastname" placeholder="Nazwisko*"/>
 
         <h6>Data urodzenia:</h6>
         <input type="date" v-model="birthDate" placeholder="DD/MM/YYYY">
@@ -84,20 +84,20 @@ function tryRegister()
 
       <div class="col">
         <h6>Dane kontaktowe:</h6>
-        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
+        <input type="e-mail" v-model="mail" placeholder="E-mail*"/>
         <br>
-        <input type="e-mail" v-model="mail" placeholder="E-mail"/>
+        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
         <br>
         <input type="address" v-model="address" placeholder="Adres zamieszkania"/>
       </div>
 
       <div class="col">
         <h6>Dane do logowania:</h6>
-        <input type="username" v-model="username" placeholder="Login"/>
+        <input type="username" v-model="username" placeholder="Login*"/>
         <br>
-        <Password type="password" v-model="password" placeholder="Hasło" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
+        <Password type="password" v-model="password" placeholder="Hasło*" class="mt-3"  promptLabel="siła hasła" weakLabel="słabe hasło" mediumLabel="dobre hasło" strongLabel="mocne hasło"/>
         <br>
-        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło" class="mt-3" :feedback="false"/>
+        <Password type="password" v-model="passwordConfirmation" placeholder="Powtórz hasło*" class="mt-3" :feedback="false"/>
       </div>
 
     </div>
