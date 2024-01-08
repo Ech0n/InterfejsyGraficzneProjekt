@@ -6,8 +6,11 @@ import ShoppingCartCourseBtn from "@/components/buttons/ShoppingCartCourseBtn.vu
 <template>
   <div class="card mx-3 my-3" style="max-width: 540px;">
     <div class="row g-0">
-      <div class="col-md-4">
+      <div v-if="courseItem.image_url.length === 0" class="col-md-4">
         <img src="https://placehold.co/600x400" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div v-else class="col-md-4">
+        <img :src="courseItem.image_url" class="img-fluid rounded-start" alt="..." style="max-width: 128px">
       </div>
       <div class="col-md-8">
         <div class="card-body">
