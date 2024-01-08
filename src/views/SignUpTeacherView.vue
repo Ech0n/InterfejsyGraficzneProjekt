@@ -27,7 +27,16 @@ const router = useRouter();
 
 
 function tryRegister()
-{
+{ 
+  //check if all required fields are filled
+  let isFilled = firstname.value !== "" && lastname.value !== "" && password.value !== "" && passwordConfirmation.value !== "" 
+  if (!isFilled)
+  {
+    toast.add({  severity: 'error', summary:"Uzupełnij wszystkie wymagane pola!", life: 3000 });
+
+    return
+  }
+
   makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"teacher"},passwordConfirmation.value).then((msg)=>{
     if(msg ==="success")
     {
