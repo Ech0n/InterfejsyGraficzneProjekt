@@ -23,7 +23,7 @@ let selectedTime = ref("");
         <div class="card-body">
           <h3 class="card-title">{{ tutorItem.subject }}</h3>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
-          <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
+          <a :href="'/u/'+tutorItem.tutorId"><p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p></a>
           <hr>
           <div class = "flex-wrap">
             <div  v-for="(day, dayIndex) in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
