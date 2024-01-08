@@ -28,8 +28,14 @@ export default {
         focusedElement.blur();
       }
       const cartStore = useCartStore()
-      cartStore.addCourse({id:this.id,name:this.name,price:this.price})
-      this.$toast.add({severity: 'success', summary: this.summaryMessage, detail: this.contentMessage, group: 'pt', life: 10000});
+      let isAbleToAdd = cartStore.addTutoring({id:this.id,name:this.name,price:parseInt(this.price)})
+      if(isAbleToAdd)
+      {
+        this.$toast.add({severity: 'success', summary: this.summaryMessage, detail: this.contentMessage, group: 'pt', life: 10000});
+      }else{
+        this.$toast.add({severity: 'error', summary: "Te korepetycje znajdują się już w koszyku", group: 'pt', life: 10000});
+
+      }
     }
   },
 }
