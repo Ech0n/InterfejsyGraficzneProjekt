@@ -1,5 +1,5 @@
 <script setup>
-import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
+import ShoppingCartTutoringBtn from "@/components/buttons/ShoppingCartTutoringBtn.vue";
 import {ref} from 'vue';
 
 let selectedTime = ref("");
@@ -23,7 +23,7 @@ let selectedTime = ref("");
         <div class="card-body">
           <h3 class="card-title">{{ tutorItem.subject }}</h3>
           <p class="card-text">{{ tutorItem.short_desc }}</p>
-          <p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p>
+          <a :href="'/u/'+tutorItem.tutorId"><p class="card-text"><small class="text-muted">{{ tutorItem.firstname }} {{ tutorItem.lastname }}</small></p></a>
           <hr>
           <div class = "flex-wrap">
             <div  v-for="(day, dayIndex) in getAllDays()" :key="day" :class="{ 'highlighted-day': isChosenDay(day) }">
@@ -59,8 +59,10 @@ let selectedTime = ref("");
 
           <p class="d-flex justify-content-around mt-2"><button class="btn">Cena {{tutorItem.price }} zł</button>
 
-            <ShoppingCartBtn :id="tutorItem.id" :summary-message="'  Dodano do koszyka: '"
-                             :content-message="'  korepetycje  ' + tutorItem.subject + '\n  Czas: ' + selectedTime + '\n  za cenę ' + tutorItem.price + ' zł!' " /></p>
+            <ShoppingCartTutoringBtn :id="tutorItem.id" :summary-message="'  Dodano do koszyka: '"
+                             :content-message="'  korepetycje  ' + tutorItem.subject + '\n  Czas: ' + selectedTime + '\n  za cenę ' + tutorItem.price + ' zł!' " 
+                             :name="tutorItem.firstname + ' '+ tutorItem.lastname"
+                             :price="tutorItem.price" /></p>
         </div>
       </div>
     </div>

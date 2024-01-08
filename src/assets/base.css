@@ -1,4 +1,4 @@
-/* color palette from <https://github.com/vuejs/theme> */
+color palette from <https://github.com/vuejs/theme>
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -85,3 +85,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.p-toast-message:first-of-type{
+  margin-top: 5rem;
+}
+
+.p-toast{
+  pointer-events: none; 
+  
+}
+.p-toast-message{
+  pointer-events: auto; 
+}
+
+.iconButton{
+  border-radius: 50%;
+}
