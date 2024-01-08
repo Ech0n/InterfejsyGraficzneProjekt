@@ -1,5 +1,5 @@
 <script setup>
-import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
+import ShoppingCartTutoringBtn from "@/components/buttons/ShoppingCartTutoringBtn.vue";
 import {ref} from 'vue';
 
 let selectedTime = ref("");
@@ -59,8 +59,10 @@ let selectedTime = ref("");
 
           <p class="d-flex justify-content-around mt-2"><button class="btn">Cena {{tutorItem.price }} zł</button>
 
-            <ShoppingCartBtn :id="tutorItem.id" :summary-message="'  Dodano do koszyka: '"
-                             :content-message="'  korepetycje  ' + tutorItem.subject + '\n  Czas: ' + selectedTime + '\n  za cenę ' + tutorItem.price + ' zł!' " /></p>
+            <ShoppingCartTutoringBtn :id="tutorItem.id" :summary-message="'  Dodano do koszyka: '"
+                             :content-message="'  korepetycje  ' + tutorItem.subject + '\n  Czas: ' + selectedTime + '\n  za cenę ' + tutorItem.price + ' zł!' " 
+                             :name="tutorItem.firstname + ' '+ tutorItem.lastname"
+                             :price="tutorItem.price" /></p>
         </div>
       </div>
     </div>

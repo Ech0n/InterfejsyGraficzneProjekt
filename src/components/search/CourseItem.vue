@@ -1,6 +1,6 @@
 <script setup>
 
-import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
+import ShoppingCartCourseBtn from "@/components/buttons/ShoppingCartCourseBtn.vue";
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import ShoppingCartBtn from "@/components/buttons/ShoppingCartBtn.vue";
           <p class="card-text"><small class="text-muted">Ostatnia aktualizacja {{ courseItem.last_updated }}</small></p>
           <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>
             <RouterLink :to="'/course/' + courseItem.id" class="text-decoration-none"><button class="btn btn-primary w-75">Zobacz strone kursu</button></RouterLink>
-            <ShoppingCartBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>
+            <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>
         </div>
       </div>
     </div>
