@@ -84,6 +84,12 @@ const router = createRouter({
 
             component: () => import('../views/EditCourseView.vue')
         },
+        {
+            path: '/add-lesson',
+            name: 'add-lesson',
+
+            component: () => import('../views/EditLessonView.vue')
+        },
     ]
 })
 
