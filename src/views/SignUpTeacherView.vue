@@ -99,14 +99,47 @@ function tryRegister()
 
     </div>
 
-    <button @click="tryRegister">Zarejestruj</button>
+    <button @click="tryRegister">Zarejestruj się!</button>
   </div>
 </template>
 
 <style scoped>
-#form_
-{ 
-  font-size:15px;
+#form_ { 
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
+h1, h6 {
+  color: #333;
+  margin-top: 25px;
+  margin-left: 15px;
+}
+
+input, select{
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.p-password{
+  height: 45px;
+  padding-left: 10px;
+}
+
+
+button {
+  background-color: blue; 
+  color: white;
+  padding: 15px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
 </style>
