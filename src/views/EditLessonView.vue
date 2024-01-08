@@ -11,6 +11,13 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Calendar from 'primevue/calendar'
 
+let calendar = ref()
+let time = ref()
+
+let name = ref("")
+let desc = ref("")
+let selectedDay = ref("")
+let price = ref(0)
 let days = [
   { id: 1, name: 'Poniedziałek' },
   { id: 2, name: 'Wtorek' },
@@ -19,7 +26,32 @@ let days = [
   { id: 5, name: 'Piątek' },
   { id: 6, name: 'Sobota' }
 ]
+let userData
 
+async function loadUserData(){
+
+  let dbu = await openDB("db_",1);
+  let uid = parseInt(sessionStorage.getItem("userId"))
+  let k = await dbu.get("users",uid)
+  userData = k
+  dbu.close()
+}
+
+async function save()
+{
+  console.log(name,desc,selectedDay)
+  let tutoring = {firstname:userData.firstname,lastname:userData.lastname,tutorId:userData.id,
+    short_desc:desc.value ,image_url: 'https://placehold.co/600x400',
+    subject:name.value,
+    level:"None",
+    price:parseInt(price.value),
+    days: "[]",
+    schedule: "[]",}
+  let db = await openDB("db_",1);
+  db.put("tutors",tutoring)
+  db.close()
+}
+loadUserData()
 </script>
 
 <template>
@@ -73,7 +105,7 @@ let days = [
     </div>
     <div class="col-6">
       <div class="card flex justify-content-center">
-        <DataTable :value="Korepetycje" tableStyle="min-width: 50rem">
+        <DataTable :value="calendar" tableStyle="min-width: 50rem">
           <Column field="day" header="Dzień"></Column>
           <Column field="hours" header="Godziny"></Column>
         </DataTable>

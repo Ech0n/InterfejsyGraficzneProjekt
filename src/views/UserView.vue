@@ -18,10 +18,12 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
 import { openDB } from 'idb';
 import { ref } from "vue";
 import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 import DataView from 'primevue/dataview';
 
 const route = useRoute();
+const router = useRouter();
 var userData = ref({});
 let userId = route.params.id
 var tutorings = ref([]);
@@ -34,6 +36,14 @@ console.log(sessionUid)
 let isOwner =  sessionUid == userId
 
 loadData()
+
+function logout(){
+  sessionStorage.removeItem("userId")
+  sessionStorage.removeItem("username")
+  router.push('/')
+  //dont redirect just refresh:
+  // router.go('/')
+}
 
 </script>
 
@@ -53,6 +63,8 @@ loadData()
         </div>
         <div v-if="ownerAndTeacher">
           <RouterLink to="/add-course/" class="text-decoration-none"><button class="btn btn-primary w-75">Dodaj kurs</button></RouterLink>
+          <RouterLink to="/add-lesson/" class="text-decoration-none"><button class="btn btn-primary w-75 mt-1">Dodaj korepetycje</button></RouterLink>
+          <button class="btn btn-primary w-75 mt-1" @click="logout">Wyloguj</button>
         </div>
       </div>
     </div>
