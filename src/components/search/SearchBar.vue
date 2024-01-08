@@ -193,7 +193,7 @@ let showTimeOptions = ref(false); // default not show
 
 <template>
   <Toast position="top-right" group="pt"
-  :pt="{
+  :pt="{ 
          container: { class: 'alert alert-success' }
   }"/> <!-- !important for showing messages-->
   <div class="container">

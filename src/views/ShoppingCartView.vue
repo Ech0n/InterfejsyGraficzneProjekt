@@ -14,7 +14,7 @@ let {totalPrice} = storeToRefs(store)
 
 <template>
   <NavbarTop />
-  <NavbarBottom />
+  <!-- <NavbarBottom /> -->
   <div  id=cartList v-for="course in store.courses" :key="course.id" class="d-flex flex-column align-items-center flex-nowrap" >
     <cartItem :cartItem="course" />
   </div>
