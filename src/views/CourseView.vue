@@ -61,9 +61,11 @@ getChaptersInfo()
 <!--  <p>{{ currentChapter.children[0].data }}</p>-->
   <div class="row my-5">
     <div class="col-2"></div>
-    <div class="col my-5" v-for="component in currentChapter.children" :key="component.key">
+    <div class="col">
+    <div class="row my-5" v-for="component in currentChapter.children" :key="component.key">
       <h3 class="mx-2 my-2"> {{ component.label }} </h3>
       <div v-html="component.data" class="mx-3 my-5"></div>
+      </div>
     </div>
 
     <div class="col-2"></div>
