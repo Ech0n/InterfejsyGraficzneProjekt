@@ -28,7 +28,7 @@ export default {
         focusedElement.blur();
       }
       const cartStore = useCartStore()
-      let isAbleToAdd = cartStore.addCourse({id:this.id,name:this.name,price:this.price})
+      let isAbleToAdd = cartStore.addCourse({id:this.id,name:this.name,price:parseInt(this.price)})
       if(isAbleToAdd)
       {
         this.$toast.add({severity: 'success', summary: this.summaryMessage, detail: this.contentMessage, group: 'pt', life: 10000});
