@@ -6,8 +6,8 @@ import SignUpSelectorCard from "../components/card/SignUpSelectorCard.vue";
 
 <template>
   <NavbarTop />
-  <NavbarBottom />
-  <div class = "d-flex flex-column align-items-center justify-content-start">
+  <!-- <NavbarBottom /> -->
+  <div class = "d-flex flex-column align-items-center justify-content-center">
   <h1 class="text-center">Wyszukiwanie:</h1>
   <div class="d-flex p-2">
     <a href="/search?type=courses" type="button" class="btn btn-primary">Szukaj Kursu</a>

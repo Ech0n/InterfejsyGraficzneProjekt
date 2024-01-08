@@ -39,7 +39,7 @@ loadData()
 
 <template>
   <NavbarTop />
-  <NavbarBottom />
+  <!-- <NavbarBottom /> -->
   <div class = "d-flex flex-column align-items-center justify-content-start ">
     <div id="userHeader" class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 border-bottom-1 w-full">
       <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block border-circle ml-8" :src="`https://placehold.co/600x600`"  />

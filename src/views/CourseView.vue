@@ -3,6 +3,7 @@ import {ref} from 'vue';
 import CourseSideBar from "@/components/sidebar/CourseSideBar.vue";
 import { openDB } from 'idb';
 import { useRoute } from 'vue-router';
+import NavbarTop from '../components/navbar/NavbarTop.vue';
 
 const route = useRoute();
 let currentChapter = ref({title: "Strona główna"});
@@ -42,7 +43,7 @@ getChaptersInfo()
 </script>
 
 <template>
-
+  <NavbarTop/>
   <CourseSideBar :courseItem="courseItem" :courseChapters=courseChapters @complete-chapter="updateChapter"/>
   <h1 class="display-1 text-center my-3">{{ currentChapter.title }}</h1>
   <h5 v-text="courseItem.label" class="text-center my-2 text-muted"></h5>

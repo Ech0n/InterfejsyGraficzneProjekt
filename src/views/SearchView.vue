@@ -8,7 +8,7 @@ import SearchLogo from "@/components/search/SearchLogo.vue";
 
 <template>
   <NavbarTop />
-  <NavbarBottom />
+  <!-- <NavbarBottom /> -->
   <SearchLogo />
 
   <div class="text-md-center mt-3">

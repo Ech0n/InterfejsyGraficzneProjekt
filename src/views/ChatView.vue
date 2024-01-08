@@ -5,7 +5,7 @@ import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
 
 <template>
   <NavbarTop />
-  <NavbarBottom />
+  <!-- <NavbarBottom /> -->
   CHAT
 </template>
 
