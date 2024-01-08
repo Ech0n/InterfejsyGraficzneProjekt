@@ -37,18 +37,75 @@ function tryLogin()
   <NavbarTop />
   <!-- <NavbarBottom/> -->
 
-  <div class="text-md-left ml5">
+  <div class="text-md-center ml5">
     <h1>Zaloguj się</h1>
     <div>
-      <input type="email/username" v-model="username" placeholder="username"/>
-      <input type="password" v-model="password" placeholder="password"/>
-
+      <input type="email/username" v-model="username" placeholder="Login*"/>
+      <br>
+      <input type="password" v-model="password" placeholder="Hasło*"/>
+      <br>
       <button @click="tryLogin">Zaloguj</button>
-      <RouterLink to="/signup" class="nav-link mx-2">Nie masz konta? Zarejestruj się!</RouterLink>
+      <br>
+      <l1>Nie masz konta?</l1>
+      <RouterLink to="/signup" class="nav-link-center mx-2" id="nav-link">Zarejestruj się!</RouterLink>
     </div>
   </div>
 </template>
 
+
 <style scoped>
+.text-md-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70%; 
+}
+
+.text-md-left {
+  margin-left: 30px;
+  margin-right: 20px;
+}
+
+.nav-link-center{
+  width: 40%;
+  color: darkblue;
+  font-weight: 650;
+  text-align: center;
+
+}
+.nav-link-center:hover{
+  color: blue;
+}
+
+h1{
+  color: #333;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+input, select{
+  width: 300px;
+  padding: 10px;
+  margin: 20px;
+  margin-left: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: blue; 
+  color: white;
+  padding: 15px 20px;
+  margin: 10px;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
 
 </style>
