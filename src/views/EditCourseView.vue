@@ -237,6 +237,7 @@ async function loadCourseData(){
     base64textString.value = k.image_url
     showImage.value = true
     imageName.value = "Załadowano logo"
+    console.log(base64textString.value)
   }
 
   k = await db.getFromIndex("courseContents","courseId",parseInt(courseId()))
