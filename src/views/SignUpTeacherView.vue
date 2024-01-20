@@ -1,13 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { ref ,computed} from 'vue'
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
-import { openDB } from 'idb';
-import { useRouter } from 'vue-router';
 import { useToast } from "primevue/usetoast";
 import Toast from 'primevue/toast';
 import Password from 'primevue/password'
 const toast = useToast();
-import  {makeUser,checkUsernameAvailbility} from '@/signup.js'
+import  {makeUser} from '@/signup.js'
+import InputNumber from 'primevue/inputnumber';
 
 const username = ref("")
 const password = ref("")
@@ -15,14 +14,24 @@ const passwordConfirmation = ref("")
 
 const firstname = ref("")
 const lastname = ref("")
-const selectedTutorings = ref([])
-const selectedCourses = ref([])
-const tel = ref("")
+const tel = ref(null)
 const mail = ref("")
 const address = ref("")
+const data = ref("")
 
-const router = useRouter();
 
+const errorMessage = computed(() => 
+({
+  'p-invalid': tel.value > 999_999_999 || tel.value < 100_000_000 &&  tel.value,
+}))
+
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
 
 
@@ -37,6 +46,18 @@ function tryRegister()
     return
   }
 
+  if(!validateEmail(mail.value))
+  {
+    toast.add({  severity: 'error', summary:"Niepoprawny mail!", life: 3000 });
+    return;
+  }
+  if(errorMessage.value['p-invalid'] && tel.value)
+  {
+    console.log(tel.value)
+    toast.add({  severity: 'error', summary:"Niepoprawny numer telefonu!", life: 3000 });
+    return;
+
+  }
   makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"teacher"},passwordConfirmation.value).then((msg)=>{
     if(msg ==="success")
     {
@@ -65,7 +86,7 @@ function tryRegister()
         <input type="surname" v-model="lastname" placeholder="Nazwisko*"/>
 
         <h6>Data urodzenia:</h6>
-        <input type="date" v-model="Date" placeholder="DD/MM/YYYY">
+        <input type="date" v-model="data" placeholder="DD/MM/YYYY">
 
 
       </div>
@@ -74,9 +95,12 @@ function tryRegister()
         <h6>Dane kontaktowe:</h6>
         <input type="e-mail" v-model="mail" placeholder="E-mail*"/>
         <br>
-        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
-        <br>
         <input type="address" v-model="address" placeholder="Adres zamieszkania"/>
+        <br>
+        <InputNumber type="telephone" style="margin-left:10px;margin-top:7px" :class="errorMessage "  v-model="tel" placeholder="Nr telefonu"/>
+        <br>
+        <small class="p-error" id="number-error" v-show="errorMessage['p-invalid']" >numer musi składać się z 9 cyfr </small>
+        
       </div>
 
       <div class="col">

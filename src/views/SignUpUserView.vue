@@ -1,16 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
-import { openDB } from 'idb';
-import { useRouter } from 'vue-router';
-import  {makeUser,checkUsernameAvailbility} from '@/signup.js'
+import  {makeUser} from '@/signup.js'
 import { useToast } from "primevue/usetoast";
 import Toast from 'primevue/toast';
 import Password from 'primevue/password'
-
+import InputNumber from 'primevue/inputnumber';
 const toast = useToast();
 
-const router = useRouter();
 
 const username = ref("")
 const password = ref("")
@@ -21,22 +18,48 @@ const lastname = ref("")
 const selectedEducationLevel = ref([])
 const isParentalControlOn = ref(false)
 const birthDate = ref("")
-const tel = ref("")
+const tel = ref(null)
 const mail = ref("")
 const address = ref("")
+// const errorMessage= ref(false)
 
+const errorMessage = computed(() => 
+({
+  'p-invalid': tel.value > 999_999_999 || tel.value < 100_000_000 &&  tel.value,
+}))
+
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
 function tryRegister()
 {
+
     //check if all required fields are filled
-    let isFilled = firstname.value !== "" && lastname.value !== "" && password.value !== "" && passwordConfirmation.value !== "" 
+    let isFilled = firstname.value !== "" && lastname.value !== "" && password.value !== "" && passwordConfirmation.value !== ""  && mail.value != "" && username.value != ""
     if (!isFilled)
     {
       toast.add({  severity: 'error', summary:"Uzupełnij wszystkie wymagane pola!", life: 3000 });
 
       return
     }
-    
+
+    if(!validateEmail(mail.value))
+    {
+      toast.add({  severity: 'error', summary:"Niepoprawny mail!", life: 3000 });
+      return;
+    }
+    if(errorMessage.value['p-invalid'] && tel.value)
+    {
+      console.log(tel.value)
+      toast.add({  severity: 'error', summary:"Niepoprawny numer telefonu!", life: 3000 });
+      return;
+
+    }
   makeUser({username:username.value,password:password.value,firstname:firstname.value,lastname:lastname.value,class:"student"},passwordConfirmation.value).then((msg)=>{
     if(msg ==="success")
     {
@@ -55,6 +78,7 @@ function tryRegister()
 
 <template>
   <NavbarTop />
+  <Toast />
 
   <div class="text-md-left ml5">
     <h1>Zarejestruj się (Uczeń)</h1>
@@ -86,9 +110,12 @@ function tryRegister()
         <h6>Dane kontaktowe:</h6>
         <input type="e-mail" v-model="mail" placeholder="E-mail*"/>
         <br>
-        <input type="telephone" v-model="tel" placeholder="Nr telefonu"/>
-        <br>
         <input type="address" v-model="address" placeholder="Adres zamieszkania"/>
+        <br>
+        <InputNumber type="telephone" style="margin-left:10px;margin-top:7px" :class="errorMessage "  v-model="tel" placeholder="Nr telefonu"/>
+        <br>
+        <small class="p-error" id="number-error" v-show="errorMessage['p-invalid']" >numer musi składać się z 9 cyfr </small>
+        
       </div>
 
       <div class="col">
