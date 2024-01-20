@@ -3,7 +3,11 @@ import {ref} from 'vue';
 import CourseSideBar from "@/components/sidebar/CourseSideBar.vue";
 import { openDB } from 'idb';
 import { useRoute } from 'vue-router';
-import NavbarTop from '../components/navbar/NavbarTop.vue';
+import Toast from "primevue/toast";
+
+import { useCartStore } from '@/store.js'
+
+const store = useCartStore()
 
 const route = useRoute();
 let main_page ={key: '0', label: "Strona główna",
@@ -54,7 +58,16 @@ getChaptersInfo()
 </script>
 
 <template>
+  <Toast position="top-right" group="pt"
+         :pt="{
+         container: { class: 'alert alert-success' }
+  }"/> <!-- !important for showing messages-->
+  <div>
+  <div v-if=!store.isEmpty style="min-height: 50px" class="nav-item">
+    <RouterLink to="/cart" class="nav-link"  style="position: fixed; top:20px; right:30px;"><span v-badge=store.size class="p-overlay-badge" style="font-size: 1rem"><font-awesome-icon  icon="fa-solid fa-shopping-cart"  /></span></RouterLink>
+  </div>
   <CourseSideBar :courseItem="courseItem" :courseChapters=courseChapters :mainPage="main_page" @complete-chapter="updateChapter"/>
+  </div>
   <h1 class="display-1 text-center my-3">{{ currentChapter.label }}</h1>
   <h5 v-text="courseItem.name" class="text-center my-2 text-muted"></h5>
   <!-- <p v-text="currentChapter.content"></p> -->

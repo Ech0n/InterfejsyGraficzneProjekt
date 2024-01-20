@@ -115,6 +115,11 @@
           </div>
           <div class="my-4 fixed-bottom">
             <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+            <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>
+            <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>
+          </div>
+          <div class="my-4">
+            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
             <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
               <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
 
@@ -135,6 +140,7 @@ import Avatar from 'primevue/avatar';
 import Button from 'primevue/button';
 import { ref } from "vue";
 import ScrollPanel from 'primevue/scrollpanel';
+import ShoppingCartCourseBtn from "@/components/buttons/ShoppingCartCourseBtn.vue";
 
 // import { usePrimeVue } from 'primevue/config';
 //
