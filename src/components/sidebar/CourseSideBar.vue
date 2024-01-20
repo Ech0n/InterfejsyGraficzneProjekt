@@ -104,7 +104,7 @@
                     </a>
                   </li>
                   <li>
-                    <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                    <a :href="userRedirect" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                       <i class="pi pi-user mr-2"></i>
                       <span class="font-medium">Profil użytkownika</span>
                     </a>
@@ -154,6 +154,13 @@ const props = defineProps(["chapter", "courseItem", "courseChapters", "mainPage"
 
 const emit = defineEmits(['completeChapter']);
 let free = true;
+
+let userId = sessionStorage.getItem("userId")
+let userRedirect = "/login"
+if(userId != null)
+{
+  userRedirect = "/u/"+userId
+}
 </script>
 
 <style scoped>
