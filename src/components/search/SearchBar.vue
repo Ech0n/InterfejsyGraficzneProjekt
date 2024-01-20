@@ -221,7 +221,7 @@ let showTimeOptions = ref(false); // default not show
         </div>
         </div>
       <div class="d-flex flex-wrap align-items-center justify-content-center"  v-else>
-        <div class="w-100"><ToggleButton v-model="showTimeOptions" onLabel="Ukryj" offLabel="Pokaż"
+        <div class="w-100"><ToggleButton v-model="showTimeOptions" onLabel="Ukryj" offLabel="Ustaw"
                            onIcon="pi pi-clock" offIcon="pi pi-clock" icon-pos="right" class="toggleButtonOptions"/></div>
         <div v-if="showTimeOptions" class="my-2">
         <div class="mt-3 w-100"><SelectButton v-model="days" :options="options" optionLabel="weekDay" multiple aria-labelledby="multiple" />

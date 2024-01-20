@@ -88,7 +88,7 @@ export default {
       return [];
     },
     getAllDays() {
-      if (this.chosenDays && this.chosenDays.length !== 0)
+      // if (this.chosenDays && this.chosenDays.length !== 0)
       return this.tutorItem.days;
     },
     isChosenDay(day) {
