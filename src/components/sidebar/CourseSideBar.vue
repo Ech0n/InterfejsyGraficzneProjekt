@@ -51,7 +51,7 @@
 
                 <ul class="list-none p-0 m-0">
                   <li>
-                    <RouterLink :to="'/course/' + courseItem.id" @click="emit('completeChapter', mainPage); closeCallback();" class="text-decoration-none"><i class="pi pi-home"></i> Strona główna </RouterLink>
+                    <RouterLink :to="'/course/' + courseItem.id" @click="emit('completeChapter', mainPage); closeCallback();" class="text-decoration-none"><i class="pi pi-home"></i> Strona główna kursu</RouterLink>
                   </li>
                   <ScrollPanel style="width: 100%; height: 200px" class="scrollChapters"
                   >
@@ -84,8 +84,10 @@
                                         enterActiveClass: 'slidedown',
                                         leaveToClass: 'hidden',
                                         leaveActiveClass: 'slideup'
+
                                     }"
                     class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
+
                 >
                   <span class="font-medium">APLIKACJA</span>
                   <i class="pi pi-chevron-down"></i>
@@ -94,7 +96,7 @@
                   <li>
                     <a v-ripple href="/" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                       <i class="pi pi-home mr-2"></i>
-                      <span class="font-medium">Strona główna</span>
+                      <span class="font-medium">Strona główna aplikacji</span>
                     </a>
                   </li>
                   <li>
@@ -111,21 +113,25 @@
                   </li>
                 </ul>
               </li>
-            </ul>
-          </div>
-          <div class="my-4 fixed-bottom">
-            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-            <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>
-            <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>
-          </div>
-          <div class="my-4">
-            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+
+
+<!--          <div class="my-5"></div>-->
+<!--          <div class="my-4 text-center">-->
+<!--            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />-->
+<!--            <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>-->
+<!--            <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>-->
+<!--          </div>-->
+
+            <li><hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
             <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
               <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
 
               <span class="font-bold mx-5">{{ courseItem.author_name }}</span>
             </a>
-          </div>
+            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+            <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>
+              <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>
+          </li></ul></div>
         </div>
       </template>
     </Sidebar>
