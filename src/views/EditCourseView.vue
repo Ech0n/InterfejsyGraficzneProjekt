@@ -39,7 +39,7 @@ const component_title = ref('');
 nodes.value = [];
 
 const saveChanges = (node) => {
-  toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: node.label, life: 3000 });
+  toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: node.label, life: 5000 });
 };
 
 const expandAll = () => {
@@ -321,14 +321,17 @@ function deleteNode() {
         </div>
 
       </div>
-      <div class="flex flex-wrap  mb-4">
-        <Button type="button" icon="pi pi-plus" label="Rozwiń wszystko" @click="expandAll" class="mx-2"/>
-        <Button type="button" icon="pi pi-minus" label="Zwiń wszystko" @click="collapseAll" class="mx-2" />
-      </div>
+
       <div>
         <h3 class="mx-4">Rozdziały</h3>
       <Tree v-if="treeShown" v-model:expandedKeys="expandedKeys" v-model:selectionKeys="selectedKey" selectionMode="single" :value="nodes" class="w-75" ></Tree>
+        <div class="flex flex-wrap  mb-4 mt-2">
+          <Button type="button" icon="pi pi-plus" label="Rozwiń wszystko" @click="expandAll" class="mx-2" />
+          <Button type="button" icon="pi pi-minus" label="Zwiń wszystko" @click="collapseAll" class="mx-2" />
+        </div>
+        <hr>
       <InputText type="text" v-model="chapterTitle" class="my-3 mx-2" placeholder="Wpisz nazwe rozdziału"/>
+
       <Button type="button" icon="pi pi-plus" label="Dodaj nowy rozdział" @click="addChapter" class="w-25 mx-2 my-3"></Button>
       <div>
         <Button type="button" @click="addText" class="w-25 mx-2 my-2">Dodaj tekst</Button>
