@@ -12,6 +12,7 @@
 <script>
 import { useCartStore } from '@/store.js'
 import { mapWritableState } from 'pinia'
+import router from "@/router";
 
 export default {
   computed:{
@@ -27,6 +28,14 @@ export default {
       if (focusedElement) {
         focusedElement.blur();
       }
+
+      let userId = sessionStorage.getItem("userId")
+      if (userId == null){
+        console.log("redirected");
+        router.push({ name: 'login' });
+        return;
+      }
+
       const cartStore = useCartStore()
       let isAbleToAdd = cartStore.addCourse({id:this.id,name:this.name,price:parseInt(this.price)})
       if(isAbleToAdd)
