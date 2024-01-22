@@ -5,7 +5,7 @@ async function loadData() {
     userData.value = k
     ownerAndTeacher.value = isOwner && k["class"] === "teacher"
     ownerAndUser.value = isOwner && k["class"] === "student"
-    if(k["class"] === "techer")
+    if(k["class"] === "teacher")
     {
 
       k = await db.getAllFromIndex('tutors',"tutorId",parseInt(userId));
@@ -84,7 +84,7 @@ function logout(){
           <RouterLink to="/add-lesson/" class="text-decoration-none"><button class="btn btn-primary w-75 mt-1">Dodaj korepetycje</button></RouterLink>
         </div>
         <div v-if="isOwner">
-          <button class="btn btn-primary w-100 mt-1" @click="logout">Wyloguj</button>
+          <button class="btn btn-primary w-75 mt-1" @click="logout">Wyloguj</button>
         </div>
       </div>
     </div>
