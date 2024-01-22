@@ -49,7 +49,7 @@ store.removeTutoring(id)
     </div>
   
     <h2 class="   border-top-1  surface-border pt-3 mx-2 w-5 d-flex justify-content-center align-items-center" >Cena łączna: {{totalPrice.toFixed(2) }} zł</h2>
-    <RouterLink to="/payment" class="nav-link mx-2 w-5 d-flex justify-content-center align-items-center" > <button class="btn btn-primary w-75 mx-auto"> Przejdź do płatności! </button></RouterLink>
+    <RouterLink to="/cart/redirect" class="nav-link mx-2 w-5 d-flex justify-content-center align-items-center" > <button class="btn btn-primary w-75 mx-auto"> Przejdź do płatności! </button></RouterLink>
   </div>
 </template>
 
