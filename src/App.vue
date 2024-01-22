@@ -1,7 +1,7 @@
 <script setup>
 localStorage.isLoggedIn = false
 
-import initalizeDatabaseData from './DatabaseMock';
+import {initalizeDatabaseData} from './DatabaseMock';
 initalizeDatabaseData()
 </script>
 

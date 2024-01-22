@@ -70,6 +70,11 @@ const router = createRouter({
             path: '/cart',
             name: 'cart',
             component: () => import('../views/ShoppingCartView.vue')
+        },         
+        {            
+            path: '/cart/redirect',
+            name: 'cartRedirect',
+            component: () => import('../views/PaymentRedirectView.vue')
         },              
         {
             path: '/u/:id',

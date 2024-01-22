@@ -89,6 +89,13 @@ export const useCartStore = defineStore('cart', {
       cart.tutorings = this.tutorings
       cart.totalPrice = this.totalPrice
       sessionStorage.setItem("cart",JSON.stringify(cart))
+    },
+    buy(){
+      this.courses = []
+      this.tutorings = []
+      this.totalPrice = 0.0
+      sessionStorage.setItem("cart",JSON.stringify({courses:[],totalPrice:0.0,tutorings:[]}))
     }
   },
+
 })

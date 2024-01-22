@@ -518,8 +518,38 @@ const courseContents = [
 ]
 
   import { openDB } from 'idb';
-  export default async function initalizeDatabaseData() {
-      const db = await openDB("db_",1,{  upgrade(db){
+
+export async function buyItems(userid,courses,tutorings)
+{
+  let db = await openDB("db_",1)
+  const tx = db.transaction('boughtCourses', 'readwrite')
+  await Promise.all(courses.map((kurs) => 
+  {
+    return tx.store.add({"userId":userid,"courseId":kurs.id}).then((result) => {
+      console.log("Item added successfully:", result);
+    }).catch((result) => {
+      console.log("Item rejected:", result);
+    })
+  }).join(tx.done.catch((result) => {
+      console.log("Item rejected:", result);
+  })))
+  const tx2 = db.transaction('boughtTutorings', 'readwrite')
+  await Promise.all(tutorings.map((kurs) => 
+  {
+    return tx2.store.add({"userId":userid,"tutoringId":kurs.id}).then((result) => {
+      console.debug("Item added successfully:", result);
+    }).catch((result) => {
+      console.debug("Item rejected:", result);
+    })
+  }).join(tx2.done.catch((result) => {
+      console.debug("Item rejected:", result);
+  })))
+
+  db.close()
+}
+
+export async function initalizeDatabaseData() {
+        let db = await openDB("db_",1,{  upgrade(db){
         let store = db.createObjectStore('users', {keyPath: 'id',autoIncrement: true,});
         store.createIndex("auth",["username","password"])
         store.createIndex("findUsername","username")
@@ -529,6 +559,11 @@ const courseContents = [
         store.createIndex('tutorId','tutorId')
         store = db.createObjectStore('courseContents', {keyPath: 'courseId'});
         store.createIndex('courseId','courseId')
+        store = db.createObjectStore('boughtCourses', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex('getCourses','userId')
+        store = db.createObjectStore('boughtTutorings', {keyPath: 'id',autoIncrement: true,});
+        store.createIndex('getTutorings','userId')
+
       }});
   
       const tx = db.transaction('courses', 'readwrite')
