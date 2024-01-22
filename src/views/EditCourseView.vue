@@ -248,7 +248,8 @@ async function loadCourseData(){
   let db = await openDB("db_",1);
   let k = await db.get("courses",parseInt(courseId()))
   course = k
-  price.value = parseFloat(k.price)
+  if (k.price != null)
+    price.value = parseFloat(k.price)
   name.value = k.name
   desc.value = k.short_desc
 
