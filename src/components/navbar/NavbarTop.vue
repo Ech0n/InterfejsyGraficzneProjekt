@@ -42,7 +42,7 @@ const store = useCartStore()
             <RouterLink :to=userRedirect class="nav-link "><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
           </li>
           <li class="nav-item" v-if=!store.isEmpty>
-            <RouterLink to="/cart"  class="nav-link "><span v-badge=store.size class="p-overlay-badge" style="font-size: 1rem"><font-awesome-icon  icon="fa-solid fa-shopping-cart"  /></span></RouterLink>
+            <RouterLink to="/cart"  class="nav-link "><span v-badge=store.size class="p-overlay-badge" ><font-awesome-icon  icon="fa-solid fa-shopping-cart"  /></span></RouterLink>
           </li>
           
         </ul>
@@ -54,13 +54,7 @@ const store = useCartStore()
 </template>
 
 <style scoped>
-@layer primevue{
-  .p-badge{
-    min-width: 1rem;
-    height: 1rem;
-    line-height: 1rem;
-}
-}
+
 #navbar_
 {
   font-size:28px;
