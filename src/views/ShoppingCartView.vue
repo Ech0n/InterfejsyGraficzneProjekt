@@ -40,15 +40,15 @@ store.removeTutoring(id)
     <div  id=cartList v-for="tutoring in store.tutorings" :key="tutoring.id" class="d-flex flex-column align-items-center flex-nowrap" >
       <div>
         <div class="d-flex flex-row listItem border-top-1 surface-border " > 
-        <cartItem :cartItem="tutoring" type="korepetycje" />
-              <Button icon="pi pi-minus" rounded outlined  severity="danger" class="iconButton my-3 " aria-label="Filter" @click=removeTutoring(tutoring.id)> </Button>
+          <cartItem :cartItem="tutoring" type="korepetycje" />
+          <Button icon="pi pi-minus" rounded outlined  severity="danger" class="iconButton my-3 " aria-label="Filter" @click=removeTutoring(tutoring.id)> </Button>
                   <!-- <RouterLink :to="'/course/' + cartItem.id" class="text-decoration-none"><button class="btn btn-primary w-75">Zobacz strone kursu</button></RouterLink>  -->
-          </div>
-          
         </div>
+          
+      </div>
     </div>
   
-    <h2 class="   border-top-1  surface-border pt-3 mx-2 w-5 d-flex justify-content-center align-items-center" >Cena łączna: {{ totalPrice }} zł</h2>
+    <h2 class="   border-top-1  surface-border pt-3 mx-2 w-5 d-flex justify-content-center align-items-center" >Cena łączna: {{totalPrice.toFixed(2) }} zł</h2>
     <RouterLink to="/payment" class="nav-link mx-2 w-5 d-flex justify-content-center align-items-center" > <button class="btn btn-primary w-75 mx-auto"> Przejdź do płatności! </button></RouterLink>
   </div>
 </template>

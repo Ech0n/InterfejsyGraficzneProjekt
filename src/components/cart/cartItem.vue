@@ -17,7 +17,7 @@ import { useCartStore } from '@/store.js'
         </div>
         <div class="col d-flex align-items-center"> 
           
-          <p >Cena {{ cartItem.price  }} zł </p>
+          <p >Cena {{ cartItem.price.toFixed(2)  }} zł </p>
         </div>
     </div> 
   </div> 

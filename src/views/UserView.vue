@@ -14,7 +14,6 @@ async function loadData() {
 }    
 
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
-import NavbarBottom from "@/components/navbar/NavbarBottom.vue";
 import { openDB } from 'idb';
 import { ref } from "vue";
 import { useRoute } from 'vue-router';

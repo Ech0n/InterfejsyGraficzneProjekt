@@ -35,9 +35,9 @@ const store = useCartStore()
             <RouterLink to="/search" class="nav-link ">
               <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> </RouterLink>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <RouterLink to="/" class="nav-link"><font-awesome-icon icon="fa-solid fa-message"/></RouterLink>
-          </li>
+          </li> -->
           <li class="nav-item">
             <RouterLink :to=userRedirect class="nav-link "><font-awesome-icon icon="fa-solid fa-user"/></RouterLink>
           </li>
