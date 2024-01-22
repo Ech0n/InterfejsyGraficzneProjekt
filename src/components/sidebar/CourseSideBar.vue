@@ -56,12 +56,24 @@
                   <ScrollPanel style="width: 100%; height: 200px" class="scrollChapters"
                   >
                   <li v-for="(chapter, chapterIndex) in courseChapters.chapters" :key="chapter.key" class="my-2">
-                    <a v-ripple @click="emit('completeChapter', chapter); closeCallback();" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration-none">
+                    <a v-if="owned" v-ripple @click="emit('completeChapter', chapter); closeCallback();" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration-none">
 <!--                      <span>{{ chapterIndex + 1}}</span>-->
 <!--                      <i class="pi pi-caret-right mx-1"></i>-->
                       <svg width="31" height="31" xmlns="http://www.w3.org/2000/svg">
                         <rect x="12" y="-10" width="20" height="20" transform="rotate(45)" fill="violet" />
-                        <text v-if="free" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{{ parseInt(chapterIndex) + 1 }}</text>
+                        <text v-if="owned" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{{ parseInt(chapterIndex) + 1 }}</text>
+                        <g v-else>
+                          <svg xmlns="http://www.w3.org/2000/svg" x="8" y="6" dominant-baseline="middle" text-anchor="middle" height="16" width="15" viewBox="0 0 448 512"> <path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
+                        </g>
+                      </svg>
+                      <span class="mx-2"> {{ chapter.label }}</span>
+                    </a>
+                    <a v-else v-ripple  class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration-none">
+                      <!--                      <span>{{ chapterIndex + 1}}</span>-->
+                      <!--                      <i class="pi pi-caret-right mx-1"></i>-->
+                      <svg width="31" height="31" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="-10" width="20" height="20" transform="rotate(45)" fill="violet" />
+                        <text v-if="owned" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">{{ parseInt(chapterIndex) + 1 }}</text>
                         <g v-else>
                           <svg xmlns="http://www.w3.org/2000/svg" x="8" y="6" dominant-baseline="middle" text-anchor="middle" height="16" width="15" viewBox="0 0 448 512"> <path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
                         </g>
@@ -111,7 +123,7 @@ import ShoppingCartCourseBtn from "@/components/buttons/ShoppingCartCourseBtn.vu
 
 const visible = ref(true);
 
-const props = defineProps(["chapter", "courseItem", "courseChapters", "mainPage"]);
+const props = defineProps(["owned", "chapter", "courseItem", "courseChapters", "mainPage"]);
 
 const emit = defineEmits(['completeChapter']);
 let free = true;

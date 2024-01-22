@@ -49,11 +49,25 @@ async function getChaptersInfo() {
         courseChapters.value.chapters = JSON.parse(k.chapters)
       }
       }
+let owned = ref(false);
+async function checkIfOwned(userId,courseId){
+  console.log(userId);
+  if (userId == null) {
+    return
+  }
+  let db = await openDB('db_',1)
+  let k =  await db.getAllFromIndex('boughtCourses',"getCourses",String(userId));
+  owned.value = k.some(el=>el.courseId == courseId)
+}
 function updateParent(chapter) {
       this.currentChapter = chapter
 }
 getCourseById()
 getChaptersInfo()
+
+let userId = sessionStorage.getItem("userId")
+// isNotLoggedIn.value = !(userId != undefined && userId != null)
+checkIfOwned(userId, courseId())
 // const currentChapter = {title: 'Strona główna'}
 
 </script>
@@ -68,7 +82,7 @@ getChaptersInfo()
   <div v-if=!store.isEmpty style="min-height: 50px" class="nav-item">
     <RouterLink to="/cart" class="nav-link"  style="position: fixed; top:20px; right:30px;"><span v-badge=store.size class="p-overlay-badge" style="font-size: 1rem"><font-awesome-icon  icon="fa-solid fa-shopping-cart"  /></span></RouterLink>
   </div>
-  <CourseSideBar :courseItem="courseItem" :courseChapters=courseChapters :mainPage="main_page" @complete-chapter="updateChapter"/>
+  <CourseSideBar :owned=owned :courseItem="courseItem" :courseChapters=courseChapters :mainPage="main_page" @complete-chapter="updateChapter"/>
   </div>
   <h1 class="display-1 text-center my-3">{{ currentChapter.label }}</h1>
   <h5 v-text="courseItem.name" class="text-center my-2 text-muted"></h5>
