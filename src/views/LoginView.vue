@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import NavbarTop from "@/components/navbar/NavbarTop.vue";
 import { openDB } from 'idb';
+import { useCartStore } from '@/store.js'
 import { useRouter } from 'vue-router';
 
 const username = ref("")
@@ -11,13 +12,25 @@ const router = useRouter();
 
 async function authUser(username,password) {
     const db = await openDB("db_",1);
-    let k = await db.getFromIndex('users',"auth",[username,password]);
-    db.close()
-    if(k==undefined)
+    let user = await db.getFromIndex('users',"auth",[username,password]);
+    if(user==undefined)
     {
       throw "Username or password incorrect!"
     }
-    return k
+    //Remove alreay ownd items from cart
+    let k = await db.getAllFromIndex('boughtCourses',"getCourses",String(user.id));
+    const cart = useCartStore()
+    k.forEach(item =>{
+      cart.removeCourse(item.courseId)
+    })
+
+    k = await db.getAllFromIndex('boughtTutorings',"getTutorings",String(user.id));
+    k.forEach(item =>{
+      cart.removeTutoring(item.tutoringId)
+    })
+    db.close()
+
+    return user
 }
 
 
@@ -27,6 +40,7 @@ function tryLogin()
   {
     sessionStorage.setItem("username",username.value)
     sessionStorage.setItem("userId",user["id"])
+
     router.push({ name: 'home' });
   }).catch((arg)=>{alert(arg)})
   
@@ -46,8 +60,8 @@ function tryLogin()
       <br>
       <button @click="tryLogin">Zaloguj</button>
       <br>
-      <l1>Nie masz konta?</l1>
-      <RouterLink to="/signup" class="nav-link-center mx-2" id="nav-link">Zarejestruj się!</RouterLink>
+      <p>Nie masz konta?
+      <RouterLink to="/signup" class="nav-link-center mx-2" id="nav-link">Zarejestruj się!</RouterLink></p>
     </div>
   </div>
 </template>
