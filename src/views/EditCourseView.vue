@@ -178,7 +178,7 @@ function getCurrentDate() {
   return `${year}-${month}-${day}`;
 }
 const save = async () => {
-  course.price = price.value;
+  // course.price = price.value;
   course.name = name.value;
   course.short_desc = desc.value;
   course.last_updated = getCurrentDate();
@@ -186,6 +186,25 @@ const save = async () => {
 
   courseContent.title = name.value;
   courseContent.chapters = JSON.stringify( nodes.value);
+
+  let message = {
+    type: "success",
+    summary: " Zapisano zmiany!"
+  }
+
+  const numericRegex = /^(?:[1-9]\d*|0)?(?:[\.,]\d{1,2})?$/;
+  const priceInput = document.getElementById('priceInput');
+  if (typeof price.value == 'number' || numericRegex.test(price.value)) {
+    price.value = price.value.replace(",", ".");
+    course.price = price.value;
+    priceInput.classList.remove('p-invalid');
+  }
+  else {
+    priceInput.classList.add('p-invalid');
+    message.type = "error";
+    message.summary = " Cena wpisana niepoprawnie!";
+  }
+
   // save logic
   let db = await openDB("db_",1);
   db.put("courses",course).then((res)=>
@@ -197,7 +216,7 @@ const save = async () => {
     console.log(courseContent)
     db.put("courseContents",courseContent)
     console.log(res)
-    toast.add({ severity: 'success', summary: 'Zapisano zmiany', detail: '', life: 3000 });
+    toast.add({ severity: message.type, summary: message.summary, detail: '', life: 5000 });
     db.close()
     if(!courseId()){
       router.push("/course/"+res+"/edit")
@@ -229,7 +248,7 @@ async function loadCourseData(){
   let db = await openDB("db_",1);
   let k = await db.get("courses",parseInt(courseId()))
   course = k
-  price.value = parseInt(k.price)
+  price.value = parseFloat(k.price)
   name.value = k.name
   desc.value = k.short_desc
 
@@ -308,7 +327,7 @@ function deleteNode() {
       <div class="row mx-2">
         <InputText type="text" v-model="name" placeholder="Nazwa kursu" class="my-3 w-75"/>
         <InputText type="text" v-model="desc" placeholder="Krótki opis kursu" class="my-3 w-75"/>
-        <InputText type="text" v-model="price" placeholder="Cena" class="my-3 w-75"/>
+        <InputText type="text" v-model="price" placeholder="Cena zł" class="my-3 w-75" id="priceInput"/>
         <div>
           <label for="fileId" class="mx-2 font-medium">Logo kursu</label>
           <input type="file" @change="convertToBase64" accept="image/*" id="fileId" />
