@@ -1,6 +1,6 @@
 
 <template>
-  <div class="card flex justify-content-center text-decoration-none" >
+  <div class="card flex justify-content-center text-decoration-none border-0 position-fixed" >
     <Sidebar v-model:visible="visible">
       <template #container="{ closeCallback }">
         <div class="flex flex-column h-full">
@@ -75,57 +75,12 @@
               </li>
             </ul>
             <ul class="list-none p-3 m-0">
-              <li>
-                <div
-                    v-ripple
-                    v-styleclass="{
-                                        selector: '@next',
-                                        enterClass: 'hidden',
-                                        enterActiveClass: 'slidedown',
-                                        leaveToClass: 'hidden',
-                                        leaveActiveClass: 'slideup'
 
-                                    }"
-                    class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple"
-
-                >
-                  <span class="font-medium">APLIKACJA</span>
-                  <i class="pi pi-chevron-down"></i>
-                </div>
-                <ul class="list-none p-0 m-0 overflow-hidden">
-                  <li>
-                    <a v-ripple href="/" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-home mr-2"></i>
-                      <span class="font-medium">Strona główna aplikacji</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a v-ripple href="/search/" class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-search mr-2"></i>
-                      <span class="font-medium">Wyszukiwarka</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a :href="userRedirect" v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                      <i class="pi pi-user mr-2"></i>
-                      <span class="font-medium">Profil użytkownika</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-
-<!--          <div class="my-5"></div>-->
-<!--          <div class="my-4 text-center">-->
-<!--            <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />-->
-<!--            <p class="d-flex justify-content-around"><button class="btn">Cena {{ courseItem.price }} zł</button>-->
-<!--            <ShoppingCartCourseBtn :id="courseItem.id" :name="courseItem.name" :price="courseItem.price" :summary-message="'   Dodano do koszyka: '" :content-message="' kurs ' + courseItem.name + '\n za cenę ' + courseItem.price + ' zł!' "/></p>-->
-<!--          </div>-->
 
             <li><hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-            <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+            <span class= "m-3 mb-0">Autor:</span>
+            <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 mt-0 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
               <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-
               <span class="font-bold mx-5">{{ courseItem.author_name }}</span>
             </a>
             <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />

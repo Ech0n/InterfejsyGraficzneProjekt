@@ -4,6 +4,7 @@ import CourseSideBar from "@/components/sidebar/CourseSideBar.vue";
 import { openDB } from 'idb';
 import { useRoute } from 'vue-router';
 import Toast from "primevue/toast";
+import NavbarTop from "@/components/navbar/NavbarTop.vue";
 
 import { useCartStore } from '@/store.js'
 
@@ -59,9 +60,10 @@ getChaptersInfo()
 
 <template>
   <Toast position="top-right" group="pt"
-         :pt="{
-         container: { class: 'alert alert-success' }
+  :pt="{
+    container: { class: 'alert alert-success' }
   }"/> <!-- !important for showing messages-->
+  <NavbarTop/>
   <div>
   <div v-if=!store.isEmpty style="min-height: 50px" class="nav-item">
     <RouterLink to="/cart" class="nav-link"  style="position: fixed; top:20px; right:30px;"><span v-badge=store.size class="p-overlay-badge" style="font-size: 1rem"><font-awesome-icon  icon="fa-solid fa-shopping-cart"  /></span></RouterLink>
