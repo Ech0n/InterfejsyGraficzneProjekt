@@ -5,6 +5,7 @@ import {ref} from 'vue';
 import { useCartStore } from '@/store.js'
 import Button from 'primevue/button';
 import { storeToRefs } from 'pinia'
+import router from "@/router";
 
 
 const store = useCartStore()
@@ -19,6 +20,15 @@ function removeTutoring(id){
 store.removeTutoring(id)
 }
 // let showCart = ref(false)
+let isNotLoggedIn = ref(false)
+let userId = sessionStorage.getItem("userId")
+isNotLoggedIn.value = !(userId != undefined && userId != null)
+
+function goToPayment()
+{
+  router.push('/cart/redirect')
+}
+
 </script>
 
 <template>
@@ -49,7 +59,12 @@ store.removeTutoring(id)
     </div>
   
     <h2 class="   border-top-1  surface-border pt-3 mx-2 w-5 d-flex justify-content-center align-items-center" >Cena łączna: {{totalPrice.toFixed(2) }} zł</h2>
-    <RouterLink to="/cart/redirect" class="nav-link mx-2 w-5 d-flex justify-content-center align-items-center" > <button class="btn btn-primary w-75 mx-auto"> Przejdź do płatności! </button></RouterLink>
+
+  
+   
+      <button  class="btn btn-primary" :disabled="isNotLoggedIn" @click="goToPayment">  Przejdź do płatności!  </button>
+      <small  v-if="isNotLoggedIn">  <a href="/login">Zaloguj się</a> aby dokonać zakupu!  </small>
+    
   </div>
 </template>
 
