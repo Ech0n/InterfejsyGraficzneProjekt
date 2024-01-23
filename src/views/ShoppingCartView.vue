@@ -21,8 +21,13 @@ store.removeTutoring(id)
 }
 // let showCart = ref(false)
 let isNotLoggedIn = ref(false)
+let isPaymentDisabled = ref(false)
 let userId = sessionStorage.getItem("userId")
 isNotLoggedIn.value = !(userId != undefined && userId != null)
+
+let isteacher = sessionStorage.getItem("userClass") === "teacher"
+
+isPaymentDisabled.value = isNotLoggedIn.value || isteacher
 
 function goToPayment()
 {
@@ -62,8 +67,9 @@ function goToPayment()
 
   
    
-      <button  class="btn btn-primary" :disabled="isNotLoggedIn" @click="goToPayment">  Przejdź do płatności!  </button>
+      <button  class="btn btn-primary" :disabled="isPaymentDisabled" @click="goToPayment">  Przejdź do płatności!  </button>
       <small  v-if="isNotLoggedIn">  <a href="/login">Zaloguj się</a> aby dokonać zakupu!  </small>
+      <small  v-if="isteacher">  <a href="/login">Zaloguj się jako uczeń</a> aby dokonać zakupu!  </small>
     
   </div>
 </template>

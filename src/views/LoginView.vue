@@ -40,6 +40,7 @@ function tryLogin()
   {
     sessionStorage.setItem("username",username.value)
     sessionStorage.setItem("userId",user["id"])
+    sessionStorage.setItem("userClass",user["class"])
 
     router.push({ name: 'home' });
   }).catch((arg)=>{alert(arg)})
